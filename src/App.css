@@ -1,0 +1,117 @@
+#paper {
+  width: 100%;
+  height: calc(100vh - 60px); /* or a fixed height */
+  overflow: hidden;
+  position: relative;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#toolbar {
+  position: relative;
+  z-index: 1000;
+}
+#canvas-container {
+  position: relative;
+  overflow: hidden;
+}
+
+#navigator-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+.joint-context-toolbar {
+  background-color: white !important;
+  border: 1px solid black !important;
+  padding: 8px !important;
+  min-width: 100px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: absolute !important;
+  z-index: 1000 !important;
+}
+#stencil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  bottom: 0;
+  background: #fff;
+  border-right: 1px solid #ccc;
+  z-index: 10;
+}
+
+/* #toolbar {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  z-index: 100;
+} */
+
+#toolbar {
+  position: absolute;
+  top: 0;
+  left: 200px; /* accounts for stencil width */
+  right: 240px; /* leaves space for inspector */
+  height: 50px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center-align buttons */
+  border-bottom: 1px solid #ccc;
+  z-index: 100;
+}
+
+.joint-toolbar {
+  margin-bottom: 20px;
+  padding-left: 0 !important;
+}
+#paper-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.joint-paper-scroller {
+  transform-origin: 0 0;
+}
+.color-palette-field {
+  width: 90px;
+  display: inline-block !important;
+}
+
+.closed .color-palette-field {
+  display: none !important;
+}
+#minimap {
+  position: relative;
+}
+
+#inspector {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 240px;
+}
+#navigator {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#navigator .joint-navigator {
+  border: none;
+}
