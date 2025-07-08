@@ -19,22 +19,7 @@ const Inspector: FC<InspectorProps> = ({
 // chatgptchanges - Added tab selection from right-click context menu
   const [tab, setTab] = useState<"properties" | "settings">(settingsType);
 
-  // COMMENTED // chatgptchanges - Listen for diagram:settings custom event
-  // useEffect(() => {
-  //   const handleDiagramSettings = (event: Event) => {
-  //     const customEvent = event as CustomEvent;
-  //     const type = customEvent.detail?.type;
-  //     if (type === "settings" || type === "properties") {
-  //       setActiveContent("diagram");
-  //       setTab(type);
-  //     }
-  //   };
-
-  //   document.addEventListener("diagram:settings", handleDiagramSettings);
-  //   return () => {
-  //     document.removeEventListener("diagram:settings", handleDiagramSettings);
-  //   };
-  // }, []);  COMMENTED
+  
 
   // deepseekchanges - Added listener for inspector:show event
   useEffect(() => {
@@ -103,13 +88,18 @@ const Inspector: FC<InspectorProps> = ({
         <div>
           <div style={{ padding: "10px 0", borderBottom: "1px solid #eee" }}>
             <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "bold" }}>
-              Diagram Settings
+              {tab === "properties" ? "Diagram Properties" : "Diagram Settings"}
             </h3>
             <p style={{ margin: "5px 0 0 0", fontSize: "12px", color: "#666" }}>
-              Configure diagram properties and canvas settings
+              {tab === "properties"
+                ? "Edit diagram properties"
+                : "Configure canvas settings"}
             </p>
           </div>
-          <DiagramSettings onClose={handleCloseDiagramSettings} />
+          <DiagramSettings
+            onClose={handleCloseDiagramSettings}
+            selectedTab={tab}
+          />
         </div>
       )}
     </div>

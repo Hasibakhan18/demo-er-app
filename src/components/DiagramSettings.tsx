@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { FC } from "react";
-import CanvasSettings from "./CanvasSettings";
+import PropertiesPanel from "./PropertiesPanel";
+import SettingsPanel from "./SettingsPanel";
 
 // interface DiagramSettingsProps {
 //   onClose?: () => void;
@@ -76,69 +77,12 @@ const DiagramSettings: FC<DiagramSettingsProps> = ({ onClose, selectedTab = "set
         </button>
       </div>
 
-      {activeTab === "properties" && (
-        <div>
-          <h4 style={{ margin: "0 0 16px 0" }}>Diagram Properties</h4>
-          <div style={{ marginBottom: "12px" }}>
-            <label
-              style={{
-                display: "block",
-                marginBottom: "4px",
-                fontWeight: "500",
-              }}
-            >
-              Diagram Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter diagram name"
-              style={{
-                width: "100%",
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
-            />
-          </div>
-          <div style={{ marginBottom: "12px" }}>
-            <label
-              style={{
-                display: "block",
-                marginBottom: "4px",
-                fontWeight: "500",
-              }}
-            >
-              Description
-            </label>
-            <textarea
-              placeholder="Enter diagram description"
-              rows={3}
-              style={{
-                width: "100%",
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                resize: "vertical",
-              }}
-            />
-          </div>
-        </div>
-      )}
-
+      {activeTab === "properties" && <PropertiesPanel onClose={onClose} />}
       {activeTab === "settings" && (
-        <div>
-          <h4 style={{ margin: "0 0 16px 0" }}>Canvas Settings</h4>
-          <CanvasSettings
-            onSettingsChange={handleSettingsChange}
-            initialSettings={{
-              paperColor: "#ffffff",
-              snaplines: true,
-              infinitePaper: true,
-              dotGrid: true,
-              gridSize: 10,
-            }}
-          />
-        </div>
+        <SettingsPanel
+          onClose={onClose}
+          onSettingsChange={handleSettingsChange}
+        />
       )}
 
       {onClose && (

@@ -66,9 +66,14 @@ function App() {
 
       {/* Main section: Stencil | Paper | Inspector */}
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-        {/* Stencil - Left sidebar */}
-        <div style={{ flexShrink: 0 }}>
-          <Stencil />
+        {/* Left sidebar with Stencil and Minimap */}
+        <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", height: "100%" }}>
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <Stencil />
+          </div>
+          <div style={{ flexShrink: 0 }}>
+            <Minimap />
+          </div>
         </div>
 
         {/* Paper - Center */}
@@ -94,22 +99,6 @@ function App() {
         </div>
       </div>
 
-      {/* Minimap - Floating bottom-right */}
-      <div
-        style={{
-          position: "absolute",
-          right: 16,
-          bottom: 16,
-          zIndex: 10,
-          background: "#fff",
-          border: "1px solid #ccc",
-          borderRadius: 4,
-          padding: 4,
-          boxShadow: "0 0 4px rgba(0,0,0,0.1)",
-        }}
-      >
-        <Minimap />
-      </div>
     </div>
   );
 }

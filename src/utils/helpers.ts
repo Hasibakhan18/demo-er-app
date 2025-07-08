@@ -272,34 +272,20 @@ export function showDiagramContextMenu(
     // });
 
 
-    // newchatgptchanges - Dispatch event to open Inspector panel with selected tab
     contextToolbar.on("action:properties", () => {
-        console.log("[INFO] Properties selected from context menu"); // <--- MISSING?
-      contextToolbar.remove(); // newchatgptchanges - close context menu
-      const event = new CustomEvent("diagram:settings", {
-        detail: { type: "properties" },
-      });
-      document.dispatchEvent(event); // newchatgptchanges - trigger Inspector tab update
-
-       // deepseekchanges - Dispatch event to open Inspector panel with selected tab and ensure it's visible
-      // Ensure inspector is visible by triggering showDiagramSettings
+      console.log("[INFO] Properties selected from context menu");
+      contextToolbar.remove();
       const inspectorEvent = new CustomEvent("inspector:show", {
-        detail: { show: true, type: "properties" }
+        detail: { show: true, type: "properties" },
       });
       document.dispatchEvent(inspectorEvent);
     });
 
     contextToolbar.on("action:settings", () => {
-        console.log("[INFO] Settings selected from context menu"); // <--- MISSING?
-      contextToolbar.remove(); // newchatgptchanges - close context menu
-      const event = new CustomEvent("diagram:settings", {
-        detail: { type: "settings" },
-      });
-      document.dispatchEvent(event); // newchatgptchanges - trigger Inspector tab update
-      // deepseekchanges - Dispatch event to open Inspector panel with selected tab and ensure it's visible
-            // Ensure inspector is visible by triggering showDiagramSettings
+      console.log("[INFO] Settings selected from context menu");
+      contextToolbar.remove();
       const inspectorEvent = new CustomEvent("inspector:show", {
-        detail: { show: true, type: "settings" }
+        detail: { show: true, type: "settings" },
       });
       document.dispatchEvent(inspectorEvent);
     });
