@@ -119,8 +119,7 @@ export function closeInspector() {
 export function showDiagramContextMenu(
   paper: dia.Paper,
   x: number,
-  y: number,
-  onSelectOption: (option: string) => void
+  y: number
 ) {
   try {
     // // Remove any existing context menus first
@@ -250,28 +249,6 @@ export function showDiagramContextMenu(
     contextToolbar.el.style.left = `${finalX}px`;
     contextToolbar.el.style.top = `${finalY}px`;
 
-    // // chatgptchanges - Dispatch diagram:settings event on selection
-    // contextToolbar.on("action:properties", () => {
-    //   console.log("[INFO] Properties selected from context menu");
-    //   contextToolbar.remove();
-    //   const event = new CustomEvent("diagram:settings", {
-    //     detail: { type: "properties" },
-    //   });
-    //   document.dispatchEvent(event);
-    //   onSelectOption("properties");
-    // });
-
-    // contextToolbar.on("action:settings", () => {
-    //   console.log("[INFO] Settings selected from context menu");
-    //   contextToolbar.remove();
-    //   const event = new CustomEvent("diagram:settings", {
-    //     detail: { type: "settings" },
-    //   });
-    //   document.dispatchEvent(event);
-    //   onSelectOption("settings");
-    // });
-
-
     contextToolbar.on("action:properties", () => {
       console.log("[INFO] Properties selected from context menu");
       contextToolbar.remove();
@@ -289,67 +266,6 @@ export function showDiagramContextMenu(
       });
       document.dispatchEvent(inspectorEvent);
     });
-
-
-
-    // // commented
-    // contextToolbar.on("action:properties", () => {
-    //   console.log("[INFO] Properties selected from context menu");
-    //   contextToolbar.remove();
-    //   onSelectOption("properties");
-    // });
-
-    // contextToolbar.on("action:settings", () => {
-    //   console.log("[INFO] Settings selected from context menu");
-    //   contextToolbar.remove();
-    //   onSelectOption("settings");
-    // });  //COMMENTED
-
-    // // Add CSS class for easier identification
-    // contextToolbar.el.classList.add('diagram-context-menu');
-    // document.body.appendChild(contextToolbar.el);
-
-    // // Force styles to ensure proper positioning and visibility
-    // Object.assign(contextToolbar.el.style, {
-    //   position: "fixed", // Use fixed positioning for viewport coordinates
-    //   zIndex: "10000",
-    //   display: "block",
-    //   backgroundColor: "#ffffff",
-    //   border: "1px solid #ccc",
-    //   borderRadius: "4px",
-    //   boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-    // });
-
-    // // Position the context menu, ensuring it stays within viewport bounds
-    // const menuRect = contextToolbar.el.getBoundingClientRect();
-    // const viewportWidth = window.innerWidth;
-    // const viewportHeight = window.innerHeight;
-    
-    // let finalX = x;
-    // let finalY = y;
-    
-    // // Adjust position if menu would go outside viewport
-    // if (x + menuRect.width > viewportWidth) {
-    //   finalX = viewportWidth - menuRect.width - 10;
-    // }
-    // if (y + menuRect.height > viewportHeight) {
-    //   finalY = viewportHeight - menuRect.height - 10;
-    // }
-    
-    // contextToolbar.position(finalX, finalY);
-
-    // // Handle tool selection
-    // contextToolbar.on("action:properties", () => {
-    //   console.log("[INFO] Properties selected from context menu");
-    //   contextToolbar.remove();
-    //   onSelectOption("properties");
-    // });
-
-    // contextToolbar.on("action:settings", () => {
-    //   console.log("[INFO] Settings selected from context menu");
-    //   contextToolbar.remove();
-    //   onSelectOption("settings");
-    // });
 
     // Close the context menu when clicking outside or pressing Escape
     const handleDocumentClick = (event: MouseEvent) => {

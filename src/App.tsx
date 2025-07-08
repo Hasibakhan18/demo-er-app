@@ -67,11 +67,20 @@ function App() {
       {/* Main section: Stencil | Paper | Inspector */}
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Left sidebar with Stencil and Minimap */}
-        <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", height: "100%" }}>
+        <div style={{
+          flexShrink: 0,
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          width: "300px" /* Match stencil width */
+        }}>
           <div style={{ flex: 1, minHeight: 0 }}>
             <Stencil />
           </div>
-          <div style={{ flexShrink: 0 }}>
+          <div style={{
+            flexShrink: 0,
+            overflow: "hidden"
+          }}>
             <Minimap />
           </div>
         </div>
@@ -90,13 +99,15 @@ function App() {
         </div>
 
         {/* Inspector - Right sidebar */}
-        <div style={{ width: 240, flexShrink: 0 }}>
-          <Inspector
-            showDiagramSettings={showDiagramSettings}
-            settingsType={settingsType}
-            onCloseDiagramSettings={handleCloseDiagramSettings}
-          />
-        </div>
+        {showDiagramSettings && (
+          <div style={{ width: 240, flexShrink: 0 }}>
+            <Inspector
+              showDiagramSettings={showDiagramSettings}
+              settingsType={settingsType}
+              onCloseDiagramSettings={handleCloseDiagramSettings}
+            />
+          </div>
+        )}
       </div>
 
     </div>

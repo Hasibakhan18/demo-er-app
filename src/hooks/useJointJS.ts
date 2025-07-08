@@ -25,7 +25,7 @@ import { shapes, ui, format, util } from "@joint/plus";
 import { getInspectorConfig } from "../config/inspector";
 import { portsIn, portsOut } from "../config/ports";
 // import { stencilElements } from "../config/stencil";
-import { showLinkTools, openInspector, closeInspector } from "../utils/helpers";
+// import { showLinkTools, openInspector, closeInspector } from "../utils/helpers";
 
 // Create a custom event for diagram settings
 export const DIAGRAM_SETTINGS_EVENT = "diagram:settings";
@@ -426,7 +426,10 @@ export const useJointJS = () => {
 
     paper.on("cell:pointerdown", function (cellView: dia.CellView) {
       debug("Cell clicked, opening inspector");
-      openInspector(cellView.model, getInspectorConfig);
+      const event = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
+        detail: { type: "properties" },
+      });
+      document.dispatchEvent(event);
     });
 
     // Stencil is now handled by the Stencil component
@@ -744,7 +747,7 @@ export const useJointJS = () => {
     }, 200);
 
     paper.on("link:mouseenter", (linkView: dia.LinkView) => {
-      showLinkTools(linkView);
+      //showLinkTools(linkView);
     });
 
     paper.on("link:mouseleave", (linkView: dia.LinkView) => {
@@ -768,7 +771,7 @@ export const useJointJS = () => {
       if (originalEvent && originalEvent.button === 2) {
         console.log("Right-click detected on blank area");
         evt.preventDefault(); // Prevent default browser context menu
-        closeInspector();
+        //closeInspector();
 
         // Get the position of the click relative to the viewport
         const x = originalEvent.clientX;
@@ -776,17 +779,11 @@ export const useJointJS = () => {
         console.log("Showing context menu at", x, y);
         
         // Show the context menu
-        showDiagramContextMenu(paper, x, y, (option) => {
-          // Dispatch a custom event with the selected option
-          const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
-            detail: { type: option },
-          });
-          document.dispatchEvent(customEvent);
-        });
+        showDiagramContextMenu(paper, x, y);
       } else if (originalEvent && originalEvent.button === 0) {
         // Left-click on blank area - close inspector if not clicking on context menu
         if (!(originalEvent.target as HTMLElement)?.closest(".joint-context-toolbar")) {
-          closeInspector();
+          //closeInspector();
         }
       }
     });
@@ -795,20 +792,14 @@ export const useJointJS = () => {
     paper.on("blank:pointerdblclick", (evt: dia.Event) => {
       console.log("Double-click detected on blank area");
       evt.preventDefault();
-      closeInspector();
+      //closeInspector();
 
       // Get the position of the click
       const x = evt.clientX || 0;
       const y = evt.clientY || 0;
 
       // Show the context menu
-      showDiagramContextMenu(paper, x, y, (option) => {
-        // Dispatch a custom event with the selected option
-        const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
-          detail: { type: option },
-        });
-        document.dispatchEvent(customEvent);
-      });
+      showDiagramContextMenu(paper, x, y);
     });
 
     // Prevent default context menu on the paper element
@@ -816,7 +807,7 @@ export const useJointJS = () => {
       evt.preventDefault(); // Prevent default browser context menu
     });
 
-    openInspector(rect1, getInspectorConfig);
+    //openInspector(rect1, getInspectorConfig);
 
     return () => {
       debug("Cleaning up JointJS resources");
