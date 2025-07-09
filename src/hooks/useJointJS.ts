@@ -760,29 +760,44 @@ export const useJointJS = () => {
 
     // Stencil element:drop event is now handled by the Stencil component
 
-    // Handle right-click on blank areas (contextmenu)
-    paper.on("blank:contextmenu", (evt: dia.Event) => {
-      console.log("blank:contextmenu event triggered", evt);
-      evt.preventDefault(); // Prevent default browser context menu
-      closeInspector();
+    // Handle right-click on blank areas using blank:pointerdown
+    paper.on("blank:pointerdown", (evt: dia.Event) => {
+      const originalEvent = evt.originalEvent as MouseEvent;
 
-      // Get the position of the click
-      const x = evt.clientX || 0;
-      const y = evt.clientY || 0;
-      console.log("Showing context menu at", x, y);
-      // Show the context menu
-      showDiagramContextMenu(paper, x, y, (option) => {
-        // Dispatch a custom event with the selected option
-        const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
-          detail: { type: option },
+      // Check if it's a right-click (button 2)
+      if (originalEvent && originalEvent.button === 2) {
+        console.log("Right-click detected on blank area");
+        evt.preventDefault(); // Prevent default browser context menu
+        closeInspector();
+
+        // Get the position of the click relative to the viewport
+        const x = originalEvent.clientX;
+        const y = originalEvent.clientY;
+        console.log("Showing context menu at", x, y);
+
+        // Show the context menu
+        showDiagramContextMenu(paper, x, y, (option) => {
+          // Dispatch a custom event with the selected option
+          const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
+            detail: { type: option },
+          });
+          document.dispatchEvent(customEvent);
         });
-        document.dispatchEvent(customEvent);
-      });
+      } else if (originalEvent && originalEvent.button === 0) {
+        // Left-click on blank area - close inspector if not clicking on context menu
+        if (
+          !(originalEvent.target as HTMLElement)?.closest(
+            ".joint-context-toolbar"
+          )
+        ) {
+          closeInspector();
+        }
+      }
     });
 
-    // Handle double-click on blank areas
+    // Handle double-click on blank areas as fallback
     paper.on("blank:pointerdblclick", (evt: dia.Event) => {
-      console.log("Double-click detected on blank area"); // Debug log
+      console.log("Double-click detected on blank area");
       evt.preventDefault();
       closeInspector();
 
@@ -800,19 +815,9 @@ export const useJointJS = () => {
       });
     });
 
-    // Re-enable blank:pointerdown with a robust check
-    paper.on("blank:pointerdown", (evt: dia.Event) => {
-      // Only close inspector for left-click (button 0) and if it's not a right-click (button 2)
-      // Also, ensure that the click is not on the context menu itself
-      if (
-        evt.button === 0 &&
-        (evt.originalEvent as MouseEvent)?.button !== 2 &&
-        !(evt.originalEvent?.target as HTMLElement)?.closest(
-          ".joint-context-toolbar"
-        )
-      ) {
-        closeInspector();
-      }
+    // Prevent default context menu on the paper element
+    paper.on("blank:contextmenu", (evt: dia.Event) => {
+      evt.preventDefault(); // Prevent default browser context menu
     });
 
     openInspector(rect1, getInspectorConfig);
