@@ -1,0 +1,354 @@
+{
+  "knowledgeBase": [
+    {
+      "feature": "Diagram basics",
+      "purpose": "JointJS is a JavaScript library for creating interactive diagramming and graph visualization applications.",
+      "keyAPI": "const graph = new dia.Graph({}, { cellNamespace: shapes }); const paper = new dia.Paper({ el: document.getElementById('paper'), model: graph });",
+      "coreConfig": ["Graph: Manages diagram cells (elements and links)", "Paper: Renders the visual representation of the graph", "Namespace: Defines available shape types", "Element Positioning: Controls placement of diagram components"],
+      "example": "const rectangle = new shapes.standard.Rectangle({ position: { x: 100, y: 100 }, size: { width: 100, height: 60 } }); rectangle.addTo(graph);"
+    },
+    {
+      "feature": "Ready-to-use shapes",
+      "purpose": "JointJS provides a collection of pre-built shapes including rectangles, circles, BPMN elements, and structured records for immediate use in diagrams.",
+      "keyAPI": "new shapes.standard.Rectangle(), new shapes.standard.Circle(), new shapes.bpmn2.Activity()",
+      "coreConfig": ["Position: Element placement coordinates", "Size: Element dimensions", "Attrs: Visual attributes for styling", "Type-specific properties: Icon, label, background"],
+      "example": "const rectangle = new shapes.standard.Rectangle({ position: { x: 50, y: 10 }, attrs: { label: { text: 'Rectangle' }, body: { fill: 'lightblue' } } });"
+    },
+    {
+      "feature": "Custom Shapes",
+      "purpose": "Custom shapes in JointJS allow developers to create unique, reusable graphical elements with custom rendering, attributes, and behaviors within diagrams.",
+      "keyAPI": "class MyShape extends dia.Element OR dia.Element.define('myNamespace.MyShape', {...})",
+      "coreConfig": ["type: Unique identifier for the shape", "size: Dimensions of the shape", "attrs: SVG rendering attributes", "markup: Custom SVG structure"],
+      "example": "class MyShape extends dia.Element { defaults() { return { ...super.defaults, type: 'myNamespace.MyShape', size: { width: 100, height: 80 } }; } }"
+    },
+    {
+      "feature": "Ports",
+      "purpose": "Ports are connection points on elements that enable dynamic link creation and visualization in diagramming interfaces.",
+      "keyAPI": "element.addPort(port, [opt])",
+      "coreConfig": ["id: Unique port identifier", "group: Optional port group for shared styling", "attrs: Visual attributes for port rendering", "markup: Custom SVG markup for port representation"],
+      "example": "const port = { id: 'input-1', group: 'inputs', attrs: { body: { magnet: true, width: 16, height: 16 } } }; element.addPort(port);"
+    },
+    {
+      "feature": "Link Routing",
+      "purpose": "Link routing in JointJS transforms connection paths between elements, providing intelligent and customizable routing strategies.",
+      "keyAPI": "link.router(routerName, options)",
+      "coreConfig": ["Router Types: manhattan, orthogonal, normal", "Obstacle Avoidance: Exclude specific elements/ends", "Direction Constraints: Specify start/end link directions", "Padding/Margin: Control link distance from elements"],
+      "example": "link.router('manhattan', { excludeEnds: ['source'], startDirections: ['top'], endDirections: ['bottom'] });"
+    },
+    {
+      "feature": "PaperScroller",
+      "purpose": "A UI component that provides scrolling, panning, zooming, and auto-resizing capabilities for JointJS diagram Papers.",
+      "keyAPI": "new ui.PaperScroller({ paper: paper })",
+      "coreConfig": ["paper: Required dia.Paper instance", "autoResizePaper: Auto-expand Paper to fit content", "padding: Control spacing around Paper content", "scrollWhileDragging: Enable auto-scrolling during drag"],
+      "example": "const paperScroller = new ui.PaperScroller({ paper: paper }); document.getElementById('paper').appendChild(paperScroller.render().el);"
+    },
+    {
+      "feature": "Navigator",
+      "purpose": "A UI widget that displays a smaller view into a larger diagram, enhancing diagram interactivity and navigation.",
+      "keyAPI": "new ui.Navigator({ paperScroller, width: 300, height: 200 })",
+      "coreConfig": ["paperScroller: The primary paper scroller to navigate", "width and height: Dimensions of the navigator view", "zoom: Zoom behavior and constraints", "padding: Space between navigator content and edges"],
+      "example": "const nav = new ui.Navigator({ paperScroller, width: 300, height: 200 }); document.getElementById('navigator').appendChild(nav.el);"
+    },
+    {
+      "feature": "Stencil",
+      "purpose": "A plugin that provides a draggable palette of JointJS Elements that can be added to a Paper.",
+      "keyAPI": "new ui.Stencil({ paper: paper, width: 170, height: '100%' })",
+      "coreConfig": ["paper: Target Paper or PaperScroller instance", "width: Horizontal dimension of the stencil", "groups: Optional configuration for categorizing elements", "layout: Control element arrangement within groups"],
+      "example": "const stencil = new ui.Stencil({ paper: paper, width: 170, layout: true }); document.getElementById('stencil').appendChild(stencil.el);"
+    },
+    {
+      "feature": "Selection",
+      "purpose": "Enables interactive selection and manipulation of elements on a JointJS diagram.",
+      "keyAPI": "new joint.ui.Selection({ paper: paper })",
+      "coreConfig": ["strictSelection: Determines selection criteria (fully contained vs. intersecting)", "allowTranslate: Enable/disable moving selected elements", "translateConnectedLinks: Control how connected links move with selected elements"],
+      "example": "const selection = new joint.ui.Selection({ paper: paper }); paper.on('blank:pointerdown', selection.startSelecting);"
+    },
+    {
+      "feature": "Halo",
+      "purpose": "Creates an interactive control panel with tools around a diagram element, enhancing user interaction and element manipulation.",
+      "keyAPI": "new ui.Halo({ cellView: myElementView })",
+      "coreConfig": ["cellView: The element view to attach the Halo", "type: Display style (overlay, pie)", "handles: Custom tool handles configuration", "bbox: Bounding box for halo positioning"],
+      "example": "const halo = new ui.Halo({ cellView: elementView }); halo.render();"
+    },
+    {
+      "feature": "FreeTransform",
+      "purpose": "Creates a control panel above an element that allows interactive resizing and rotation of diagram elements.",
+      "keyAPI": "new ui.FreeTransform({ cellView: elementView })",
+      "coreConfig": ["cellView: The view of the element to transform", "allowRotation: Enable/disable rotation", "resizeDirections: Specify which resize handles are displayed", "preserveAspectRatio: Maintain element's original proportions during resize"],
+      "example": "const freeTransform = new ui.FreeTransform({ cellView: elementView }); freeTransform.render();"
+    },
+    {
+      "feature": "TextEditor",
+      "purpose": "A powerful inline text editor for SVG text elements with rich-text capabilities.",
+      "keyAPI": "joint.ui.TextEditor.edit(svgTextElement, options)",
+      "coreConfig": ["text: SVG text element to edit", "cellView: Associated cell view", "textProperty: Path to text property", "placeholder: Default or custom placeholder text"],
+      "example": "joint.ui.TextEditor.edit(evt.target, { cellView: elementView, textProperty: ['attrs', 'label', 'text'] });"
+    },
+    {
+      "feature": "ContextMenu",
+      "purpose": "Provides a customizable right-click context menu system for interactive diagramming interfaces.",
+      "keyAPI": "new joint.ui.ContextToolbar({ tools: [{ action: 'actionName', content: 'Button Text' }], target: targetElement })",
+      "coreConfig": ["tools: Array of button definitions with actions", "target: Element where context menu will be displayed", "autoClose: Automatically close menu when clicking outside"],
+      "example": "const ct = new joint.ui.ContextToolbar({ tools: [{ action: 'yes', content: 'Yes' }], target: document.getElementById('element') });"
+    },
+    {
+      "feature": "CommandManager",
+      "purpose": "Listens to all graph changes and stores the delta of each change (a command).",
+      "keyAPI": "new dia.CommandManager({ graph })",
+      "coreConfig": ["graph: The JointJS graph instance to track changes", "cmdBeforeAdd: Function to filter which commands are recorded", "revertOptionsList: Control which options are passed during undo", "stackLimit: Maximum number of commands to retain in history"],
+      "example": "const commandManager = new dia.CommandManager({ graph }); commandManager.undo();"
+    },
+    {
+      "feature": "Clipboard",
+      "purpose": "Implements copy, cut, and paste functionality for cells in JointJS diagrams.",
+      "keyAPI": "new ui.Clipboard(options)",
+      "coreConfig": ["useLocalStorage: Enable/disable browser local storage for clipboard", "deep: Automatically include embedded cells when copying", "translate: Define offset for pasted elements"],
+      "example": "const clipboard = new ui.Clipboard({ useLocalStorage: false }); clipboard.copyElements(selection.collection, paper.model);"
+    },
+    {
+      "feature": "DirectedGraph",
+      "purpose": "Automatically arranges graph elements into a layered, directed layout with configurable spacing and orientation.",
+      "keyAPI": "DirectedGraph.layout(graph, options)",
+      "coreConfig": ["nodeSep: Separation between adjacent nodes", "rankDir: Layout direction (TB, BT, LR, RL)", "ranker: Algorithm for node ranking (network-simplex, tight-tree, longest-path)"],
+      "example": "const graphBBox = DirectedGraph.layout(graph, { nodeSep: 50, rankDir: 'TB' });"
+    },
+    {
+      "feature": "Validation",
+      "purpose": "Provide a flexible system for validating graph elements, commands, and interactions in diagramming applications.",
+      "keyAPI": "new dia.Validator({ commandManager })",
+      "coreConfig": ["validate() method for registering validation callbacks", "Custom connection validation functions", "Embedding and unembedding validation", "cancelInvalid flag"],
+      "example": "validator.validate('remove', (err, command, next) => { if (command.data.type === 'standard.Rectangle') { return next('Rectangles cannot be removed.'); } return next(); });"
+    },
+    {
+      "feature": "toJSON",
+      "purpose": "Serialize JointJS objects (graphs, collections, cells, models) to a JSON-compatible object representation for persistence and data transfer.",
+      "keyAPI": "object.toJSON([options])",
+      "coreConfig": ["ignoreDefaults: Control which default attributes are excluded", "ignoreEmptyAttributes: Determine whether empty object attributes are included"],
+      "example": "const jsonRepresentation = graph.toJSON(); const jsonString = JSON.stringify(jsonRepresentation);"
+    },
+    {
+      "feature": "fromJSON",
+      "purpose": "Deserializes and reconstructs a JointJS graph or command history from a JSON representation, replacing existing content with the provided data.",
+      "keyAPI": "graph.fromJSON(jsonObject)",
+      "coreConfig": ["cells: Array of cell objects", "options: Optional parameter for additional configuration", "cellNamespace: Namespace for cell types"],
+      "example": "const graph = new dia.Graph({}, { cellNamespace: shapes }); graph.fromJSON({ cells: [{ type: 'standard.Rectangle', position: { x: 100, y: 100 } }] });"
+    },
+    {
+      "feature": "Export SVG",
+      "purpose": "Convert a JointJS diagram to a scalable vector graphics (SVG) file with customizable export options.",
+      "keyAPI": "format.toSVG(paper, callback, options)",
+      "coreConfig": ["convertImagesToDataUris: Embed images directly in SVG", "useComputedStyles: Include external CSS styles", "preserveDimensions: Set exact SVG dimensions"],
+      "example": "format.toSVG(paper, (svg) => { util.downloadDataUri(`data:image/svg+xml,${encodeURIComponent(svg)}`, 'diagram.svg'); }, { convertImagesToDataUris: true });"
+    },
+    {
+      "feature": "Export PNG",
+      "purpose": "Convert a JointJS paper's content into a PNG image with optional customization.",
+      "keyAPI": "toPNG(paper, callback, options)",
+      "coreConfig": ["area: Specify export region", "padding: Add space around exported content", "backgroundColor: Set image background color"],
+      "example": "toPNG(paper, function(dataURL) { /* Handle PNG image data */ }, { padding: 20 });"
+    },
+    {
+      "feature": "Customizing shapes",
+      "purpose": "JointJS allows developers to create and customize graphical shapes with flexible, programmatic configuration of visual and behavioral attributes.",
+      "keyAPI": "dia.Element.define()",
+      "coreConfig": ["type: Unique identifier for the shape", "size: Width and height dimensions", "attrs: SVG attribute configuration for shape subelements", "markup: Custom SVG template for rendering"],
+      "example": "const MyShape = dia.Element.define('myNamespace.MyShape', {\n    size: { width: 100, height: 80 },\n    attrs: {\n        body: {\n            fill: '#FFFFFF',\n            stroke: '#333333'\n        },\n        label: {\n            text: 'Custom Shape',\n            fontSize: 14\n        }\n    }\n});"
+    },
+    {
+      "feature": "Labels",
+      "purpose": "Link labels allow dynamic text and visual annotations to be added to connections in a diagram, providing contextual information and styling.",
+      "keyAPI": "link.appendLabel()",
+      "coreConfig": ["attrs: Define label text, styling, and appearance", "position: Control label placement (distance, offset)", "markup: Custom SVG structure for label", "size: Optional label dimensions"],
+      "example": "link.appendLabel({\n    attrs: {\n        text: { text: 'Hello, World!' }\n    }\n});"
+    },
+    {
+      "feature": "Shape tools",
+      "purpose": "Element tools provide interactive UI controls for manipulating shapes, such as resizing, transforming, or displaying boundaries.",
+      "keyAPI": "elementTools.[ToolName]()",
+      "coreConfig": ["padding: Control visual boundary inflation", "useModelGeometry: Calculate tool position based on model dimensions", "rotate: Enable rotation capabilities"],
+      "example": "import { elementTools } from '@joint/core';\n\nconst boundaryTool = new elementTools.Boundary({\n    padding: 20,\n    useModelGeometry: true\n});"
+    },
+    {
+      "feature": "Containers & Grouping",
+      "purpose": "JointJS provides multiple grouping mechanisms across different components like Stencil, Inspector, and Elements, allowing organized and dynamic UI management of related items.",
+      "keyAPI": "new ui.Stencil({ groups: {...} })",
+      "coreConfig": ["label: Display name for the group", "index: Ordering position", "closed: Initial visibility state", "when: Conditional group display"],
+      "example": "const stencil = new ui.Stencil({\n    groups: {\n        basic: { label: 'Basic Elements', index: 1 },\n        advanced: { label: 'Advanced', index: 2, closed: true }\n    }\n});"
+    },
+    {
+      "feature": "Element palette",
+      "purpose": "A drag-and-drop component that provides a customizable palette of pre-defined graphical elements for diagramming and visual modeling.",
+      "keyAPI": "new ui.Stencil()",
+      "coreConfig": ["paper: The diagram paper to which elements will be dragged", "width: Width of the palette container", "groups: Optional configuration for organizing elements into collapsible sections", "search: Optional configuration for filtering elements"],
+      "example": "import { dia, shapes, ui } from '@joint/plus';\n\nconst graph = new dia.Graph();\nconst paper = new dia.Paper({ el: document.getElementById('paper') });\nconst stencil = new ui.Stencil({ paper, width: 200 });\n\nstencil.load([\n    new shapes.standard.Rectangle(),\n    new shapes.standard.Ellipse()\n]);\n\ndocument.getElementById('stencil').appendChild(stencil.render().el);"
+    },
+    {
+      "feature": "Property editor and viewer",
+      "purpose": "A dynamic UI component that allows interactive editing of properties for graph elements in a JointJS diagram.",
+      "keyAPI": "new ui.Inspector()",
+      "coreConfig": ["cell or cellView: The graph element being edited", "inputs: Object defining editable properties and their input types", "groups: Optional way to organize input fields", "renderFieldContent: Optional custom rendering for input fields"],
+      "example": "const inspector = new ui.Inspector({\n    cellView: cellView,\n    inputs: {\n        myProperty: {\n            type: 'text'\n        }\n    }\n});\ndocument.getElementById('inspector-holder').appendChild(inspector.render().el);"
+    },
+    {
+      "feature": "Toolbar",
+      "purpose": "A flexible UI component for creating interactive toolbars with various widget types to enhance diagram manipulation and user interaction.",
+      "keyAPI": "new ui.Toolbar()",
+      "coreConfig": ["tools: Array defining toolbar widgets (buttons, sliders, etc.)", "references: Object linking to related components like paperScroller", "autoToggle: Boolean to automatically enable/disable widgets", "groups: Optional configuration for widget grouping and alignment"],
+      "example": "const toolbar = new ui.Toolbar({\n    tools: [\n        { type: 'button', name: 'json', text: 'Export JSON' },\n        { type: 'button', name: 'svg', text: 'Export SVG' }\n    ]\n});\ntoolbar.render();\ndocument.getElementById('toolbar').appendChild(toolbar.el);"
+    },
+    {
+      "feature": "Zoom & Scroll",
+      "purpose": "Provides an interactive, scrollable and zoomable viewport for large diagrams, enabling smooth navigation and content exploration.",
+      "keyAPI": "new ui.PaperScroller()",
+      "coreConfig": ["paper: Reference to the JointJS Paper instance", "scrollWhileDragging: Enable automatic scrolling during element drag", "autoResizePaper: Automatically adjust paper size to content", "min/max zoom levels: Constraints for zoom operations"],
+      "example": "const paperScroller = new ui.PaperScroller({ \n    paper: paper, \n    autoResizePaper: true \n});\npaperScroller.zoomToFit(); // Center and scale content"
+    },
+    {
+      "feature": "Minimap",
+      "purpose": "A minimap (Navigator) provides a small overview of a larger diagram, allowing users to navigate and zoom complex visualizations.",
+      "keyAPI": "new ui.Navigator()",
+      "coreConfig": ["paperScroller: The main scrollable paper to be miniaturized", "width and height: Dimensions of the navigator view", "zoomOptions: Control minimum and maximum zoom levels"],
+      "example": "const nav = new ui.Navigator({\n    paperScroller,\n    width: 300,\n    height: 200,\n    zoomOptions: { max: 2, min: 0.2 }\n});\n\ndocument.getElementById('navigator').appendChild(nav.el);\nnav.render();"
+    },
+    {
+      "feature": "Highlighters",
+      "purpose": "Highlighters provide visual emphasis on shapes or parts of shapes in a JointJS diagram by adding strokes, changing opacity, or toggling CSS classes.",
+      "keyAPI": "highlighters.mask.add()",
+      "coreConfig": ["selector: Target SVG node to highlight", "layer: Rendering context (back, front, default)", "attrs: Styling attributes for the highlighter", "padding: Space around the highlighted element"],
+      "example": "highlighters.mask.add(elementView, 'root', 'my-highlight', {\n    attrs: {\n        'stroke': '#FF4365',\n        'stroke-width': 3\n    }\n});"
+    },
+    {
+      "feature": "Selection Region",
+      "purpose": "A tool for enabling interactive selection of elements or regions on a JointJS paper by drawing rectangular, polygonal, or range-based selection areas.",
+      "keyAPI": "new ui.RectangularSelectionRegion()",
+      "coreConfig": ["paper: The JointJS paper instance (required)", "onChange: Callback function when region geometry changes", "normalize: Control how selection rectangle is calculated", "constraints: Optional range or domain constraints"],
+      "example": "paper.on('blank:pointerdown', async () => {\n    const region = new ui.RectangularSelectionRegion({ paper });\n    const area = await region.getUserSelectionAsync();\n    const elements = graph.findModelsInArea(area);\n});"
+    },
+    {
+      "feature": "Resize & Rotate",
+      "purpose": "Enables interactive resizing and rotation of diagram elements with flexible control handles and transformation options.",
+      "keyAPI": "new ui.FreeTransform()",
+      "coreConfig": ["allowRotation: Enable/disable rotation", "preserveAspectRatio: Maintain element proportions during resize", "resizeDirections: Specify which resize handles are active", "rotateAngleGrid: Control rotation snap increments"],
+      "example": "paper.on('element:pointerup', (elementView) => {\n    const freeTransform = new joint.ui.FreeTransform({ cellView: elementView });\n    freeTransform.render();\n});"
+    },
+    {
+      "feature": "Undo & Redo",
+      "purpose": "A plugin that allows undoing and redoing changes made to the graph, with a transaction mechanism to group multiple changes into a single command.",
+      "keyAPI": "new dia.CommandManager()",
+      "coreConfig": ["graph: The graph the CommandManager will listen to", "cmdBeforeAdd: Optional function to filter which commands are stored", "revertOptionsList: Control which options are passed during undo actions"],
+      "example": "const graph = new dia.Graph({}, { cellNamespace: shapes });\nconst commandManager = new dia.CommandManager({ graph });\n\n// Perform changes\nelement.set('attribute', 'value');\n\n// Undo the last change\ncommandManager.undo();"
+    },
+    {
+      "feature": "Copy & Paste",
+      "purpose": "The JointJS Clipboard plugin enables copying, cutting, and pasting of diagram elements with advanced configuration options.",
+      "keyAPI": "new ui.Clipboard()",
+      "coreConfig": ["deep: Include embedded cells during copy/cut", "translate: Define offset for pasted elements", "link: Set attributes for copied links", "cloneCells: Custom cell cloning function"],
+      "example": "const clipboard = new ui.Clipboard();\nclipboard.copyElements(selection.collection, graph);\nclipboard.pasteCells(graph);"
+    },
+    {
+      "feature": "Keyboard shortcuts",
+      "purpose": "Enables creating and managing keyboard shortcuts in JointJS+ applications, allowing developers to bind custom functions to specific key combinations.",
+      "keyAPI": "new ui.Keyboard()",
+      "coreConfig": ["Bind shortcuts using keyboard.on()", "Support for single keys and key combinations", "Ability to map multiple shortcuts to one handler"],
+      "example": "keyboard.on('ctrl+v shift+insert', pasteHandler);"
+    },
+    {
+      "feature": "Inline text editing",
+      "purpose": "Enables rich, interactive text editing directly on SVG text elements within JointJS diagrams, allowing users to modify text content and styling through a powerful inline editor.",
+      "keyAPI": "ui.TextEditor.edit()",
+      "coreConfig": ["cellView: The view for the cell being edited", "textProperty: Path to the text property (e.g., ['attrs', 'label', 'text'])", "annotationsProperty: Path to text annotations (e.g., ['attrs', 'label', 'annotations'])"],
+      "example": "paper.on('element:pointerdblclick', (elementView, evt) => {\n    ui.TextEditor.edit(evt.target, {\n        cellView: elementView,\n        textProperty: ['attrs', 'label', 'text'],\n        annotationsProperty: ['attrs', 'label', 'annotations']\n    });\n});"
+    },
+    {
+      "feature": "Export & Import",
+      "purpose": "Convert JointJS diagrams to/from BPMN XML format with extensive customization for transforming diagram representations between JointJS and BPMN XML formats.",
+      "keyAPI": "toBPMN() / fromBPMN()",
+      "coreConfig": ["exportableObjectFactories: Custom mapping of shape types to export handlers", "cellFactories: Custom cell creation for specific XML elements", "bpmn2Shapes: Namespace of shape definitions", "cellNamespace: Target namespace for imported cells"],
+      "example": "// Export\nconst exportResult = toBPMN(paper, {\n    exportableObjectFactories: {\n        'bpmn2.Activity': (cellView) => { /* custom export logic */ }\n    }\n});\n\n// Import\nconst importResult = fromBPMN(xmlDoc, {\n    cellFactories: {\n        'task': (xmlNode, xmlDoc) => { /* custom cell creation */ }\n    },\n    cellNamespace: joint.shapes.bpmn2\n});"
+    },
+    {
+      "feature": "Automatic layouts",
+      "purpose": "Automatically arrange graph elements and connections using various algorithmic strategies like grid, tree, force-directed, and directed graph layouts.",
+      "keyAPI": "layout.LayoutType()",
+      "coreConfig": ["graph: The JointJS graph or cell collection to layout", "direction: Layout orientation (e.g., \"TB\" for top-bottom)", "nodeSep: Separation between adjacent nodes", "elementGap: Space between elements"],
+      "example": "layout.GridLayout.layout(graph, {\n    columns: 2,\n    columnWidth: 100,\n    rowHeight: 70\n});"
+    },
+    {
+      "feature": "Performance",
+      "purpose": "Enable non-blocking rendering of large graph datasets for improved UI responsiveness through asynchronous rendering, spatial indexing, and optimized attribute updates.",
+      "keyAPI": "new joint.dia.Paper({ async: true })",
+      "coreConfig": ["async: Boolean to enable asynchronous rendering", "viewport: Function to control view mounting", "useModelGeometry: Force model-based calculations", "isolate: Prevent unnecessary link updates"],
+      "example": "const paper = new joint.dia.Paper({\n    async: true,\n    viewport: (view) => view.model.get('visible')\n});\n\n// Optimized attribute updates\ncell.attr(['line', 'stroke'], 'red', { isolate: true });"
+    },
+    {
+      "feature": "Validations",
+      "purpose": "Validations in JointJS help maintain diagram integrity by allowing developers to define custom rules for actions like adding, removing, or modifying graph elements.",
+      "keyAPI": "new dia.Validator()",
+      "coreConfig": ["commandManager: Required CommandManager instance", "cancelInvalid: Boolean to determine whether to cancel invalid commands (default: true)", "Validation callbacks with signature: (err, command, next) => {}"],
+      "example": "validator.validate('remove', (err, command, next) => {\n    if (command.data.type === 'standard.Rectangle') {\n        return next('Rectangles cannot be removed.');\n    }\n    return next();\n});"
+    },
+    {
+      "feature": "Algorithms",
+      "purpose": "Provides various graph algorithms including Dijkstra's shortest path, force-directed layout, and tree layout for organizing and analyzing graph structures.",
+      "keyAPI": "alg.Dijkstra() / layout.ForceDirected() / layout.TreeLayout()",
+      "coreConfig": ["adjacencyList/graph: Graph representation or JointJS graph object", "source: Starting node (for Dijkstra)", "charge/linkStrength: Force parameters (for ForceDirected)", "direction: Layout orientation (for TreeLayout)"],
+      "example": "// Dijkstra's Algorithm\nconst graph = { a: ['b', 'c'], b: ['d', 'e'] };\nconst previous = joint.alg.Dijkstra(graph, 'a');\n\n// Force-Directed Layout\nconst forceLayout = new joint.layout.ForceDirected({\n    graph: myGraph,\n    charge: 10,\n    linkStrength: 200\n});\n\n// Tree Layout\nconst treeLayout = new joint.layout.TreeLayout({\n    graph: myGraph,\n    direction: 'R',\n    siblingGap: 20\n});"
+    },
+    {
+      "feature": "Snap to objects",
+      "purpose": "Snaplines help users precisely align and position elements within a diagram by providing visual guides and automatic grid/element alignment.",
+      "keyAPI": "new joint.ui.Snaplines()",
+      "coreConfig": ["paper: Required JointJS Paper instance", "distance: Pixel distance between element edges for snapping (default: 10)", "filter: Optional function to exclude elements from snapping", "usePaperGrid: Adjust element positions to paper's grid (default: false)"],
+      "example": "const snaplines = new joint.ui.Snaplines({\n    paper: paper,\n    distance: 15,\n    usePaperGrid: true\n});\nsnaplines.enable();"
+    },
+    {
+      "feature": "Drag & Drop",
+      "purpose": "Enables interactive movement and placement of graphical elements within a diagram or graph by dragging and dropping them between containers or papers.",
+      "keyAPI": "stencil.startDragging()",
+      "coreConfig": ["dragThreshold: Controls drag initiation delay", "canDrag(): Custom function to determine if dragging is allowed", "scaleClones: Scales dragged element clones based on paper transformations"],
+      "example": "stencil.on('element:dragstart', (cloneView, evt) => {\n    // Custom drag start logic\n});\n\nstencil.on('element:drop', (elementView, evt) => {\n    // Handle successful drop\n});"
+    },
+    {
+      "feature": "Vector editor",
+      "purpose": "A powerful SVG path manipulation and editing tool that allows interactive modification of vector graphics elements.",
+      "keyAPI": "new ui.PathEditor()",
+      "coreConfig": ["pathElement: Target SVG path to edit", "Event handling for control point interactions", "Optional transformation and editing modes"],
+      "example": "const pathEditor = new joint.ui.PathEditor({\n    pathElement: document.querySelector('#myPath')\n});\n\npathEditor.on({\n    'path:control-point:adjusting': () => console.log('Editing path')\n});"
+    },
+    {
+      "feature": "Tooltips",
+      "purpose": "A plugin that displays information messages anywhere in your UI with configurable positioning and interaction.",
+      "keyAPI": "new joint.ui.Tooltip()",
+      "coreConfig": ["target: CSS selector for elements that trigger tooltips", "direction: Tooltip arrow position ('auto', 'top', 'bottom', etc.)", "padding: Spacing between tooltip and target element", "content: Tooltip text or dynamic content generation function"],
+      "example": "new joint.ui.Tooltip({\n    target: '[data-tooltip]',\n    direction: 'auto',\n    padding: 10\n});"
+    },
+    {
+      "feature": "Popups & Menus",
+      "purpose": "Popups & Menus in JointJS provide interactive UI components for displaying contextual information, dialogs, and toolbars within diagram interfaces.",
+      "keyAPI": "new ui.Popup()",
+      "coreConfig": ["content: HTML or text to display in popup", "target: Element the popup attaches to", "position: Placement relative to target (default: 'bottom')", "arrowPosition: Arrow rendering location"],
+      "example": "import { ui } from '@joint/plus';\n\nconst popup = new ui.Popup({\n    content: 'Hello, JointJS!',\n    target: someElement\n});\npopup.render();"
+    },
+    {
+      "feature": "Form controls",
+      "purpose": "JointJS form controls enable interactive HTML form elements within SVG diagrams, allowing dynamic input, selection, and interaction within graphical interfaces.",
+      "keyAPI": "new joint.ui.SelectBox()",
+      "coreConfig": ["options: Array of dropdown/selection items", "width: Dropdown/control width", "props: HTML element property settings", "type: Form control type (text, select, etc.)"],
+      "example": "const selectBox = new joint.ui.SelectBox({\n    width: 200,\n    options: [\n        { content: 'Amsterdam', selected: true },\n        { content: 'Prague' }\n    ]\n});\ndocument.getElementById('selectbox-holder').appendChild(selectBox.render().el);"
+    },
+    {
+      "feature": "Themes & Styling",
+      "purpose": "Provides a flexible system for customizing the visual appearance of JointJS UI components and diagrams at global and component-specific levels.",
+      "keyAPI": "setTheme()",
+      "coreConfig": ["Global theme setting", "Individual component theme override", "CSS-based styling via attributes", "Selector-based style targeting"],
+      "example": "import { setTheme, ui } from '@joint/plus';\n\n// Set global theme\nsetTheme('material');\n\n// Create component with specific theme\nconst colorPalette = new ui.ColorPalette({\n    theme: 'material',\n    options: [\n        { content: '#90C3D4' },\n        { content: '#D4A190' }\n    ]\n});"
+    },
+    {
+      "feature": "Local storage",
+      "purpose": "Provides a convenient way to store documents (especially JointJS graphs and cells) to client-side HTML 5 localStorage.",
+      "keyAPI": "storage.Local",
+      "coreConfig": ["collection: Named storage container for documents", "prefix: Optional string prefix for storage keys", "Asynchronous method calls with callback support"],
+      "example": "// Insert a graph into a 'graphs' collection\nstorage.Local.insert('graphs', graph);\n\n// Find all graphs in the collection\nstorage.Local.find('graphs', {}, (err, graphs) => {});"
+    }
+  ]
+}

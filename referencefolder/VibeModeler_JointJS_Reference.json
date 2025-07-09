@@ -1,0 +1,383 @@
+
+{
+  "metadata": {
+    "file": "VibeModeler_JointJS_Reference.json",
+    "description": "A comprehensive, AI-agent-friendly summary of the JointJS+ library, tailored for the VibeModeler project. Contains structured information on core concepts, API, features, and examples for efficient development.",
+    "version": "1.0",
+    "source": "Derived from JoinJSContext.md"
+  },
+  "coreConcepts": [
+    {
+      "name": "Architecture: Model-View Separation",
+      "description": "JointJS fundamentally separates the diagram's data (the 'Model') from its visual representation (the 'View'). This is the most important concept for building a maintainable application.",
+      "components": {
+        "model": {
+          "class": "dia.Graph",
+          "responsibility": "Stores a collection of cells (elements and links). Manages data and relationships. It is serializable to JSON and completely independent of the UI."
+        },
+        "view": {
+          "class": "dia.Paper",
+          "responsibility": "Renders the `dia.Graph` model into an SVG element in the DOM. It handles all user interactions like clicks and drags."
+        }
+      },
+      "example": "const graph = new dia.Graph(); const paper = new dia.Paper({ model: graph, el: document.body });"
+    },
+    {
+      "name": "Cells: Elements & Links",
+      "description": "Everything rendered on the paper is a 'Cell'. There are two primary types of cells.",
+      "components": {
+        "element": {
+          "class": "dia.Element",
+          "description": "Represents a node or shape in the diagram (e.g., a rectangle, circle, ERD entity). It has properties like `position` and `size`."
+        },
+        "link": {
+          "class": "dia.Link",
+          "description": "Represents a connection between elements or points. It has `source` and `target` properties."
+        }
+      }
+    },
+    {
+      "name": "Styling via Attributes",
+      "description": "The visual appearance of a cell is controlled by its `attrs` object. This object maps directly to the SVG attributes of the underlying SVG elements.",
+      "method": "cell.attr('selector/attribute', value)",
+      "example": "rect.attr('body/fill', 'blue'); rect.attr('label/text', 'My Label');",
+      "selectors": "The path (e.g., 'body', 'label') selects a specific SVG sub-element within the cell's markup."
+    },
+    {
+      "name": "Performance: Asynchronous Rendering",
+      "description": "For large, complex diagrams, enabling asynchronous rendering on the paper is critical to prevent UI blocking.",
+      "paperOption": "`async: true`",
+      "caveat": "When `async` is true, a view for a newly added cell may not be in the DOM immediately after `graph.addCell()` is called.",
+      "solution": "Listen for the `paper.on('render:done', callback)` event to safely execute code that needs access to the DOM elements of the views."
+    }
+  ],
+  "apiReference": {
+    "dia.Graph": {
+      "description": "The data model. Manages a collection of `dia.Cell` models.",
+      "initialization": "new dia.Graph({}, { cellNamespace: shapes })",
+      "methods": [
+        {
+          "name": "addCell(cell)",
+          "description": "Adds a single cell to the graph."
+        },
+        {
+          "name": "addCells(cells)",
+          "description": "Adds an array of cells to the graph. More performant for large batches."
+        },
+        {
+          "name": "removeCells(cells)",
+          "description": "Removes cells from the graph."
+        },
+        {
+          "name": "toJSON()",
+          "description": "Serializes the entire graph, including all cells and custom data, into a JSON object for persistence.",
+          "example": "const modelJson = JSON.stringify(graph.toJSON());"
+        },
+        {
+          "name": "fromJSON(json)",
+          "description": "Deserializes a graph from a JSON object, clearing the graph first.",
+          "example": "graph.fromJSON(JSON.parse(modelJson));"
+        },
+        {
+          "name": "getCells()",
+          "description": "Returns an array of all cells in the graph."
+        },
+        {
+          "name": "getCell(id)",
+          "description": "Returns a single cell by its ID."
+        }
+      ],
+      "events": [
+        {
+          "name": "add",
+          "description": "Fires when a cell is added. `(cell, collection, options)`"
+        },
+        {
+          "name": "remove",
+          "description": "Fires when a cell is removed. `(cell, collection, options)`"
+        },
+        {
+          "name": "change:position",
+          "description": "Fires when an element's position changes. `(cell, newPosition, options)`"
+        },
+        {
+          "name": "change:attrs",
+          "description": "Fires when any attribute of a cell changes. `(cell, newAttrs, options)`"
+        }
+      ]
+    },
+    "dia.Paper": {
+      "description": "The view. Renders a `dia.Graph` into an SVG element.",
+      "initialization": "new dia.Paper({ el, model, width, height, ...options })",
+      "options": [
+        {
+          "name": "async",
+          "type": "boolean",
+          "description": "Enable asynchronous rendering for performance. Highly recommended."
+        },
+        {
+          "name": "frozen",
+          "type": "boolean",
+          "description": "If true, the paper is non-interactive and does not render changes. Useful for bulk updates. Toggle with `paper.freeze()` and `paper.unfreeze()`."
+        },
+        {
+          "name": "gridSize",
+          "type": "number",
+          "description": "Size of the grid pattern."
+        },
+        {
+          "name": "drawGrid",
+          "type": "boolean | object",
+          "description": "Makes the grid visible."
+        },
+        {
+          "name": "background",
+          "type": "object",
+          "description": "Set a background color or image. `{ color: '#fafafa' }`"
+        },
+        {
+          "name": "validateConnection",
+          "type": "function",
+          "description": "A function called before a new link is created, allowing you to enforce connection rules.",
+          "signature": "(cellViewS, magnetS, cellViewT, magnetT, end, linkView) => boolean"
+        },
+        {
+          "name": "defaultRouter",
+          "type": "object",
+          "description": "Defines the default pathing for links. `{ name: 'manhattan', args: { ... } }`"
+        },
+        {
+          "name": "defaultConnector",
+          "type": "object",
+          "description": "Defines the default shape for link lines. `{ name: 'rounded' }`"
+        }
+      ],
+      "methods": [
+        {
+          "name": "findViewByModel(cell)",
+          "description": "Gets the view instance for a given cell model."
+        },
+        {
+          "name": "scale(sx, sy, ox, oy)",
+          "description": "Scales the paper content. `sy`, `ox`, `oy` are optional."
+        },
+        {
+          "name": "translate(tx, ty)",
+          "description": "Pans the paper content."
+        },
+        {
+          "name": "toPNG(callback, options)",
+          "description": "Exports the current paper view to a PNG data URL."
+        },
+        {
+          "name": "toSVG(callback, options)",
+          "description": "Exports the current paper view to an SVG data string."
+        }
+      ],
+      "events": [
+        {
+          "name": "cell:pointerclick",
+          "description": "Fires when any cell is clicked. `(cellView, evt, x, y)`"
+        },
+        {
+          "name": "element:pointerdblclick",
+          "description": "Fires when an element is double-clicked. `(elementView, evt, x, y)`"
+        },
+        {
+          "name": "blank:pointerdown",
+          "description": "Fires when the empty area of the paper is clicked. `(evt, x, y)`"
+        },
+        {
+          "name": "render:done",
+          "description": "Fires when all asynchronous rendering tasks are complete. Essential for safe DOM manipulation."
+        }
+      ]
+    },
+    "dia.Cell": {
+      "description": "The base model for elements and links.",
+      "methods": [
+        {
+          "name": "attr(path, value, [opt])",
+          "description": "Sets a presentation attribute. If `value` is omitted, it gets the current value."
+        },
+        {
+          "name": "prop(path, value, [opt])",
+          "description": "Sets a model property (e.g., `size`, `position`) or a custom data property."
+        },
+        {
+          "name": "remove()",
+          "description": "Removes the cell from the graph."
+        },
+        {
+          "name": "toFront()",
+          "description": "Increases the cell's z-index to bring it to the top."
+        },
+        {
+          "name": "toBack()",
+          "description": "Decreases the cell's z-index to send it to the bottom."
+        }
+      ]
+    },
+    "shapes": {
+      "description": "The `shapes` namespace contains constructors for all standard and custom shapes.",
+      "standard": [
+        "Rectangle",
+        "Circle",
+        "Ellipse",
+        "Polygon",
+        "Cylinder",
+        "Link"
+      ],
+      "customShapeDefinition": {
+        "description": "Define new, reusable shape types by extending existing ones.",
+        "method": "`shapes.standard.Rectangle.define('myApp.MyShape', { ...defaults }, { ...prototype });`",
+        "markup": "The `markup` property in the prototype defines the SVG structure of the shape using a JSON-based format.",
+        "example": "`markup: [{ tagName: 'rect', selector: 'body' }, { tagName: 'text', selector: 'label' }]`"
+      }
+    },
+    "ui": {
+      "description": "The `ui` namespace contains pre-built UI components that dramatically speed up development.",
+      "components": [
+        {
+          "name": "PaperScroller",
+          "description": "Provides pan and zoom functionality for the paper. Wraps the paper's DOM element.",
+          "initialization": "new ui.PaperScroller({ paper, autoResizePaper: true, cursor: 'grab' })",
+          "methods": ["zoom", "center", "centerContent"]
+        },
+        {
+          "name": "Navigator",
+          "description": "Creates a minimap view of the entire diagram, with a draggable viewport.",
+          "initialization": "new ui.Navigator({ paperScroller, width: 200, height: 150 })"
+        },
+        {
+          "name": "Stencil",
+          "description": "Creates a panel with shapes that can be dragged and dropped onto the paper.",
+          "initialization": "new ui.Stencil({ paper, width: 250, dropAnimation: true })",
+          "methods": ["load(shapes, [groupName])"]
+        },
+        {
+          "name": "Halo",
+          "description": "A modern, contextual toolbar that appears around a selected element.",
+          "initialization": "new ui.Halo({ cellView })",
+          "options": "`handles` array defines the buttons and their actions."
+        },
+        {
+          "name": "FreeTransform",
+          "description": "Provides classic resize and rotate handles on a selected element.",
+          "initialization": "new ui.FreeTransform({ cellView })"
+        },
+        {
+          "name": "TextEditor",
+          "description": "Enables in-place text editing on an element.",
+          "usage": "ui.TextEditor.edit(evt.target, { cellView, textProperty: 'attrs/label/text' })"
+        },
+        {
+          "name": "ContextMenu",
+          "description": "A configurable right-click menu.",
+          "initialization": "new ui.ContextMenu({ items: [{ label, action }, ...] })",
+          "methods": ["open(event, callback)"]
+        },
+        {
+          "name": "Inspector",
+          "description": "Auto-generates a properties panel form based on a cell's attributes.",
+          "usage": "ui.Inspector.create('.inspector-container', { cell, inputs: { ... } })"
+        },
+        {
+          "name": "Selection",
+          "description": "Manages element selection, including multi-select with Ctrl/Cmd and marquee/box selection.",
+          "initialization": "new ui.Selection({ paper, graph })"
+        },
+        {
+          "name": "Clipboard",
+          "description": "Provides copy/paste functionality.",
+          "initialization": "const clipboard = new ui.Clipboard();",
+          "usage": "clipboard.copy(selection.collection, graph); clipboard.paste(graph);"
+        }
+      ]
+    },
+    "dia.CommandManager": {
+      "description": "Provides undo/redo capabilities by tracking all transactions on the graph.",
+      "initialization": "new dia.CommandManager({ graph })",
+      "methods": ["undo()", "redo()", "hasUndo()", "hasRedo()"]
+    },
+    "layout.DirectedGraph": {
+      "description": "A powerful plugin for automatically arranging the diagram. Uses Dagre.js internally.",
+      "usage": "joint.layout.DirectedGraph.layout(graph, options)",
+      "options": [
+        {
+          "name": "rankDir",
+          "values": ["'TB'", "'BT'", "'LR'", "'RL'"],
+          "description": "Direction of the layout (Top-to-Bottom, etc.)."
+        },
+        {
+          "name": "nodeSep",
+          "type": "number",
+          "description": "Horizontal separation between nodes."
+        },
+        {
+          "name": "edgeSep",
+          "type": "number",
+          "description": "Vertical separation between nodes."
+        },
+        {
+          "name": "rankSep",
+          "type": "number",
+          "description": "Vertical separation between layers/ranks."
+        },
+        {
+          "name": "setLinkVertices",
+          "type": "boolean",
+          "description": "If true, adds vertices to links to create smooth, orthogonal paths."
+        }
+      ]
+    }
+  },
+  "featureImplementationGuide": {
+    "vibeModelerFeatures": [
+      {
+        "feature": "Entity Border Styles (Native, Cloned, Referenced)",
+        "implementation": "Use the `cell.attr()` method to dynamically change the `stroke-dasharray` attribute of the element's body.",
+        "code": "entity.attr('body/strokeDasharray', '5,5'); // Dashed for Referenced"
+      },
+      {
+        "feature": "Stereotype Colors",
+        "implementation": "Use the `cell.attr()` method to change the `fill` attribute of the element's header or body based on the selected stereotype.",
+        "code": "entity.attr('header/fill', stereotype.color);"
+      },
+      {
+        "feature": "PRD Generation",
+        "implementation": "Iterate through the graph cells using `graph.getCells()`. Filter for `Requirement` and `Concept` types, extract their data (`attrs`, custom properties), and format it into a document."
+      },
+      {
+        "feature": "ERD Generation from MMM/RQM",
+        "implementation": "1. Iterate through `Concept` elements. 2. For each, create a new `app.Entity` element using `new` and add it to the graph using `graph.addCell()`. 3. Use an AI service or rule engine to determine relationships. 4. Create `shapes.standard.Link` models for relationships. 5. Use `layout.DirectedGraph.layout()` to arrange the newly generated ERD."
+      },
+      {
+        "feature": "Locking Objects",
+        "implementation": "Set a custom flag on the cell model (e.g., `cell.set('locked', true)`). Then, in the paper's `interactive` option function, return `false` for locked elements to prevent movement. `interactive: (cellView) => !cellView.model.get('locked')`"
+      }
+    ]
+  },
+  "quickCodeExamples": [
+    {
+      "title": "Create a Basic Element",
+      "code": "const rect = new shapes.standard.Rectangle({ position: {x: 50, y: 50}, size: {width: 120, height: 40}, attrs: { body: { fill: 'lightblue' }, label: { text: 'Hello' } } }); rect.addTo(graph);"
+    },
+    {
+      "title": "Create a Link",
+      "code": "const link = new shapes.standard.Link({ source: { id: rect1.id }, target: { id: rect2.id } }); link.addTo(graph);"
+    },
+    {
+      "title": "Listen to a Click Event",
+      "code": "paper.on('element:pointerclick', (elementView) => { console.log('Clicked on element:', elementView.model.id); });"
+    },
+    {
+      "title": "Change Color on Click",
+      "code": "paper.on('element:pointerclick', (elementView) => { elementView.model.attr('body/fill', 'orange'); });"
+    },
+    {
+      "title": "Dynamic Link Creation on Blank Paper",
+      "code": "paper.on('blank:pointerdown', (evt, x, y) => { const link = new shapes.standard.Link(); link.source({x,y}).target({x,y}).addTo(graph); evt.data = { link }; }); paper.on('blank:pointermove', (evt, x, y) => { evt.data.link.target({x,y}); });"
+    }
+  ]
+}
