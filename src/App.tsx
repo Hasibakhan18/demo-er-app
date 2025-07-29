@@ -9,49 +9,13 @@ import Minimap from "./components/Minimap";
 import { useState, useEffect } from "react";
 
 function App() {
-  const containerRef = useJointJS();
-  const [showDiagramSettings, setShowDiagramSettings] = useState(false);
-  const [settingsType, setSettingsType] = useState<"properties" | "settings">(
-    "settings"
-  );
-
-  // Function to show diagram settings
-  const handleShowDiagramSettings = (type: "properties" | "settings") => {
-    setSettingsType(type);
-    setShowDiagramSettings(true);
-  };
-
-  // Function to close diagram settings
-  const handleCloseDiagramSettings = () => {
-    setShowDiagramSettings(false);
-  };
-
-  // Listen for the custom event from the context menu
-  useEffect(() => {
-    const handleDiagramSettingsEvent = (event: CustomEvent) => {
-      const { type } = event.detail;
-      handleShowDiagramSettings(type as "properties" | "settings");
-    };
-
-    // Add event listener
-    document.addEventListener(
-      DIAGRAM_SETTINGS_EVENT,
-      handleDiagramSettingsEvent as EventListener
-    );
-
-    // Clean up
-    return () => {
-      document.removeEventListener(
-        DIAGRAM_SETTINGS_EVENT,
-        handleDiagramSettingsEvent as EventListener
-      );
-    };
-  }, []);
+  const { containerRef, graph, paper, paperScroller } = useJointJS();
 
   return (
     <div
       id="canvas-container"
       style={{
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         height: "100vh",
@@ -76,10 +40,10 @@ function App() {
           }}
         >
           <div style={{ flex: 1, minHeight: 0 }}>
-            <Stencil />
+            {paper && graph && <Stencil paper={paper} graph={graph} />}
           </div>
           <div style={{ flexShrink: 0 }}>
-            <Minimap />
+            {paperScroller && <Minimap paperScroller={paperScroller} />}
           </div>
         </div>
 
@@ -98,11 +62,7 @@ function App() {
 
         {/* Inspector - Right sidebar */}
         <div style={{ width: 240, flexShrink: 0 }}>
-          <Inspector
-            showDiagramSettings={showDiagramSettings}
-            settingsType={settingsType}
-            onCloseDiagramSettings={handleCloseDiagramSettings}
-          />
+          {paper && graph && <Inspector paper={paper} graph={graph} />}
         </div>
       </div>
     </div>

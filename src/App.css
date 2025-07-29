@@ -18,10 +18,6 @@ body,
   position: relative;
   z-index: 1000;
 }
-#canvas-container {
-  position: relative;
-  overflow: hidden;
-}
 
 #navigator-container {
   position: absolute;
@@ -30,11 +26,11 @@ body,
   z-index: 10;
 }
 .joint-context-toolbar {
-  background-color: white !important;
-  border: 1px solid black !important;
+  background-color: var(--context-toolbar-bg) !important;
+  border: 1px solid var(--context-toolbar-border) !important;
   padding: 8px !important;
   min-width: 100px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px var(--context-toolbar-shadow);
   position: absolute !important;
   z-index: 1000 !important;
 }
@@ -44,8 +40,8 @@ body,
   left: 0;
   width: 200px;
   bottom: 0;
-  background: #fff;
-  border-right: 1px solid #ccc;
+  background: red;
+  border-right: 1px solid var(--stencil-border);
   z-index: 10;
 }
 
@@ -62,11 +58,11 @@ body,
   left: 200px; /* accounts for stencil width */
   right: 240px; /* leaves space for inspector */
   height: 50px;
-  background: #fff;
+  background: var(--toolbar-bg);
   display: flex;
   align-items: center;
   justify-content: center; /* center-align buttons */
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--toolbar-border);
   z-index: 100;
 }
 
@@ -77,7 +73,7 @@ body,
 #paper-container {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
 }
 .joint-paper-scroller {
@@ -101,6 +97,7 @@ body,
   right: 0;
   bottom: 0;
   width: 240px;
+  background-color: var(--inspector-bg);
 }
 #navigator {
   position: absolute;
@@ -108,8 +105,8 @@ body,
   bottom: 25px;
   border-radius: 5px;
   padding: 5px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--navigator-bg);
+  box-shadow: 0 0 10px var(--navigator-shadow);
 }
 
 #navigator .joint-navigator {

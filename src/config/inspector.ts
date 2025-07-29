@@ -1,4 +1,4 @@
-import { dia } from "@joint/core";
+import { dia } from "@joint/plus";
 import { colorPaletteOptions } from "./color-palette";
 import { debug } from "../utils/logger";
 
@@ -117,6 +117,37 @@ export const getInspectorConfig = (cell: dia.Cell) => {
           },
         },
       },
+    },
+  };
+};
+
+export const getPaperInspectorConfig = () => {
+  return {
+    inputs: {
+      gridSize: {
+        type: "range",
+        min: 1,
+        max: 50,
+        step: 1,
+        unit: "px",
+        label: "Grid size",
+        group: "grid",
+      },
+      drawGrid: {
+        type: "toggle",
+        label: "Show grid",
+        group: "grid",
+      },
+      backgroundColor: {
+        type: "color-palette",
+        options: colorPaletteOptions,
+        label: "Background",
+        group: "appearance",
+      },
+    },
+    groups: {
+      grid: { label: "Grid", index: 1 },
+      appearance: { label: "Appearance", index: 2 },
     },
   };
 };

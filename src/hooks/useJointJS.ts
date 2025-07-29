@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { debug } from "../utils/logger";
 import { dia } from "@joint/plus";
 import * as joint from "@joint/core";
-import { showDiagramContextMenu } from "../utils/helpers";
 import requestFullscreenSvg from "../assets/navigator/request-fullscreen.svg";
 import zoomInSvg from "../assets/navigator/zoom-in (1).png";
 import zoomOutSvg from "../assets/navigator/Zoom-out.png";
@@ -22,16 +21,19 @@ declare module "@joint/plus" {
 debug("useJointJS hook initialized");
 
 import { shapes, ui, format, util } from "@joint/plus";
-import { getInspectorConfig } from "../config/inspector";
 import { portsIn, portsOut } from "../config/ports";
 // import { stencilElements } from "../config/stencil";
-import { showLinkTools, openInspector, closeInspector } from "../utils/helpers";
+import { showLinkTools } from "../utils/helpers";
 
 // Create a custom event for diagram settings
 export const DIAGRAM_SETTINGS_EVENT = "diagram:settings";
 
 export const useJointJS = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [graph, setGraph] = useState<dia.Graph | null>(null);
+  const [paper, setPaper] = useState<dia.Paper | null>(null);
+  const [paperScroller, setPaperScroller] = useState<any | null>(null);
+  const isDiagramSettingsVisibleRef = useRef(false);
 
   useEffect(() => {
     debug("useJointJS useEffect triggered");
@@ -39,6 +41,30 @@ export const useJointJS = () => {
       debug("containerRef is null - skipping initialization");
       return;
     }
+
+    const handleInspectorShow = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const show = customEvent.detail?.show;
+      isDiagramSettingsVisibleRef.current = !!show;
+    };
+    document.addEventListener("inspector:show", handleInspectorShow);
+
+    const handleUpdateSettings = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const settings = customEvent.detail;
+      if (paper && settings) {
+        if (typeof settings.dotGrid !== "undefined") {
+          paper.setGrid(settings.dotGrid ? "dots" : "lines");
+        }
+        if (typeof settings.gridSize !== "undefined") {
+          paper.setGridSize(settings.gridSize);
+        }
+        if (typeof settings.paperColor !== "undefined") {
+          paper.drawBackground({ color: settings.paperColor });
+        }
+      }
+    };
+    document.addEventListener("diagram:update-settings", handleUpdateSettings);
 
     const currentContainer = containerRef.current;
     debug("Container element found:", currentContainer);
@@ -94,6 +120,8 @@ export const useJointJS = () => {
       },
       markAvailable: true,
     });
+    setPaper(paper);
+    setGraph(graph);
 
     // Removed explicit paper.setDimensions call as PaperScroller with autoResizePaper handles this.
 
@@ -135,13 +163,15 @@ export const useJointJS = () => {
         padding: 50,
       },
     });
+    setPaperScroller(paperScroller);
     currentContainer.innerHTML = "";
     debug("Mounting paperScroller to container");
     currentContainer.appendChild(paperScroller.el);
 
     // First render the paper
 
-    paperScroller.render();
+    paperScroller.render().$el.appendTo("#paper-container");
+    paperScroller.center();
 
     // Define a function to center all content
     const centerAllContent = () => {
@@ -196,17 +226,14 @@ export const useJointJS = () => {
 
     const navigator = new ui.Navigator({
       paperScroller,
-      width: 300,
-      height: 200,
+      width: 240,
+      height: 160,
       padding: 10,
-      zoomOptions: { max: 2, min: 0.2 },
-      paperOptions: {
-        async: true,
-        sorting: joint.dia.Paper.sorting.APPROX,
-      },
+      zoomOptions: { min: 0.2, max: 2 },
     });
+
     navigator.render();
-    document.getElementById("navigator-container")?.appendChild(navigator.el);
+    document.getElementById("navigator")?.appendChild(navigator.el);
 
     const miniToolbar = new ui.Toolbar({
       theme: "modern",
@@ -217,6 +244,7 @@ export const useJointJS = () => {
       },
     });
     miniToolbar.render();
+
     const buttonBaseStyle = `
  width: 32px;
   height: 32px;
@@ -249,20 +277,12 @@ export const useJointJS = () => {
     zoomToFitBtn.title = "Zoom to Fit";
 
     zoomToFitBtn.onclick = () => {
-      // 1. Fit the paper size to the diagram content (expand canvas if needed)
-      paper.fitToContent({
-        allowNewOrigin: "any", // ensures even negative coordinates are handled
-        padding: 50,
-      });
-
-      // 2. Zoom to fit the content into the visible scroller area
-      paperScroller.zoomToFit({ padding: 50 });
-
-      // 3. Center the visible content inside the scroller
-      paperScroller.centerContent({ useModelGeometry: true });
-
-      // ✅ Sync the minimap to reflect the changes in the paper
-      navigator.updatePaper();
+      const graphBBox = graph.getBBox();
+      if (graphBBox.width > 0 && graphBBox.height > 0) {
+        // Add some padding to the bounding box
+        const paddedBBox = graphBBox.inflate(100);
+        paperScroller.zoomToRect(paddedBBox);
+      }
     };
 
     const fullscreenBtn = document.createElement("button");
@@ -423,11 +443,6 @@ export const useJointJS = () => {
       },
     ]);
     link.addTo(graph);
-
-    paper.on("cell:pointerdown", function (cellView: dia.CellView) {
-      debug("Cell clicked, opening inspector");
-      openInspector(cellView.model, getInspectorConfig);
-    });
 
     // Stencil is now handled by the Stencil component
     // We'll expose the paper instance for the Stencil component to use
@@ -737,7 +752,7 @@ export const useJointJS = () => {
     setTimeout(() => {
       centerAllContent();
 
-      navigator.updatePaper();
+      navigator.update();
       // Center the viewport on the paper center
       paperScroller.center();
       debug("Content centered with delay");
@@ -761,81 +776,69 @@ export const useJointJS = () => {
     // Stencil element:drop event is now handled by the Stencil component
 
     // Handle right-click on blank areas using blank:pointerdown
-    paper.on("blank:pointerdown", (evt: dia.Event) => {
-      const originalEvent = evt.originalEvent as MouseEvent;
 
-      // Check if it's a right-click (button 2)
-      if (originalEvent && originalEvent.button === 2) {
-        console.log("Right-click detected on blank area");
-        evt.preventDefault(); // Prevent default browser context menu
-        closeInspector();
-
-        // Get the position of the click relative to the viewport
-        const x = originalEvent.clientX;
-        const y = originalEvent.clientY;
-        console.log("Showing context menu at", x, y);
-
-        // Show the context menu
-        showDiagramContextMenu(paper, x, y, (option) => {
-          // Dispatch a custom event with the selected option
-          const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
-            detail: { type: option },
-          });
-          document.dispatchEvent(customEvent);
-        });
-      } else if (originalEvent && originalEvent.button === 0) {
-        // Left-click on blank area - close inspector if not clicking on context menu
-        if (
-          !(originalEvent.target as HTMLElement)?.closest(
-            ".joint-context-toolbar"
-          )
-        ) {
-          closeInspector();
-        }
-      }
-    });
-
-    // Handle double-click on blank areas as fallback
-    paper.on("blank:pointerdblclick", (evt: dia.Event) => {
-      console.log("Double-click detected on blank area");
+    paper.on("blank:contextmenu", (evt: dia.Event, x: number, y: number) => {
       evt.preventDefault();
-      closeInspector();
 
-      // Get the position of the click
-      const x = evt.clientX || 0;
-      const y = evt.clientY || 0;
+      // Hide any element inspector
+      const hideEvent = new CustomEvent("inspector:hide");
+      document.dispatchEvent(hideEvent);
 
-      // Show the context menu
-      showDiagramContextMenu(paper, x, y, (option) => {
-        // Dispatch a custom event with the selected option
-        const customEvent = new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
-          detail: { type: option },
-        });
-        document.dispatchEvent(customEvent);
+      const contextToolbar = new ui.ContextToolbar({
+        target: { x, y },
+        paper: paper,
+        tools: [
+          {
+            action: "settings",
+            content: "Canvas Settings",
+          },
+        ],
       });
-    });
 
-    // Prevent default context menu on the paper element
-    paper.on("blank:contextmenu", (evt: dia.Event) => {
-      evt.preventDefault(); // Prevent default browser context menu
-    });
+      contextToolbar.on("action:settings", () => {
+        document.dispatchEvent(
+          new CustomEvent(DIAGRAM_SETTINGS_EVENT, {
+            detail: { type: "settings" },
+          })
+        );
+        contextToolbar.remove();
+      });
 
-    openInspector(rect1, getInspectorConfig);
+      contextToolbar.render();
+      paper.el.appendChild(contextToolbar.el);
+
+      const close = (e: MouseEvent) => {
+        if (
+          contextToolbar.el &&
+          !contextToolbar.el.contains(e.target as Node) &&
+          !isDiagramSettingsVisibleRef.current
+        ) {
+          contextToolbar.remove();
+          window.removeEventListener("mousedown", close);
+        }
+      };
+      setTimeout(() => window.addEventListener("mousedown", close), 0);
+    });
 
     return () => {
       debug("Cleaning up JointJS resources");
+      document.removeEventListener("inspector:show", handleInspectorShow);
+      document.removeEventListener(
+        "diagram:update-settings",
+        handleUpdateSettings
+      );
       paper.remove();
       navigator.remove();
       miniToolbar.remove();
-      // No need to remove toolbar as we're not using it anymore
       commandManager.stopListening();
       keyboard.stopListening();
       if (currentContainer) {
         currentContainer.innerHTML = "";
         debug("Container cleared");
       }
+      window.removeEventListener("mousedown", () => {});
     };
   }, [containerRef.current]);
 
-  return containerRef;
+  return { containerRef, graph, paper, paperScroller };
 };

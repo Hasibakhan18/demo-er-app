@@ -1,4 +1,5 @@
-import { type FC } from "react";
+import React from "react";
+import type { FC } from "react";
 import CanvasSettings from "./CanvasSettings";
 
 const Toolbar: FC = () => {
@@ -39,14 +40,14 @@ const Toolbar: FC = () => {
         top: 0,
         left: 0,
         right: 0,
-        borderBottom: "1px solid #ccc",
-        backgroundColor: "#f0f0f0",
+        borderBottom: "1px solid var(--toolbar-border)",
+        backgroundColor: "var(--toolbar-bg)",
         zIndex: 1000,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         padding: " 10px",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        boxShadow: "0 1px 3px var(--navigator-shadow)",
       }}
     >
       <div
@@ -54,13 +55,13 @@ const Toolbar: FC = () => {
           fontWeight: "bold",
           fontSize: "18px",
           marginRight: "20px",
-          color: "#333",
+          color: "var(--toolbar-text)",
         }}
       >
         JointJS+ Diagram Editor
       </div>
 
-      <div>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <CanvasSettings
           onSettingsChange={handleSettingsChange}
           initialSettings={{
