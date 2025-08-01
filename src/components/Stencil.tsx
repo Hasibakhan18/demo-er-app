@@ -381,7 +381,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.size(120, 180);
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Use Case") {
-          const newSvg = `<svg width="150" height="80" viewBox="0 0 150 80" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="75" cy="40" rx="70" ry="35" stroke="black" stroke-width="1" fill="white"/><text x="75" y="45" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="currentColor">Use Case Name</text></svg>`;
+          const newSvg = `<svg width="150" height="80" viewBox="0 0 150 80" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="75" cy="40" rx="70" ry="35" stroke="black" stroke-width="1" fill="white"/></svg>`;
           finalElement.attr(
             "image/xlink:href",
             `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
@@ -1055,6 +1055,107 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           );
           finalElement.size(70, 40);
           finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Sub Process") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4" y="12" width="42" height="26" rx="3"/>
+</svg>`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Transaction") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
+     xmlns="http://www.w3.org/2000/svg" 
+     fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 12a2 2 0 0 1 2-2h38a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V12z"/>
+  <path d="M8 16a2 2 0 0 1 2-2h30a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V16z"/>
+</svg>`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Call Activity") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <rect x="5" y="15" width="40" height="20" rx="6" />
+</svg>`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Exclusive Gateway") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Diamond outline -->
+  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
+
+  <!-- Diagonal cross perfectly touching inside of diamond -->
+  <line x1="13.75" y1="13.75" x2="36.25" y2="36.25" />
+  <line x1="36.25" y1="13.75" x2="13.75" y2="36.25" />
+</svg>
+`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Event Gateway") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Diamond shape -->
+  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
+
+  <!-- Inner circle -->
+  <circle cx="25" cy="25" r="7.5" />
+</svg>
+`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
+        } else if (finalElement.attr("root/title") === "Parallel Gateway") {
+          const newSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Diamond shape -->
+  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
+
+  <!-- Vertical line (centered) -->
+  <line x1="25" y1="12.5" x2="25" y2="37.5" />
+
+  <!-- Horizontal line (centered) -->
+  <line x1="12.5" y1="25" x2="37.5" y2="25" />
+</svg>
+
+`;
+          finalElement.attr(
+            "image/xlink:href",
+            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
+          );
+          finalElement.size(70, 40);
+          finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Relationship") {
           const newSvg = `<svg width="60" height="20" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
   <!-- Main horizontal line (longer) -->
@@ -1261,27 +1362,31 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     };
 
     const topicSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" opacity="0.5"/>
-    <ellipse cx="25" cy="25" rx="24" ry="16" />
+  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" fill-opacity="0.4" />
+
 </svg>
 `;
     const topicShape = createBoundedIcon("Topic", topicSvg);
     const subtopicSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" opacity="0.2" />
-  <ellipse cx="25" cy="25" rx="24" ry="16"  />
+  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" fill-opacity="0.2"  />
+  
 
 </svg>
 `;
     const subtopicShape = createBoundedIcon("Subtopic", subtopicSvg);
     const linkSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor" opacity="0.5" />
-      <path d="M0,0 L8,3 L0,6 Z" />
+    <!-- Bigger and sharper arrowhead -->
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" 
+            refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 12 6, 0 12" fill="currentColor" />
     </marker>
   </defs>
+
+  <!-- Line with improved arrowhead -->
   <line x1="10" y1="35" x2="50" y2="35" stroke="currentColor" stroke-width="0.5" marker-end="url(#arrowhead)" />
 </svg>
+
 
 `;
     const linkShape = createBoundedIcon("Link", linkSvg);
@@ -1328,17 +1433,23 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const gatewayShape = createBoundedIcon("Gateway", gatewaySvg);
 
-    const endEventSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="16" cy="16" r="10.4" />
+    const endEventSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Centered circle -->
+   <circle cx="25" cy="25" r="13" />
 </svg>
+
 
 `;
     const endEventShape = createBoundedIcon("End Event", endEventSvg);
 
     const sequenceFlowSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
   <line x1="5" y1="10" x2="40" y2="10" />
-  <polygon points="40,5 48,10 40,15"  fill="currentColor" opacity="0.5" />
-    <polygon points="40,5 48,10 40,15"  />
+  <polygon points="40,5 48,10 40,15" fill="currentColor" fill-opacity="0.4"  />
+ 
 </svg>
 
 `;
@@ -1354,7 +1465,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="10" y1="22.5" x2="30" y2="22.5" />
   <line x1="10" y1="30" x2="35" y2="30" />
   <line x1="10" y1="37.5" x2="25" y2="37.5" />
-  <text x="7.5" y="10" font-family="Arial" font-size="7" font-weight="bold" fill="currentColor">R</text>
+  <text x="7.5" y="10" font-family="Arial" font-size="7" font-weight="normal" fill="currentColor">R</text>
 </svg>
 
 `;
@@ -1364,22 +1475,21 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <!-- Ellipse representing the use case -->
   <ellipse cx="25" cy="25" rx="20" ry="12" />
 
-  <!-- Centered text inside the ellipse -->
-  <text x="25" y="28" font-family="Arial, sans-serif" font-size="5" text-anchor="middle" fill="currentColor">
-    Use Case Name
-  </text>
+  
+  
 </svg>
 
 
 `;
     const usecaseShape = createBoundedIcon("Use Case", usecaseSvg);
 
-    const EntitySvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer rounded rectangle (table) -->
-  <rect x="3" y="4" width="18" height="16" rx="2.5" />
+    const EntitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer rounded rectangle (table frame) -->
+  <rect x="7" y="10" width="36" height="30" rx="3" />
   <!-- Horizontal divider for header -->
-  <line x1="3" y1="8.5" x2="21" y2="8.5" />
+  <line x1="7" y1="18" x2="43" y2="18" />
 </svg>
+
 
 
 
@@ -1398,7 +1508,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="1.6665" y1="26.665" x2="48.3325" y2="26.665" />
   <!-- Lines for columns -->
   <line x1="16.665" y1="11.665" x2="16.665" y2="31.665" />
-  <line x1="30.0005" y1="11.665" x2="30.0005" y2="31.665" />
+ 
   <!-- Centered Table Label -->
   <text
     x="25"
@@ -1484,15 +1594,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 `;
     const EntitystencilShape = createBoundedIcon("Entity", EntitystencilSvg);
-    const ActorSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Head -->
-  <circle cx="22" cy="21" r="4"/>
-
-  <!-- Shoulders / Body arc that touches bottom of circle -->
-  <path d="M14 37 C14 29 17.58 25 22 25 C26.42 25 30 29 30 37"
-        stroke-linecap="round" stroke-linejoin="round"/>
+    const ActorSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M25 22C29.142 22 32.5 18.642 32.5 14.5C32.5 10.358 29.142 7 25 7C20.858 7 17.5 10.358 17.5 14.5C17.5 18.642 20.858 22 25 22Z"/>
+  <path d="M25 22C15.58 22 7.5 26.158 7.5 31.5V39H42.5V31.5C42.5 26.158 34.42 22 25 22Z"/>
 </svg>
+
 
 `;
     const ActorShape = createBoundedIcon("Actor", ActorSvg);
@@ -1501,15 +1607,15 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.5">
   <!-- Middle person -->
   <circle cx="25" cy="15" r="4"/>
-  <path d="M21 22 C21 20 23 19 25 19 C27 19 29 20 29 22"/>
+  <path d="M21 22 C21 20 23 19 25 19 C27 19 29 20 29 22 V25 H21 V22 Z"/>
 
   <!-- Left person -->
-  <circle cx="13" cy="20" r="3"/>
-  <path d="M10 26 C10 24.5 11.5 23.5 13 23.5 C14.5 23.5 16 24.5 16 26"/>
+  <circle cx="12" cy="17" r="3"/>
+  <path d="M8 23 C8 21.5 10 20.5 12 20.5 C14 20.5 16 21.5 16 23 V25 H8 V23 Z"/>
 
   <!-- Right person -->
-  <circle cx="37" cy="20" r="3"/>
-  <path d="M34 26 C34 24.5 35.5 23.5 37 23.5 C38.5 23.5 40 24.5 40 26"/>
+  <circle cx="38" cy="17" r="3"/>
+  <path d="M34 23 C34 21.5 36 20.5 38 20.5 C40 20.5 42 21.5 42 23 V25 H34 V23 Z"/>
 </svg>
 
 
@@ -1570,17 +1676,16 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   xmlns="http://www.w3.org/2000/svg"
   stroke="currentColor" fill="none" stroke-width="0.5">
 
-  <!-- Vertical bar on the left (One) -->
-  <line x1="6" y1="20" x2="6" y2="30"/>
+  <!-- Left vertical bar (One) -->
+  <line x1="8" y1="20" x2="8" y2="30"/>
 
-  <!-- Horizontal relationship line -->
-  <line x1="6" y1="25" x2="34" y2="25"/>
+  <!-- Horizontal connector -->
+  <line x1="8" y1="25" x2="42" y2="25"/>
 
-  <!-- Crow's foot (Many) -->
-  <line x1="34" y1="25" x2="42" y2="19"/>
-  <line x1="34" y1="25" x2="42" y2="25"/>
-  <line x1="34" y1="25" x2="42" y2="31"/>
-
+  <!-- Right side Crow’s foot (Many) -->
+  <line x1="42" y1="25" x2="48" y2="19"/>
+  <line x1="42" y1="25" x2="48" y2="25"/>
+  <line x1="42" y1="25" x2="48" y2="31"/>
 </svg>
 
 
@@ -1591,18 +1696,18 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   xmlns="http://www.w3.org/2000/svg"
   stroke="currentColor" fill="none" stroke-width="0.5">
 
-  <!-- Vertical bar on the left (One) -->
-  <line x1="6" y1="20" x2="6" y2="30"/>
+  <!-- Left vertical bar (One) -->
+  <line x1="8" y1="20" x2="8" y2="30"/>
 
-  <!-- Horizontal relationship line -->
-  <line x1="6" y1="25" x2="34" y2="25"/>
+  <!-- Horizontal connector -->
+  <line x1="8" y1="25" x2="42" y2="25"/>
 
-  <!-- Crow's foot (Many) -->
-  <line x1="34" y1="25" x2="42" y2="19"/>
-  <line x1="34" y1="25" x2="42" y2="25"/>
-  <line x1="34" y1="25" x2="42" y2="31"/>
-
+  <!-- Right side Crow’s foot (Many) -->
+  <line x1="42" y1="25" x2="48" y2="19"/>
+  <line x1="42" y1="25" x2="48" y2="25"/>
+  <line x1="42" y1="25" x2="48" y2="31"/>
 </svg>
+
 
 
 `;
@@ -1611,13 +1716,14 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     const onetooneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
      fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Main relationship line -->
+
+  <!-- Horizontal connector -->
   <line x1="8" y1="25" x2="42" y2="25"/>
 
-  <!-- Left vertical line touching start -->
+  <!-- Left vertical bar -->
   <line x1="8" y1="20" x2="8" y2="30"/>
 
-  <!-- Right vertical line touching end -->
+  <!-- Right vertical bar -->
   <line x1="42" y1="20" x2="42" y2="30"/>
 </svg>
 
@@ -1630,15 +1736,17 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     const OneToOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
      fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Main relationship line -->
+
+  <!-- Horizontal connector -->
   <line x1="8" y1="25" x2="42" y2="25"/>
 
-  <!-- Left vertical line touching start -->
+  <!-- Left vertical bar -->
   <line x1="8" y1="20" x2="8" y2="30"/>
 
-  <!-- Right vertical line touching end -->
+  <!-- Right vertical bar -->
   <line x1="42" y1="20" x2="42" y2="30"/>
 </svg>
+
 
 
 `;
@@ -1647,48 +1755,62 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     const OnetoOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
      fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Main relationship line -->
+
+  <!-- Horizontal connector -->
   <line x1="8" y1="25" x2="42" y2="25"/>
 
-  <!-- Left vertical line touching start -->
+  <!-- Left vertical bar -->
   <line x1="8" y1="20" x2="8" y2="30"/>
 
-  <!-- Right vertical line touching end -->
+  <!-- Right vertical bar -->
   <line x1="42" y1="20" x2="42" y2="30"/>
 </svg>
+
 
 
 
 `;
     const OnetoOneShape = createBoundedIcon("1:1 Relationship", OnetoOneSvg);
 
-    const NtoNSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <path d="
-    M15 25 H35
-    M15 25 L5 15
-    M15 25 L5 35
-    M15 25 L3 25
-    M35 25 L45 15
-    M35 25 L45 35
-    M35 25 L47 25
-  "/>
+    const NtoNSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
+     fill="none" stroke="currentColor" stroke-width="0.5"
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Horizontal connector -->
+  <line x1="8" y1="25" x2="42" y2="25"/>
+
+  <!-- Left Crow’s foot (Many) -->
+  <line x1="8" y1="25" x2="2" y2="19"/>
+  <line x1="8" y1="25" x2="2" y2="25"/>
+  <line x1="8" y1="25" x2="2" y2="31"/>
+
+  <!-- Right Crow’s foot (Many) -->
+  <line x1="42" y1="25" x2="48" y2="19"/>
+  <line x1="42" y1="25" x2="48" y2="25"/>
+  <line x1="42" y1="25" x2="48" y2="31"/>
 </svg>
+
 
 
 `;
     const NtoNShape = createBoundedIcon("N:N Relationship", NtoNSvg);
 
-    const ntonSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <path d="
-    M15 25 H35
-    M15 25 L5 15
-    M15 25 L5 35
-    M15 25 L3 25
-    M35 25 L45 15
-    M35 25 L45 35
-    M35 25 L47 25
-  "/>
+    const ntonSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
+     fill="none" stroke="currentColor" stroke-width="0.5"
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- Horizontal connector -->
+  <line x1="8" y1="25" x2="42" y2="25"/>
+
+  <!-- Left Crow’s foot (Many) -->
+  <line x1="8" y1="25" x2="2" y2="19"/>
+  <line x1="8" y1="25" x2="2" y2="25"/>
+  <line x1="8" y1="25" x2="2" y2="31"/>
+
+  <!-- Right Crow’s foot (Many) -->
+  <line x1="42" y1="25" x2="48" y2="19"/>
+  <line x1="42" y1="25" x2="48" y2="25"/>
+  <line x1="42" y1="25" x2="48" y2="31"/>
 </svg>
+
 
 
 `;
@@ -1745,11 +1867,12 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      stroke-width="0.5">
   <!-- Diamond outline -->
   <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
-  
-  <!-- Diagonal cross -->
-  <line x1="12.5" y1="12.5" x2="37.5" y2="37.5" />
-  <line x1="37.5" y1="12.5" x2="12.5" y2="37.5" />
+
+  <!-- Diagonal cross perfectly touching inside of diamond -->
+  <line x1="13.75" y1="13.75" x2="36.25" y2="36.25" />
+  <line x1="36.25" y1="13.75" x2="13.75" y2="36.25" />
 </svg>
+
 
 
 `;
@@ -1831,8 +1954,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      stroke="currentColor"
      stroke-width="0.5"
      stroke-dasharray="2 2">
-  <!-- Dashed horizontal line (centered, with padding) -->
-  <line x1="10" y1="25" x2="40" y2="25" />
+  <!-- Dashed horizontal line 60px long, centered at y=25 -->
+  <line x1="-5" y1="25" x2="55" y2="25" />
 </svg>
 
 `;
@@ -1843,14 +1966,14 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      fill="none"
      stroke="currentColor"
      stroke-width="0.5">
-  <!-- Left circle -->
-  <circle cx="13" cy="25" r="5"  />
-  
-  <!-- Right circle -->
-  <circle cx="37" cy="25" r="5" />
-  
-  <!-- Connecting line -->
-  <line x1="18" y1="25" x2="32" y2="25" />
+  <!-- Left circle (touching line start) -->
+  <circle cx="11" cy="25" r="2" />
+
+  <!-- Right circle (touching line end) -->
+  <circle cx="39" cy="25" r="2" />
+
+  <!-- Connecting line, offset inward by radius -->
+  <line x1="13" y1="25" x2="37" y2="25" />
 </svg>
 
 
@@ -1862,11 +1985,12 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      stroke="currentColor" stroke-width="0.5" fill="none">
   <!-- Outer rounded rectangle -->
   <rect x="8" y="8" width="34" height="34" rx="2" ry="2"/>
-  <!-- Horizontal separator 1 (top to middle) -->
-  <line x1="8" y1="20" x2="42" y2="20"/>
-  <!-- Horizontal separator 2 (middle to bottom) -->
-  <line x1="8" y1="32" x2="42" y2="32"/>
+  <!-- Horizontal separator 1 (top third) -->
+  <line x1="8" y1="19.33" x2="42" y2="19.33"/>
+  <!-- Horizontal separator 2 (middle third) -->
+  <line x1="8" y1="30.67" x2="42" y2="30.67"/>
 </svg>
+
 
 
 `;
@@ -1917,9 +2041,10 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   
   <!-- Lights / slots -->
   <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="24" width="4" height="6"/>
+  <rect x="22" y="30" width="4" height="6"/>
   <rect x="32" y="24" width="4" height="6"/>
 </svg>
+
 
 `;
     const PackagestencilShape = createBoundedIcon("Package", PackagestencilSvg);
@@ -1941,41 +2066,44 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const cubeShape = createBoundedIcon("Cube", cubeStencilSvg);
 
-    const dimensionStencilSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Cube edges from center origin (12,12) -->
-  <!-- Bottom edges -->
-  <line x1="12" y1="12" x2="6" y2="15" />
-  <line x1="12" y1="12" x2="18" y2="15" />
-  <line x1="6" y1="15" x2="12" y2="18" />
-  <line x1="12" y1="18" x2="18" y2="15" />
+    const dimensionStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" fill-opacity="0.4"  stroke-width="0.5">
+  <defs>
+    <!-- Arrow marker definition -->
+    <marker id="arrowhead" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L3,1.5 L0,3"  />
+    </marker>
+  </defs>
 
+  <!-- Center point -->
+  <circle cx="25" cy="25" r="0.5" />
+
+  <!-- Y-shape arrows -->
+  <line x1="25" y1="25" x2="25" y2="10" marker-end="url(#arrowhead)" />
+  <line x1="25" y1="25" x2="37.5" y2="32.5" marker-end="url(#arrowhead)" />
+  <line x1="25" y1="25" x2="12.5" y2="32.5" marker-end="url(#arrowhead)" />
+
+  <!-- Isometric cube -->
   <!-- Vertical edges -->
-  <line x1="12" y1="12" x2="12" y2="6" />
-  <line x1="6" y1="15" x2="6" y2="9" />
-  <line x1="18" y1="15" x2="18" y2="9" />
-  <line x1="12" y1="18" x2="12" y2="12" />
+  <line x1="25" y1="32.5" x2="25" y2="25" />
+  <line x1="25" y1="25" x2="25" y2="17.5" />
+  <line x1="18.5" y1="28.75" x2="18.5" y2="21.25" />
+  <line x1="31.5" y1="28.75" x2="31.5" y2="21.25" />
 
-  <!-- Top edges -->
-  <line x1="6" y1="9" x2="12" y2="6" />
-  <line x1="12" y1="6" x2="18" y2="9" />
-  <line x1="6" y1="9" x2="12" y2="12" />
-  <line x1="18" y1="9" x2="12" y2="12" />
+  <!-- Diagonal edges -->
+  <line x1="25" y1="25" x2="18.5" y2="28.75" />
+  <line x1="25" y1="25" x2="31.5" y2="28.75" />
+  <line x1="25" y1="25" x2="18.5" y2="21.25" />
+  <line x1="25" y1="25" x2="31.5" y2="21.25" />
 
-  <!-- Z-axis arrow (up) -->
-  <line x1="12" y1="12" x2="12" y2="3" />
-  <path d="M12 3 L11 4.5" />
-  <path d="M12 3 L13 4.5" />
+  <!-- Bottom face diagonals -->
+  <line x1="25" y1="32.5" x2="18.5" y2="28.75" />
+  <line x1="25" y1="32.5" x2="31.5" y2="28.75" />
 
-  <!-- X-axis arrow (down-right) -->
-  <line x1="12" y1="12" x2="21" y2="17" />
-  <path d="M21 17 L19.4 16.8" />
-  <path d="M21 17 L20.2 15.6" />
-
-  <!-- Y-axis arrow (down-left) -->
-  <line x1="12" y1="12" x2="3" y2="17" />
-  <path d="M3 17 L4.6 16.8" />
-  <path d="M3 17 L3.8 15.6" />
+  <!-- Top face diagonals -->
+  <line x1="25" y1="17.5" x2="18.5" y2="21.25" />
+  <line x1="25" y1="17.5" x2="31.5" y2="21.25" />
 </svg>
+
 
 `;
     const dimensionShape = createBoundedIcon("Dimension", dimensionStencilSvg);
@@ -1984,9 +2112,9 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      xmlns="http://www.w3.org/2000/svg"
      stroke="currentColor" stroke-width="0.5">
   <line x1="10" y1="40" x2="40" y2="40" stroke-linecap="round"/>
-  <rect x="14" y="25" width="4" height="15" rx="0.5" ry="0.5" fill="currentColor" opacity="0.5" />
-  <rect x="22" y="18" width="4" height="22" rx="0.5" ry="0.5" fill="currentColor" opacity="0.5"/>
-  <rect x="30" y="30" width="4" height="10" rx="0.5" ry="0.5" fill="currentColor" opacity="0.5" />
+  <rect x="14" y="25" width="4" height="15" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4"  />
+  <rect x="22" y="18" width="4" height="22" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4" />
+  <rect x="30" y="30" width="4" height="10" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4"  />
 </svg>
 
 
@@ -2006,14 +2134,30 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
     const freeGroupStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5"
-     fill="none">
-  <rect x="10" y="15" width="30" height="20" rx="2" stroke-dasharray="4 2" />
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  
+  <!-- Outer Dashed Rounded Rectangle -->
+  <rect x="5" y="10" width="40" height="30" rx="4"
+        stroke="currentColor" stroke-dasharray="3 2" />
+
+  <!-- Inner Rectangle -->
+  <rect x="12" y="16" width="26" height="18" rx="1"
+        stroke="currentColor" />
+
+  <!-- Group of shapes (circle, square, rectangle) centered in inner rectangle -->
+  <g transform="translate(25, 25)">
+    <!-- Square -->
+    <rect x="-6" y="-6" width="4" height="4" />
+    <!-- Circle -->
+    <circle cx="0" cy="0" r="2" />
+    <!-- Rectangle -->
+    <rect x="3" y="-2" width="5" height="4" />
+  </g>
 </svg>
 
 
 `;
-    const freeGroupShape = createBoundedIcon("Free Group", freeGroupStencilSvg);
+    const freeGroupShape = createBoundedIcon("Group", freeGroupStencilSvg);
 
     const connectorLineStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
@@ -2023,7 +2167,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="10" y1="25" x2="35" y2="25" />
 
   <!-- Arrowhead (outlined triangle) -->
-  <path d="M35 22 L40 25 L35 28 Z" fill="currentColor" opacity="0.5" />
+  <path d="M35 22 L40 25 L35 28 Z" fill="currentColor" fill-opacity="0.4"  />
 </svg>
 
 
@@ -2069,10 +2213,9 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      stroke-linecap="round" stroke-linejoin="round">
   <!-- Rounded rectangle -->
   <rect x="7" y="12" width="36" height="26" rx="6" ry="6" />
-  <!-- Larger plus symbol at bottom center -->
-  <path d="M22 31 H28 M25 28 V34" />
+  <!-- Fully centered plus symbol -->
+  <path d="M22 25 H28 M25 22 V28" />
 </svg>
-
 
 
 `;
@@ -2085,8 +2228,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      xmlns="http://www.w3.org/2000/svg"
      stroke="currentColor" fill="none" stroke-width="0.5"
      stroke-linecap="round" stroke-linejoin="round">
-  <rect x="10" y="17" width="30" height="16" rx="4" ry="4" />
-  <path d="M22 25h6M25 22v6" />
+  <!-- Rounded rectangle -->
+  <rect x="7" y="12" width="36" height="26" rx="6" ry="6" />
+  
+  <!-- Plus symbol moved upward -->
+  <path d="M22 29h6M25 26v6" />
 </svg>
 
 `;
@@ -2108,21 +2254,33 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       activityNodeStencilSvg
     );
 
-    const organizationStencilSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Main building -->
-  <path d="M14 35V12a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v23Z"/>
+    const organizationStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Tall building -->
+  <path d="M 10 5 V 45 H 30 V 5 Z" />
   
-  <!-- Left side -->
-  <path d="M14 22H10a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4"/>
+  <!-- Windows for the tall building -->
+  <path d="M 14 9 H 18 V 13 H 14 Z M 22 9 H 26 V 13 H 22 Z M 14 17 H 18 V 21 H 14 Z M 22 17 H 26 V 21 H 22 Z M 14 25 H 18 V 29 H 14 Z M 22 25 H 26 V 29 H 22 Z" />
+  
+  <!-- Entrance for the tall building -->
+  <path d="M 14 45 V 39 A 3 3 0 0 1 16 39 H 24 A 3 3 0 0 1 26 39 V 45" />
 
-  <!-- Right side -->
-  <path d="M26 18h4a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-4"/>
+  <!-- Shorter building -->
+  <path d="M 30 25 V 45 H 45 V 25 Z" />
 
-  <!-- Windows -->
-  <path d="M18 14h4"/>
-  <path d="M18 18h4"/>
-  <path d="M18 22h4"/>
-  <path d="M18 26h4"/>
+  <!-- Windows for the shorter building, now centered -->
+  <path d="M 32 29 H 36 V 33 H 32 Z M 39 29 H 43 V 33 H 39 Z" />
+
+  <!-- Entrance for the shorter building, now centered -->
+  <path d="M 34 45 V 39 A 3 3 0 0 1 37 39 H 38 A 3 3 0 0 1 41 39 V 45" />
+
 </svg>
 
 
@@ -2132,31 +2290,29 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       organizationStencilSvg
     );
 
-    const departmentStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
-     xmlns="http://www.w3.org/2000/svg" 
-     fill="none" 
-     stroke="currentColor" 
-     stroke-width="0.5" 
-     stroke-linecap="round" 
-     stroke-linejoin="round">
-  <!-- Top node -->
-  <rect x="21" y="5" width="8" height="5" rx="0.5" ry="0.5" />
+    const departmentStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  width="50"
+  height="50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Parent node (top square) -->
+  <path d="M15 5 H35 V20 H15 Z" />
 
-  <!-- Connector line down -->
-  <line x1="25" y1="10" x2="25" y2="20" />
+  <!-- Connectors -->
+  <path d="M25 20 V26 M8 26 H42 M8 26 V33 M25 26 V33 M42 26 V33" />
 
-  <!-- Left curved branch -->
-  <path d="M25 20 C18 20, 18 30, 15 30" />
-
-  <!-- Right curved branch -->
-  <path d="M25 20 C32 20, 32 30, 35 30" />
-
-  <!-- Left child node -->
-  <rect x="11" y="30" width="8" height="5" rx="0.5" ry="0.5" />
-
-  <!-- Right child node -->
-  <rect x="31" y="30" width="8" height="5" rx="0.5" ry="0.5" />
+  <!-- Child nodes (bottom circles) -->
+  <path d="M4 38 A5 5 0 1 0 14 38 A5 5 0 1 0 4 38 Z" />
+  <path d="M20 38 A5 5 0 1 0 30 38 A5 5 0 1 0 20 38 Z" />
+  <path d="M36 38 A5 5 0 1 0 46 38 A5 5 0 1 0 36 38 Z" />
 </svg>
+
 
 `;
     const departmentShape = createBoundedIcon(
@@ -2172,8 +2328,10 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
   <!-- Person inside shield -->
   <circle cx="25" cy="20" r="4" />
-  <path d="M20 30 C20 26, 30 26, 30 30 Z" />
+  <!-- Further enlarged body -->
+  <path d="M16 34 C16 26, 34 26, 34 34 Z" />
 </svg>
+
 
 
 `;
@@ -2181,34 +2339,61 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
     const positionStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Chair back -->
-  <path d="M15 34 V14 A10 10 0 0 1 35 14 V34" />
-
-  <!-- Chair seat -->
-  <line x1="18" y1="34" x2="32" y2="34" />
-
+     stroke="currentColor" fill="none" stroke-width="0.5"
+     stroke-linecap="round" stroke-linejoin="round">
+  
   <!-- Head -->
-  <circle cx="25" cy="20" r="4" />
+  <circle cx="25" cy="12" r="5" />
 
-  <!-- Body -->
-  <path d="M20 32 C20 26, 30 26, 30 32 Z" />
+  <!-- Shoulders -->
+  <path d="M20.2 16.6 Q17 20 17 25" />
+  <path d="M29.8 16.6 Q33 20 33 25" />
+
+  <!-- Tie -->
+  <path d="M24 17 L23.5 22 L25 23 L26.5 22 L26 17" />
+
+  <!-- Central vertical line -->
+  <line x1="25" y1="25" x2="25" y2="32" />
+
+  <!-- Horizontal connector -->
+  <path d="M17 32 Q17 30 19 30 H31 Q33 30 33 32" />
+
+  <!-- Bottom three circles -->
+  <circle cx="25" cy="37" r="3" />
+  <circle cx="17" cy="37" r="3" />
+  <circle cx="33" cy="37" r="3" />
 </svg>
 
 `;
     const positionShape = createBoundedIcon("Position", positionStencilSvg);
 
-    const reportingLineStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     xmlns="http://www.w3.org/2000/svg">
-  <!-- Speech bubble with tail -->
-  <path d="M16 14.5 H34 C35.4 14.5 36 15.1 36 16.5 V27.5 C36 28.9 35.4 29.5 34 29.5 H29.5 C29.2 29.5 29 29.6 28.8 29.9 L25.8 35.1 C25.7 35.3 25.3 35.3 25.2 35.1 L22.2 29.9 C22 29.6 21.8 29.5 21.5 29.5 H16 C14.6 29.5 14 28.9 14 27.5 V16.5 C14 15.1 14.6 14.5 16 14.5 Z"
-        stroke-linejoin="round"/>
+    const reportingLineStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Document outline with rounded corners -->
+  <path d="M 12 5 A 5 5 0 0 0 7 10 V 40 A 5 5 0 0 0 12 45 H 38 A 5 5 0 0 0 43 40 V 10 A 5 5 0 0 0 38 5 Z" />
   
-  <!-- Horizontal text lines inside the bubble -->
-  <path d="M20 19 H30" stroke-linecap="round"/>
-  <path d="M20 23 H26" stroke-linecap="round"/>
+  <!-- New text lines at the top -->
+  <path d="M 10 10 H 40" />
+  <path d="M 10 15 H 40" />
+  
+  <!-- Pie chart icon inside the document, now vertically centered -->
+  <circle cx="20" cy="22.5" r="5" />
+  <path d="M 20 22.5 L 25 22.5 A 5 5 0 0 0 20 17.5 Z" />
+  
+  <!-- Text lines, positions adjusted to fit the new lines -->
+  <path d="M 30 22.5 H 40" />
+  <path d="M 10 30 H 40" />
+  <path d="M 10 35 H 40" />
+  <path d="M 10 40 H 35" />
 </svg>
+
 
 `;
     const reportingLineShape = createBoundedIcon(
@@ -2218,22 +2403,46 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
     const groupStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
-     stroke="#535965" stroke-width="0.5" fill="none">
-  <!-- Dashed Rounded Rectangle (outer) -->
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  
+  <!-- Outer Dashed Rounded Rectangle -->
   <rect x="5" y="10" width="40" height="30" rx="4"
-        stroke="#535965" stroke-dasharray="3 2" />
+        stroke="currentColor" stroke-dasharray="3 2" />
 
-  <!-- Nested Filled Rectangle (inner block) -->
+  <!-- Inner Rectangle -->
   <rect x="12" y="16" width="26" height="18" rx="1"
-        fill="#535965" stroke="transparent" />
+        stroke="currentColor" />
+
+  <!-- Group of shapes (circle, square, rectangle) centered in inner rectangle -->
+  <g transform="translate(25, 25)">
+    <!-- Square -->
+    <rect x="-6" y="-6" width="4" height="4" />
+    <!-- Circle -->
+    <circle cx="0" cy="0" r="2" />
+    <!-- Rectangle -->
+    <rect x="3" y="-2" width="5" height="4" />
+  </g>
 </svg>
 
 `;
     const groupShape = createBoundedIcon("Group", groupStencilSvg);
 
-    const businessCapabilityStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-  <path d="M21 20 L21 13 L29 13 L29 20 H37 V28 H29 V37 H21 V28 H13 V20 Z" />
+    const businessCapabilityStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="0.5">
+  <!-- Bars -->
+  <rect x="10" y="32" width="5" height="8" rx="0.5" ry="0.5"/>
+  <rect x="17" y="28" width="5" height="12" rx="0.5" ry="0.5"/>
+  <rect x="24" y="24" width="5" height="16" rx="0.5" ry="0.5"/>
+  <rect x="31" y="20" width="5" height="20" rx="0.5" ry="0.5"/>
+
+  <!-- Diagonal Line -->
+  <line x1="10" y1="20" x2="36" y2="8"/>
+
+  <!-- Exaggerated Arrowhead Rotation -->
+  <path d="M36 8 L33 12 L30 7 Z" fill="currentColor" opacity = "0.5"/>
+  
+   <path d="M36 8 L33 12 L30 7 Z" />
 </svg>
+
 
 
 `;
@@ -2242,18 +2451,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       businessCapabilityStencilSvg
     );
 
-    const applicationStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer panel (rectangle) -->
-  <rect x="10" y="15" width="30" height="20" />
-
-  <!-- Left-side circle (icon/dot) -->
-  <circle cx="14" cy="20" r="2" />
-
-  <!-- Two horizontal lines (text rows) -->
-  <line x1="18" y1="20" x2="34" y2="20" />
-  <line x1="18" y1="26" x2="32" y2="26" />
+    const applicationStencilSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <path fill="none" stroke="currentColor" stroke-width="0.5" d="M12.5 13.5h22.5c.828 0 1.5.672 1.5 1.5v20c0 .828-.672 1.5-1.5 1.5H12.5c-.828 0-1.5-.672-1.5-1.5v-20c0-.828.672-1.5 1.5-1.5z"/>
+  <path fill="currentColor" d="M16 16.5h1.5v1.5H16zm3.5 0h1.5v1.5h-1.5zm3.5 0h1.5v1.5h-1.5z"/>
+  <path fill="none" stroke="currentColor" stroke-width="0.5" d="M16 20h18M16 22h18M16 24h18M16 26h18"/>
 </svg>
-
 
 `;
     const applicationShape = createBoundedIcon(
@@ -2274,15 +2476,30 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       technologyComponentStencilSvg
     );
 
-    const dataObjecttStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Top ellipse -->
-  <ellipse cx="25" cy="17" rx="15" ry="5" />
-
-  <!-- Side walls -->
-  <path d="M10 17 V33 A15 5 0 0 0 40 33 V17" />
-
-  <!-- Bottom ellipse -->
-  <ellipse cx="25" cy="33" rx="15" ry="5" />
+    const dataObjecttStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Top oval of the database cylinder -->
+  <ellipse cx="25" cy="15" rx="15" ry="5" />
+  
+  <!-- Side lines of the database cylinder -->
+  <path d="M 10 15 V 40" />
+  <path d="M 40 15 V 40" />
+  
+  <!-- First middle oval section, creating the top section -->
+  <path d="M 10 25 A 15 5 0 0 0 40 25" />
+  
+  <!-- Second middle oval section, creating the middle section -->
+  <path d="M 10 32 A 15 5 0 0 0 40 32" />
+  
+  <!-- Bottom oval section, creating the bottom section -->
+  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
 </svg>
 
 `;
@@ -2291,25 +2508,58 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       dataObjecttStencilSvg
     );
 
-    const processStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <path d="M15 25 H25 V20 L35 30 L25 40 V35 H15 V25 Z" fill="currentColor" opacity="0.5" />
-</svg>
+    const processStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Top line connecting two nodes -->
+  <path d="M 15 15 H 35" />
+  
+  <!-- Left top circle (node) -->
+  <circle cx="15" cy="15" r="5" fill="currentColor" fill-opacity="0.4"  />
+  
+  <!-- Right top circle (node) -->
+  <circle cx="35" cy="15" r="5" fill="currentColor" fill-opacity="0.4"  />
 
+  <!-- Curved line from the top left node to the bottom left node -->
+  <path d="M 15 15 A 10 10 0 0 0 15 35" />
+  
+  <!-- Bottom line connecting the left node to the right arrow -->
+  <path d="M 15 35 H 35" />
+  
+  <!-- Left bottom circle (node) -->
+  <circle cx="15" cy="35" r="5"  fill="currentColor" fill-opacity="0.4" />
+  
+  <!-- Right arrow (head) at the bottom, now properly aligned and pointing straight right -->
+  <path d="M 35 32 L 40 35 L 35 38" />
+</svg>
 
 `;
     const processShape = createBoundedIcon("Process", processStencilSvg);
 
     const sourceStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#535965" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
   <!-- Database (cylinder) - back top-left -->
-  <ellipse cx="17" cy="9" rx="12" ry="4" />
-  <path d="M5 9 V25 A12 4 0 0 0 29 25 V9 A12 4 0 0 1 5 9 Z" />
-  <ellipse cx="17" cy="25" rx="12" ry="4" />
+  <ellipse cx="17" cy="9" rx="12" ry="4" fill="currentColor" fill-opacity="0.2"  />
+
+  <path d="M5 9 V25 A12 4 0 0 0 29 25 V9 A12 4 0 0 1 5 9 Z"  fill="currentColor" fill-opacity="0.2" />
+   
+  <ellipse cx="17" cy="25" rx="12" ry="4" fill="currentColor" fill-opacity="0.2" />
+ 
 
   <!-- Document (file) - front bottom-right -->
-  <rect x="20" y="20" width="15" height="20" />
-  <path d="M30 20 L35 25 L30 25 Z" />
-  <path d="M30 20 L35 25" />
-  <path d="M30 25 H35" />
+  <rect x="20" y="20" width="15" height="20" fill="currentColor" fill-opacity="0.4" />
+  
+  <path d="M30 20 L35 25 L30 25 Z" fill="currentColor" fill-opacity="0.4" />
+
+  <path d="M30 20 L35 25" fill="currentColor" fill-opacity="0.4" />
+   
+  <path d="M30 25 H35" fill="currentColor" fill-opacity="0.4" />
+   
 </svg>
 
 `;
@@ -2317,16 +2567,24 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
     const targetStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#535965" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
   <!-- Cylinder (database) at the back, bottom-right -->
-  <ellipse cx="30" cy="25" rx="12" ry="4" />
-  <path d="M18 25 L18 41 A12 4 0 0 0 42 41 L42 25 A12 4 0 0 1 18 25 Z" />
-  <ellipse cx="30" cy="41" rx="12" ry="4" />
+  <ellipse cx="30" cy="25" rx="12" ry="4" fill="currentColor" fill-opacity="0.4"/>
+  
+  <path d="M18 25 L18 41 A12 4 0 0 0 42 41 L42 25 A12 4 0 0 1 18 25 Z"  fill="currentColor" fill-opacity="0.4" />
+  
+  <ellipse cx="30" cy="41" rx="12" ry="4"  fill="currentColor" fill-opacity="0.4"/>
+  
+
 
   <!-- File (document with folded corner) in front, top-left overlapping cylinder -->
-  <path d="M10 10 H25 V30 H10 Z" />
-  <path d="M20 10 L25 15 L20 15 Z" fill="none" />
-  <path d="M20 10 L25 15" />
-  <path d="M20 15 L25 15" />
-</svg>
+  <path d="M10 10 H25 V30 H10 Z" fill="currentColor" fill-opacity="0.2" />
+   
+  <path d="M20 10 L25 15 L20 15 Z" fill="currentColor" fill-opacity="0.2" />
+  
+  <path d="M20 10 L25 15" fill="currentColor" fill-opacity="0.2"  />
+
+  <path d="M20 15 L25 15" fill="currentColor" fill-opacity="0.2"  />
+
+  </svg>
 
 `;
     const targetShape = createBoundedIcon("Target", targetStencilSvg);
@@ -2342,7 +2600,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="35" y1="25" x2="39" y2="25" />
 
   <!-- Arrowhead as an outlined triangle -->
-  <path d="M39 21 L45 25 L39 29 L39 21 Z" fill="currentColor" opacity="0.5" />
+  <path d="M39 21 L45 25 L39 29 L39 21 Z" fill="currentColor" fill-opacity="0.4"  />
 </svg>
 
 `;
@@ -2356,7 +2614,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="18" y1="25" x2="38" y2="25" />
 
   <!-- Arrowhead -->
-  <path d="M32 21 L38 25 L32 29 Z" fill="currentColor" opacity="0.5" />
+  <path d="M32 21 L38 25 L32 29 Z" fill="currentColor" fill-opacity="0.4" />
 
   <!-- Circle -->
   <circle cx="44" cy="25" r="6" />
@@ -2394,30 +2652,62 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const ServerShape = createBoundedIcon("Server", ServerSvg);
 
-    const DatabaseSvg = `<svg width="24" height="24" viewBox="0 0 24 24"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
+    const DatabaseSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Top oval of the database cylinder -->
+  <ellipse cx="25" cy="15" rx="15" ry="5" />
   
-  <!-- Top ellipse -->
-  <ellipse cx="12" cy="6" rx="6" ry="2.5" />
-
-  <!-- Side walls (no base) -->
-  <path d="M6 6 v10.5 c0 1.25 12 1.25 12 0 V6" />
+  <!-- Side lines of the database cylinder -->
+  <path d="M 10 15 V 40" />
+  <path d="M 40 15 V 40" />
+  
+  <!-- First middle oval section, creating the top section -->
+  <path d="M 10 25 A 15 5 0 0 0 40 25" />
+  
+  <!-- Second middle oval section, creating the middle section -->
+  <path d="M 10 32 A 15 5 0 0 0 40 32" />
+  
+  <!-- Bottom oval section, creating the bottom section -->
+  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
 </svg>
-
 `;
     const DatabaseShape = createBoundedIcon("Database", DatabaseSvg);
 
-    const informationNodeStencilSvg = `<svg width="24" height="24" viewBox="0 0 24 24"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Top cap and outer shell -->
-  <path d="M18 5.5h-1V4H7V5.5H6V11h12V5.5z"/>
-  <!-- Main body rectangle -->
-  <rect x="7" y="5.5" width="10" height="5.5"/>
-  <!-- Inner horizontal lines (details) -->
-  <line x1="8.5" y1="8" x2="15.5" y2="8"/>
-  <line x1="8.5" y1="9.25" x2="12" y2="9.25"/>
+    const informationNodeStencilSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Main document body -->
+  <path d="M 10 5 H 30 L 40 15 V 45 H 10 Z" />
+  
+  <!-- Folded corner of the document -->
+  <path d="M 30 5 L 40 15" />
+  
+  <!-- Lines inside the document -->
+  <path d="M 15 20 H 35" />
+  <path d="M 15 25 H 35" />
+  <path d="M 15 30 H 35" />
+
+  <!-- "i" icon circle -->
+  <circle cx="35" cy="35" r="10" fill="currentColor" fill-opacity="0.4"  />
+
+  <!-- "i" icon dot -->
+  <circle cx="35" cy="30" r="1.5"/>
+  
+  <!-- "i" icon line -->
+  <path d="M 35 34 V 40" />
 </svg>
 
 `;
@@ -2437,55 +2727,92 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const xmlShape = createBoundedIcon("XML", XMLShape);
 
-    const BusinessProcessSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Outer rounded square -->
-  <rect x="8" y="8" width="34" height="34" rx="4" />
+    const BusinessProcessSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="0.5">
+  <!-- Bars -->
+  <rect x="10" y="32" width="5" height="8" rx="0.5" ry="0.5"/>
+  <rect x="17" y="28" width="5" height="12" rx="0.5" ry="0.5"/>
+  <rect x="24" y="24" width="5" height="16" rx="0.5" ry="0.5"/>
+  <rect x="31" y="20" width="5" height="20" rx="0.5" ry="0.5"/>
 
-  <!-- Top-left to bottom-right curve -->
-  <path d="M18 22 C18 16, 32 16, 32 22" />
-  <path d="M31 21 L32 22 L33 21" />
+  <!-- Diagonal Line -->
+  <line x1="10" y1="20" x2="36" y2="8"/>
 
-  <!-- Bottom-right to top-left curve -->
-  <path d="M32 28 C32 34, 18 34, 18 28" />
-  <path d="M17 29 L18 28 L19 29" />
+  <!-- Exaggerated Arrowhead Rotation -->
+  <path d="M36 8 L33 12 L30 7 Z" fill="currentColor" fill-opacity="0.4" />
+  
+
 </svg>
-
 `;
     const businessProcessShape = createBoundedIcon(
       "Business Process",
       BusinessProcessSvg
     );
 
-    const replicationSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
-  <!-- Circle -->
-  <circle cx="25" cy="25" r="12" />
+    const replicationSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.5">
+  <!-- Dotted Grid -->
+  <g transform="translate(7, 12)">
+    <circle cx="2" cy="2" r="0.6" />
+    <circle cx="6" cy="2" r="0.6" />
+    <circle cx="10" cy="2" r="0.6" />
+    <circle cx="14" cy="2" r="0.6" />
 
-  <!-- Centered right-pointing arrowhead inside the circle -->
-  <path d="M28 25 L24 23 L24 27 Z" fill="currentColor"  opacity="0.5" />
- 
+    <circle cx="2" cy="6" r="0.6" />
+    <circle cx="6" cy="6" r="0.6" />
+    <circle cx="10" cy="6" r="0.6" />
+    <circle cx="14" cy="6" r="0.6" />
+
+    <circle cx="2" cy="10" r="0.6" />
+    <circle cx="6" cy="10" r="0.6" />
+    <circle cx="10" cy="10" r="0.6" />
+    <circle cx="14" cy="10" r="0.6" />
+  </g>
+
+  <!-- Outer square with folded corner -->
+  <path d="M7 7 H28 L33 12 V30 H7 V7 Z" />
+  <path d="M28 7 V12 H33" />
+
+  <!-- Circles and connecting lines -->
+  <circle cx="28" cy="28" r="2.5" />
+  <circle cx="37" cy="20" r="2.5" />
+  <circle cx="37" cy="36" r="2.5" />
+
+  <line x1="28" y1="28" x2="37" y2="20" />
+  <line x1="28" y1="28" x2="37" y2="36" />
 </svg>
+
+
 `;
     const replicationShape = createBoundedIcon("Replication", replicationSvg);
 
     const ReplicationServerSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5"
      stroke-linecap="round" stroke-linejoin="round">
-  <!-- Server Box -->
-  <rect x="12" y="12" width="26" height="26" rx="2" />
+  
+  <!-- Top server rectangle -->
+  <rect x="10" y="6" width="30" height="12" rx="2"/>
 
-  <!-- Divider Lines -->
-  <line x1="12" y1="22" x2="38" y2="22" />
-  <line x1="12" y1="32" x2="38" y2="32" />
+  <!-- Top server indicators -->
+  <line x1="17" y1="11" x2="17" y2="13"/>
+  <line x1="23" y1="11" x2="23" y2="13"/>
+  <line x1="29" y1="11" x2="29" y2="13"/>
 
-  <!-- Looping Arrow Path -->
-  <path d="M20 10 C20 5, 30 5, 30 10" />
+  <!-- Bottom server rectangle -->
+  <rect x="10" y="32" width="30" height="12" rx="2"/>
 
-  <!-- Arrowhead (minimalist, stroke-based) -->
-  <path d="M29 9 L30 10 L31 9" />
+  <!-- Bottom server indicators -->
+  <line x1="17" y1="37" x2="17" y2="39"/>
+  <line x1="23" y1="37" x2="23" y2="39"/>
+  <line x1="29" y1="37" x2="29" y2="39"/>
+
+  <!-- Downward arrow from top server -->
+  <path d="M25 18 V23 H15 V28"/>
+  <path d="M13 26 L15 28 L17 26"/>
+
+  <!-- Upward arrow from bottom server -->
+  <path d="M25 32 V27 H35 V22"/>
+  <path d="M33 24 L35 22 L37 24"/>
+
 </svg>
 
 `;
@@ -2504,11 +2831,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   
   <!-- Incoming arrow left -->
   <line x1="5" y1="25" x2="12" y2="25" />
-  <polygon points="12,25 9.5,23.5 9.5,26.5" fill="currentColor"  opacity="0.5" />
+  <polygon points="12,25 9.5,23.5 9.5,26.5" fill="currentColor" fill-opacity="0.4"  />
   
   <!-- Outgoing arrow right -->
   <line x1="38" y1="25" x2="45" y2="25" />
-  <polygon points="45,25 42.5,23.5 42.5,26.5" fill="currentColor"  opacity="0.5" />
+  <polygon points="45,25 42.5,23.5 42.5,26.5" fill="currentColor" fill-opacity="0.4"  />
 </svg>
 `;
     const TransformationProcessShape = createBoundedIcon(
@@ -2521,12 +2848,12 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      fill="none" stroke="currentColor" stroke-width="0.5"
      stroke-linecap="round" stroke-linejoin="round">
   <!-- Left Node (outlined circle) -->
-  <circle cx="15" cy="25" r="4" fill="currentColor" opacity="0.5"/>
-   <circle cx="15" cy="25" r="4" />
+  <circle cx="15" cy="25" r="4" fill="currentColor" fill-opacity="0.4" />
+  
 
   <!-- Right Node (outlined circle) -->
-  <circle cx="35" cy="25" r="4" fill="currentColor" opacity="0.5"/>
-   <circle cx="35" cy="25" r="4" />
+  <circle cx="35" cy="25" r="4" fill="currentColor" fill-opacity="0.4" />
+   
 
   <!-- Connecting Line -->
   <line x1="19" y1="25" x2="31" y2="25" />
@@ -2556,36 +2883,60 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const inputShape = createBoundedIcon("Input", inputStencilSvg);
 
-    const printSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5">
-  <!-- Printer Body -->
-  <rect x="12" y="18" width="26" height="20" rx="2"/>
+    const printSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Printer body -->
+  <rect x="10" y="20" width="30" height="15" rx="2" ry="2"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
 
-  <!-- Paper Coming Out -->
-  <rect x="16" y="30" width="18" height="12" fill="currentColor" opacity="0.5" />
+  <!-- Paper tray -->
+  <rect x="15" y="10" width="20" height="8" rx="1" ry="1"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
 
-  <!-- Top Section of Printer -->
-  <rect x="14" y="10" width="22" height="10" rx="1"/>
+  <!-- Printed paper -->
+  <rect x="15" y="35" width="20" height="8" rx="1" ry="1"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
 
-  <!-- Buttons -->
-  <circle cx="34" cy="22" r="1"/>
-  <circle cx="30" cy="22" r="1"/>
+  <!-- Lines on printed paper -->
+  <line x1="17" y1="37" x2="33" y2="37"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+  <line x1="17" y1="39" x2="33" y2="39"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+  <line x1="17" y1="41" x2="30" y2="41"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+
+  <!-- Small circle on printer body (indicator light) -->
+  <circle cx="37" cy="23" r="1"
+          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
 </svg>
 
 
 `;
     const printShape = createBoundedIcon("Print", printSvg);
 
-    const StoreSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Top ellipse (data cylinder cap) -->
-  <ellipse cx="25" cy="13" rx="12" ry="4"/>
+    const StoreSvg = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Top oval of the database cylinder -->
+  <ellipse cx="25" cy="15" rx="15" ry="5" />
   
-  <!-- Vertical sides -->
-  <path d="M13 13V36C13 38 18.4 40 25 40C31.6 40 37 38 37 36V13"/>
+  <!-- Side lines of the database cylinder -->
+  <path d="M 10 15 V 40" />
+  <path d="M 40 15 V 40" />
   
-  <!-- Bottom ellipse (depth illusion) -->
-  <path d="M13 36C13 38 18.4 40 25 40C31.6 40 37 38 37 36" stroke-dasharray="2 2"/>
+  <!-- First middle oval section, creating the top section -->
+  <path d="M 10 25 A 15 5 0 0 0 40 25" />
+  
+  <!-- Second middle oval section, creating the middle section -->
+  <path d="M 10 32 A 15 5 0 0 0 40 32" />
+  
+  <!-- Bottom oval section, creating the bottom section -->
+  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
 </svg>
 
 
@@ -2597,7 +2948,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      stroke="#535965" stroke-width="1" fill="none">
 
   <!-- Folder (Manage icon) in front -->
-  <path d="M12 20 H34 L38 24 H44 V38 H12 Z"  fill="currentColor" opacity="0.5" />
+  <path d="M12 20 H34 L38 24 H44 V38 H12 Z" fill="currentColor" fill-opacity="0.4" />
 
   <!-- File inside the folder, moved up -->
   <path d="M16 13 H30 L34 17 V29 H16 Z M30 13 V17 H34" />
@@ -2609,12 +2960,25 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     const ManageShape = createBoundedIcon("Manage", ManageSvg);
 
     const secureSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="#535965" stroke-width="1" fill="none">
-  <rect x="15" y="22.5" width="20" height="15" rx="2.5" ry="2.5"/>
-  <path d="M18 22.5 V17.5 C18 12.5 32 12.5 32 17.5 V22.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="25" cy="30" r="2.5"/>
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5"
+     stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- Proper shield outline with a pointed bottom -->
+  <path d="M25 5 L40 12 V24 C40 33 33 42 25 45 C17 42 10 33 10 24 V12 L25 5 Z" />
+
+  <!-- Lock body -->
+  <rect x="19" y="22" width="12" height="10" rx="2" />
+
+  <!-- Lock shackle -->
+  <path d="M21 22 V20 A4 4 0 0 1 29 20 V22" />
+
+  <!-- Lock keyhole -->
+  <circle cx="25" cy="27" r="0.5" />
+  <line x1="25" y1="27.5" x2="25" y2="29" />
+
 </svg>
+
 
 `;
 
@@ -2658,7 +3022,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <line x1="12.5" y1="25" x2="43.75" y2="25"/>
 
   <!-- Arrowhead -->
-  <path d="M38.75 22 L43.75 25 L38.75 28 Z" fill="currentColor" opacity="0.5"/>
+  <path d="M38.75 22 L43.75 25 L38.75 28 Z" fill="currentColor" fill-opacity="0.4" />
 </svg>
 
 
@@ -2673,8 +3037,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <rect x="14.29" y="10.71" width="21.43" height="10.71"/>
 
   <!-- Central circle -->
-  <circle cx="25" cy="25" r="3.21" />
-   <circle cx="25" cy="25" r="3.21" fill="currentColor" opacity="0.5"/>
+ 
+   <circle cx="25" cy="25" r="3.21" fill="currentColor" fill-opacity="0.4" />
 
   <!-- Downward line -->
   <line x1="25" y1="28.21" x2="25" y2="35" stroke-linecap="round"/>
@@ -2683,68 +3047,93 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 `;
     const AccessPoint = createBoundedIcon("Access Point", AccessPointSvg);
 
-    const RepositorySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Back rectangle -->
-  <rect x="15" y="12" width="22" height="15" />
-  <!-- Front rectangle slightly down and right -->
-  <rect x="18" y="17" width="22" height="15" />
+    const RepositorySvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Database Cylinder -->
+  <!-- Top ellipse of the database -->
+  <ellipse cx="15" cy="12" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Middle ellipse of the database -->
+  <ellipse cx="15" cy="22" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Bottom ellipse of the database -->
+  <ellipse cx="15" cy="32" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Left vertical line of the database -->
+  <line x1="7" y1="12" x2="7" y2="32" stroke="currentColor" stroke-width="0.5"/>
+  <!-- Right vertical line of the database -->
+  <line x1="23" y1="12" x2="23" y2="32" stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Folder 1 -->
+  <path d="M28 10 H32 L33 12 H43 V18 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Folder 2 -->
+  <path d="M28 20 H32 L33 22 H43 V28 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Folder 3 -->
+  <path d="M28 30 H32 L33 32 H43 V38 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Connecting dotted lines -->
+  <line x1="23" y1="12" x2="28" y2="14" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
+  <line x1="23" y1="22" x2="28" y2="24" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
+  <line x1="23" y1="32" x2="28" y2="34" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
 </svg>
+
 
 `;
     const Repository = createBoundedIcon("Repository", RepositorySvg);
 
     const impactNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
      xmlns="http://www.w3.org/2000/svg" 
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Triangle with base down -->
-  <path d="M25 12 L20 35 H30 L25 12 Z"  />
-  <path d="M25 12 L20 35 H30 L25 12 Z" />
-  <!-- Small square box below -->
-  <path d="M23 38 H27 V42 H23 V38 Z" />
+     fill="none" stroke="currentColor" stroke-width="0.5">
+  <path d="M32.5 10 L25 27.5 L35 22.5 L27.5 37.5 
+           C22.5 47.5 10 45 7.5 32.5 
+           C5 20 17.5 15 17.5 15 Z"/>
 </svg>
+
 
 
 `;
     const impactNodeShape = createBoundedIcon("Impact", impactNodeStencilSvg);
 
-    const changeEventStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round">
-  <!-- Central circle -->
-  <circle cx="25" cy="25" r="10" />
-  
-  <!-- Signal rays -->
-  <line x1="25" y1="15" x2="25" y2="10" />
-  <line x1="25" y1="35" x2="25" y2="40" />
-  <line x1="35" y1="25" x2="40" y2="25" />
-  <line x1="15" y1="25" x2="10" y2="25" />
-  
-  <!-- Diagonal rays -->
-  <line x1="30" y1="18" x2="33" y2="15" />
-  <line x1="20" y1="32" x2="17" y2="35" />
-  <line x1="30" y1="32" x2="33" y2="35" />
-  <line x1="20" y1="18" x2="17" y2="15" />
-</svg>
+    const changeEventStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Calendar body -->
+  <rect x="10" y="15" width="30" height="25" rx="3" ry="3"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
 
+  <!-- Top bar of the calendar -->
+  <line x1="10" y1="20" x2="40" y2="20"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Top left peg -->
+  <line x1="17" y1="10" x2="17" y2="15"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+  <line x1="14" y1="10" x2="20" y2="10"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+
+  <!-- Top right peg -->
+  <line x1="33" y1="10" x2="33" y2="15"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+  <line x1="30" y1="10" x2="36" y2="10"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+</svg>
 `;
     const changeEventShape = createBoundedIcon(
       "Change Event",
       changeEventStencilSvg
     );
 
-    const riskEffectStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Triangle -->
-  <polygon points="25 10, 40 30, 10 30, 25 10"  />
- 
-  <!-- Arrow inside the triangle -->
-  <path d="M25 18 L23.5 25 H26.5 L25 18 Z"  />
+    const riskEffectStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer triangle shape -->
+  <path d="M25 5 L45 45 L5 45 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
 
-  
-  <rect x="24" y="26.5" width="2" height="2" />
+  <!-- Exclamation mark body -->
+  <line x1="25" y1="18" x2="25" y2="30"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+
+  <!-- Exclamation mark dot -->
+  <circle cx="25" cy="35" r="1.5"
+          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
 </svg>
 
 `;
@@ -2753,14 +3142,33 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       riskEffectStencilSvg
     );
 
-    const causeEffectLinkStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+    const causeEffectLinkStencilSvg = `<svg width="200" height="200" viewBox="0 0 200 200"
      xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <line x1="12" y1="20" x2="38" y2="20"/>
-  <path d="M34 17 L38 20 L34 23 Z" fill = "currentColor"  opacity = "0.5"/>
-   <path d="M34 17 L38 20 L34 23 Z"/>
-  <text x="25" y="32" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="currentColor">C-E</text>
+     fill="none" stroke="black" stroke-width="2">
+  
+  <!-- Triangle -->
+  <polygon points="30,30 45,60 15,60" fill="currentColor" fill-opacity="0.4"/>
+  <!-- Square -->
+  <rect x="15" y="85" width="30" height="30" fill="currentColor" fill-opacity="0.4"/>
+  <!-- Circle -->
+  <circle cx="30" cy="150" r="15" fill="currentColor" fill-opacity="0.4"/>
+  
+  <!-- Arrows -->
+  <line x1="60" y1="50" x2="120" y2="50" stroke="black" stroke-width="4"/>
+  <polygon points="120,45 130,50 120,55" fill="currentColor" fill-opacity="0.4"/>
+  
+  <line x1="60" y1="100" x2="120" y2="100" stroke="black" stroke-width="4"/>
+  <polygon points="120,95 130,100 120,105" fill="currentColor" fill-opacity="0.4"/>
+  
+  <line x1="60" y1="150" x2="120" y2="150" stroke="black" stroke-width="4"/>
+  <polygon points="120,145 130,150 120,155" fill="currentColor" fill-opacity="0.4"/>
+
+  <!-- Question Marks -->
+  <text x="140" y="55" font-size="28" font-family="Arial" fill="currentColor" fill-opacity="0.4">?</text>
+  <text x="140" y="105" font-size="28" font-family="Arial" fill="currentColor" fill-opacity="0.4">?</text>
+  <text x="140" y="155" font-size="28" font-family="Arial" fill="currentColor" fill-opacity="0.4">?</text>
 </svg>
+
 
 `;
     const causeEffectLinkShape = createBoundedIcon(
@@ -2768,14 +3176,40 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       causeEffectLinkStencilSvg
     );
 
-    const mitigationStrategyStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Hexagon -->
-  <path d="M25 8 L12 17 V33 L25 42 L38 33 V17 L25 8 Z"/>
-  <!-- Checkmark -->
-  <path d="M20 27 L24 31 L32 23"/>
+    const mitigationStrategyStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warning triangle -->
+  <path d="M25 5 L40 30 L10 30 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <line x1="25" y1="12" x2="25" y2="22"
+        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+  <circle cx="25" cy="26" r="1.5"
+          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
+
+  <!-- Top connecting line -->
+  <line x1="25" y1="30" x2="25" y2="35"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Horizontal connecting line -->
+  <line x1="10" y1="35" x2="40" y2="35"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Left square node -->
+  <rect x="8" y="38" width="8" height="8" rx="2" ry="2"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <line x1="12" y1="35" x2="12" y2="38"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Middle square node -->
+  <rect x="21" y="38" width="8" height="8" rx="2" ry="2"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <line x1="25" y1="35" x2="25" y2="38"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Right square node -->
+  <rect x="34" y="38" width="8" height="8" rx="2" ry="2"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <line x1="38" y1="35" x2="38" y2="38"
+        stroke="currentColor" stroke-width="0.5"/>
 </svg>
 
 `;
@@ -2784,34 +3218,48 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       mitigationStrategyStencilSvg
     );
 
-    const matrixStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Hexagon -->
-  <path d="M25 8 L12 16 V33 L25 41 L38 33 V16 L25 8 Z"/>
-  <!-- Check mark -->
-  <path d="M20 27 L24 31 L32 23"/>
-</svg>
+    const matrixStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer square border -->
+  <rect x="12" y="12" width="26" height="26" rx="3" ry="3"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  
+  <!-- Inner dividing lines -->
+  <line x1="25" y1="12" x2="25" y2="38"
+        stroke="currentColor" stroke-width="0.5"/>
+  <line x1="12" y1="25" x2="38" y2="25"
+        stroke="currentColor" stroke-width="0.5"/>
 
+  <!-- Top-left circle -->
+  <circle cx="18.5" cy="18.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+  
+  <!-- Bottom-left circle -->
+  <circle cx="18.5" cy="31.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+  
+  <!-- Bottom-right circle -->
+  <circle cx="31.5" cy="31.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+</svg>
 `;
     const matrixShape = createBoundedIcon("Matrix", matrixStencilSvg);
 
-    const entitySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="#535965" stroke-width="1" fill="none">
-  <rect x="14.29" y="10.71" width="21.43" height="14.29"/>
-  <circle cx="14.29" cy="17.86" r="1.43" />
-  <circle cx="35.71" cy="17.86" r="1.43" />
+    const entitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer rounded rectangle (table frame) -->
+  <rect x="7" y="10" width="36" height="30" rx="3" />
+  <!-- Horizontal divider for header -->
+  <line x1="7" y1="18" x2="43" y2="18" />
 </svg>
+
+
 
 `;
     const entityShape = createBoundedIcon("Entity", entitySvg);
 
     const DependencyLinkSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
   <line x1="5" y1="25" x2="45" y2="25"/>
-  <path d="M40 20 L45 25 L40 30 Z" fill = "currentColor"  opacity = "0.5"/>
-  <path d="M40 20 L45 25 L40 30 Z"/>
+  <path d="M40 20 L45 25 L40 30 Z" fill="currentColor" fill-opacity="0.4" />
+
 </svg>
 
 `;
@@ -2828,7 +3276,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   
   <!-- Lights / slots -->
   <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="24" width="4" height="6"/>
+  <rect x="22" y="30" width="4" height="6"/>
   <rect x="32" y="24" width="4" height="6"/>
 </svg>
 `;
@@ -2843,7 +3291,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   
   <!-- Lights / slots -->
   <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="24" width="4" height="6"/>
+  <rect x="22" y="30" width="4" height="6"/>
   <rect x="32" y="24" width="4" height="6"/>
 </svg>
 
@@ -2878,13 +3326,13 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <!-- Right square -->
   <rect x="32" y="32" width="10" height="10" rx="1"/>
 
-  <!-- Curved connector -->
-  <path d="M13 18 C13 30, 37 20, 37 32"/>
+  <!-- Curved connector ending just before the square -->
+  <path d="M13 18 C13 30, 37 20, 37 31.5"/>
 
-  <!-- Arrowhead at the end of the curve -->
-  <path d="M37 34 L36 31.5 L38 31.5 Z"/>
+  <!-- Arrowhead pointing exactly at top center of the square -->
+  <path d="M36 30 L38 30 L37 31.5 Z" fill="currentColor" fill-opacity="0.4" />
+  <path d="M36 30 L38 30 L37 31.5 Z"/>
 </svg>
-
 
 `;
     const ReferenceShape = createBoundedIcon("Reference", ReferenceSvg);
@@ -2903,18 +3351,19 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 `;
     const ProcedureShape = createBoundedIcon("Procedure", ProcedureSvg);
-    const FileIconSvg = `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Document body with folded corner -->
-  <path d="M10 7.5h23l6.5 6.5v28.5h-29.5z" />
+    const FileIconSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Folder body -->
+  <rect x="10" y="15" width="30" height="25" rx="2" ry="2" />
   
-  <!-- Folded corner detail -->
-  <path d="M33 7.5v6.5h6.5" />
-  
-  <!-- Text lines -->
-  <path d="M15 22h20" />
-  <path d="M15 27h20" />
-  <path d="M15 32h16" />
+  <!-- Folder tab -->
+  <path d="M10 15 V12 C10 10.9 10.9 10 12 10 H20 C20.6 10 21.1 10.3 21.5 10.8 L24 14 H38 C39.1 14 40 14.9 40 16 V15" />
+  <line x1="10" y1="15" x2="40" y2="15" />
 </svg>
+
 
 `;
     const FileIconShape = createBoundedIcon("File", FileIconSvg);
@@ -2956,8 +3405,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
     const compositionSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
   <!-- Resized, centered diamond -->
-  <path d="M12 25L20 17L28 25L20 33Z" fill="currentColor" opacity="0.5" />
-  <path d="M12 25L20 17L28 25L20 33Z" />
+  <path d="M12 25L20 17L28 25L20 33Z" fill="currentColor" fill-opacity="0.4" />
+  
   <!-- Extended line -->
   <line x1="28" y1="25" x2="48" y2="25" />
 </svg>
@@ -3076,7 +3525,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         businessProcessShape,
         replicationShape,
         ReplicationServerShape,
-        TransformationProcessShape,
+
         ConnectionShape,
         PackagelinkShape,
         TransformationShape,
