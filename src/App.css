@@ -1,8 +1,9 @@
 #paper {
   width: 100%;
   height: calc(100vh - 60px); /* or a fixed height */
-  overflow: hidden;
+  overflow: visible !important; /* <-- allow spillover */
   position: relative;
+  z-index: 0;
 }
 
 html,
@@ -18,7 +19,11 @@ body,
   position: relative;
   z-index: 1000;
 }
-
+.group-label {
+  overflow: visible !important;
+  position: relative;
+  z-index: 10;
+}
 #navigator-container {
   position: absolute;
   top: 10px;
@@ -35,14 +40,15 @@ body,
   z-index: 1000 !important;
 }
 #stencil {
-  position: absolute;
+  position: relative; /* <-- was absolute */
+  z-index: 5000; /* <-- boost over canvas */
+  background: white;
   top: 0;
   left: 0;
   width: 200px;
   bottom: 0;
-  background: red;
+
   border-right: 1px solid var(--stencil-border);
-  z-index: 10;
 }
 
 /* #toolbar {

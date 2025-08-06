@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  <!-- Outer rounded rectangle -->
+  <rect x="8" y="8" width="34" height="34" rx="2" ry="2"/>
+  <!-- Horizontal separator 1 (top third) -->
+  <line x1="8" y1="19.33" x2="42" y2="19.33"/>
+  <!-- Horizontal separator 2 (middle third) -->
+  <line x1="8" y1="30.67" x2="42" y2="30.67"/>
+</svg>

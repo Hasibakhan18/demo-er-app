@@ -6,6 +6,95 @@ import { paletteGroups, stencilElements } from "../config/stencil";
 import { dia, ui, shapes } from "@joint/plus";
 import * as joint from "@joint/core";
 import { createEREntity } from "../config/customShapes";
+import topicSvg from "../assets/shapes/topic.svg?raw";
+import portSvg from "../assets/shapes/port.svg?raw";
+import referenceSvg from "../assets/shapes/reference.svg?raw";
+import subtopicSvg from "../assets/shapes/subtopic.svg?raw";
+import noteSvg from "../assets/shapes/note.svg?raw";
+import startEventSvg from "../assets/shapes/start-event.svg?raw";
+import processNodeSvg from "../assets/shapes/process-node.svg?raw";
+import subprocessNodeSvg from "../assets/shapes/subprocess-node.svg?raw";
+import linkSvg from "../assets/shapes/link.svg?raw";
+import activityNodeSvg from "../assets/shapes/activity-node.svg?raw";
+import requirementSvg from "../assets/shapes/requirement.svg?raw";
+import mitigationSvg from "../assets/shapes/mitigation.svg?raw";
+import useCaseSvg from "../assets/shapes/use-case.svg?raw";
+import entitySvg from "../assets/shapes/entity.svg?raw";
+import classSvg from "../assets/shapes/class.svg?raw";
+import interfaceSvg from "../assets/shapes/interface.svg?raw";
+import packageSvg from "../assets/shapes/package.svg?raw";
+import generalizationSvg from "../assets/shapes/generalization.svg?raw";
+import aggregationSvg from "../assets/shapes/aggregation.svg?raw";
+import compositionSvg from "../assets/shapes/composition.svg?raw";
+import associationSvg from "../assets/shapes/association.svg?raw";
+import dependencySvg from "../assets/shapes/dependency.svg?raw";
+import tableSvg from "../assets/shapes/table.svg?raw";
+import viewSvg from "../assets/shapes/view.svg?raw";
+import procedureSvg from "../assets/shapes/procedure.svg?raw";
+import onenRelationshipSvg from "../assets/shapes/1-n-relationship.svg?raw";
+import onenRealtionshipSvg from "../assets/shapes/1-1-relationship.svg?raw";
+import nnRealtionshipSvg from "../assets/shapes/n-n-relationship.svg?raw";
+import businessProcessSvg from "../assets/shapes/business-process.svg?raw";
+import freeNodeSvg from "../assets/shapes/free-node.svg?raw";
+import anchorLinkSvg from "../assets/shapes/anchor-link.svg?raw";
+import titleBoxSvg from "../assets/shapes/title-box.svg?raw";
+import organizationSvg from "../assets/shapes/organization.svg?raw";
+import departmentSvg from "../assets/shapes/department.svg?raw";
+import positionSvg from "../assets/shapes/position.svg?raw";
+import roleSvg from "../assets/shapes/role.svg?raw";
+import reportingLineSvg from "../assets/shapes/reporting-line.svg?raw";
+import applicationSvg from "../assets/shapes/application.svg?raw";
+import technologySvg from "../assets/shapes/technology.svg?raw";
+import businessSvg from "../assets/shapes/business.svg?raw";
+import informationSvg from "../assets/shapes/information.svg?raw";
+import processSvg from "../assets/shapes/process.svg?raw";
+import goalSvg from "../assets/shapes/goal.svg?raw";
+import stakeholderSvg from "../assets/shapes/stakeholder.svg?raw";
+import dataFlowSvg from "../assets/shapes/data-flow.svg?raw";
+import connectionSvg from "../assets/shapes/connection.svg?raw";
+import serverSvg from "../assets/shapes/server.svg?raw";
+import databaseSvg from "../assets/shapes/database.svg?raw";
+import replicationServerSvg from "../assets/shapes/replication-server.svg?raw";
+import fileSvg from "../assets/shapes/file.svg?raw";
+import xmlSvg from "../assets/shapes/xml.svg?raw";
+import sourceSvg from "../assets/shapes/source.svg?raw";
+import targetSvg from "../assets/shapes/target.svg?raw";
+import transformationSvg from "../assets/shapes/transformation.svg?raw";
+import replicationSvg from "../assets/shapes/replication.svg?raw";
+import inputSvg from "../assets/shapes/input.svg?raw";
+import groupSvg from "../assets/shapes/group.svg?raw";
+import matrixSvg from "../assets/shapes/matrix.svg?raw";
+import causeeffectSvg from "../assets/shapes/cause-effect.svg?raw";
+import riskSvg from "../assets/shapes/riskeffect.svg?raw";
+import changeEventSvg from "../assets/shapes/changeevent.svg?raw";
+import impactSvg from "../assets/shapes/impact.svg?raw";
+import repositorySvg from "../assets/shapes/repository.svg?raw";
+import accesspointSvg from "../assets/shapes/accesspoint.svg?raw";
+import flowSvg from "../assets/shapes/flow.svg?raw";
+import shredSvg from "../assets/shapes/shred.svg?raw";
+import secureSvg from "../assets/shapes/secure.svg?raw";
+import manageSvg from "../assets/shapes/manage.svg?raw";
+import storeSvg from "../assets/shapes/store.svg?raw";
+import printSvg from "../assets/shapes/print.svg?raw";
+import annotationSvg from "../assets/shapes/annotation.svg?raw";
+import connectorlineSvg from "../assets/shapes/connector-line.svg?raw";
+import measureSvg from "../assets/shapes/measure.svg?raw";
+import dimensionSvg from "../assets/shapes/dimension.svg?raw";
+import cubeSvg from "../assets/shapes/cube.svg?raw";
+import enumSvg from "../assets/shapes/enum.svg?raw";
+import messageflowSvg from "../assets/shapes/message-flow.svg?raw";
+import parallelgatewaySvg from "../assets/shapes/parallel-gateway.svg?raw";
+import exclusivegatewaySvg from "../assets/shapes/exclusive-gateway.svg?raw";
+import eventgatewaySvg from "../assets/shapes/event-gateway.svg?raw";
+import callactivitySvg from "../assets/shapes/call-activity.svg?raw";
+import transactionSvg from "../assets/shapes/transaction.svg?raw";
+import subprocessSvg from "../assets/shapes/subprocess-node.svg?raw";
+import inheritanceSvg from "../assets/shapes/inheritance.svg?raw";
+import actorSvg from "../assets/shapes/actor.svg?raw";
+import sequenceflowSvg from "../assets/shapes/sequence-flow.svg?raw";
+import endeventSvg from "../assets/shapes/end-event.svg?raw";
+import gatewaySvg from "../assets/shapes/gateway.svg?raw";
+import taskactivitySvg from "../assets/shapes/task-activity.svg?raw";
 
 // Merge types from @joint/core into dia namespace for this component
 declare module "@joint/plus" {
@@ -24,6 +113,87 @@ interface StencilProps {
   paper: dia.Paper;
   graph: dia.Graph;
 }
+// Define model types for the stencil
+interface ModelType {
+  id: string;
+  label: string;
+  groupKey: string;
+}
+// Define the model types with their IDs, labels, and group keys
+const MODEL_TYPES: ModelType[] = [
+  { id: "mindMap", label: "Mind Map Model", groupKey: "mindMap" },
+  {
+    id: "businessProcess",
+    label: "Business Process Model",
+    groupKey: "businessProcess",
+  },
+  {
+    id: "conceptualDataModel",
+    label: "Conceptual Data Model",
+    groupKey: "conceptualDataModel",
+  },
+  {
+    id: "requirementsModel",
+    label: "Requirements Model Stencil",
+    groupKey: "requirementsModel",
+  },
+  {
+    id: "physicalDataModel",
+    label: "Physical Data Model",
+    groupKey: "physicalDataModel",
+  },
+  {
+    id: "logicalDataModel",
+    label: "Logical Data Model",
+    groupKey: "logicalDataModel",
+  },
+  {
+    id: "objectOrientedModel",
+    label: "Object-Oriented Model",
+    groupKey: "objectOrientedModel",
+  },
+  {
+    id: "multidimensionalModel",
+    label: "Multidimensional Model",
+    groupKey: "multidimensionalModel",
+  },
+  {
+    id: "processHierarchyModel",
+    label: "Process Hierarchy Model",
+    groupKey: "processHierarchyModel",
+  },
+  { id: "freeModel", label: "Common Tool Stencil", groupKey: "freeModel" },
+  {
+    id: "organizationalChartModel",
+    label: "Organizational Chart Model",
+    groupKey: "organizationalChartModel",
+  },
+  {
+    id: "enterpriseArchitectureModel",
+    label: "Enterprise Architecture Model",
+    groupKey: "enterpriseArchitectureModel",
+  },
+  {
+    id: "dataMovementModel",
+    label: "Data Movement Model",
+    groupKey: "dataMovementModel",
+  },
+  {
+    id: "informationLifecycleManagement",
+    label: "Information Lifecycle Management",
+    groupKey: "informationLifecycleManagement",
+  },
+  {
+    id: "impactAnalysisModel",
+    label: "Impact Analysis Model",
+    groupKey: "impactAnalysisModel",
+  },
+  {
+    id: "dependencyPropagationModel",
+    label: "Dependency Propagation Model",
+    groupKey: "dependencyPropagationModel",
+  },
+];
 
 const Stencil = ({ paper, graph }: StencilProps) => {
   const [openSection, setOpenSection] = useState<string | null>("stencil");
@@ -51,13 +221,54 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       "dependencyPropagationModel",
     ])
   );
+  // State to manage selected model types
+  const [selectedModelTypes, setSelectedModelTypes] = useState<Set<string>>(
+    new Set()
+  );
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [folderNames, setFolderNames] = useState<string[]>([]);
   const [newFolderName, setNewFolderName] = useState("");
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
   const [isPanelHidden, setIsPanelHidden] = useState(false);
+
   const contentRef = useRef<HTMLDivElement | null>(null);
   const stencilContainerRef = useRef<HTMLDivElement | null>(null);
   const stencilInstanceRef = useRef<any | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  //Handle model type selection
+  const handleModelTypeToggle = (modelTypeId: string) => {
+    const newSelectedTypes = new Set(selectedModelTypes);
+    if (newSelectedTypes.has(modelTypeId)) {
+      newSelectedTypes.delete(modelTypeId);
+    } else {
+      newSelectedTypes.add(modelTypeId);
+    }
+    setSelectedModelTypes(newSelectedTypes);
+  };
+
+  // Get checkbox state for select all
+  const getSelectAllState = () => {
+    if (selectedModelTypes.size === 0) return "none";
+    if (selectedModelTypes.size === MODEL_TYPES.length) return "all";
+    return "partial";
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const toggleCollapse = () => {
     const newState = !isPanelCollapsed;
@@ -104,6 +315,142 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   const handleSectionClick = (section: string) => {
     setOpenSection(openSection === section ? null : section);
   };
+  // Filter groups based on selected model types
+  const getFilteredGroups = () => {
+    const allGroups = {
+      basic: {
+        label: "Model Types",
+        index: 2,
+        closed: !expandedGroups.has("basic"),
+      },
+      // complex: {
+      //   label: "Free Tools",
+      //   index: 3,
+      //   closed: !expandedGroups.has("freeModel"),
+      // },
+      mindMap: {
+        label: "Mind Map Stencil",
+        index: 4,
+        closed: !expandedGroups.has("mindMap"),
+      },
+      businessProcess: {
+        label: "Business Process Model",
+        index: 5,
+        closed: !expandedGroups.has("businessProcess"),
+      },
+      requirementsModel: {
+        label: "Requirements Model Stencil",
+        index: 7,
+        closed: !expandedGroups.has("requirementsModel"),
+      },
+      conceptualDataModel: {
+        label: "Conceptual Data Model",
+        index: 6,
+        closed: !expandedGroups.has("conceptualDataModel"),
+      },
+      logicalDataModel: {
+        label: "Logical Data Model Stencil",
+        index: 19,
+        closed: !expandedGroups.has("logicalDataModel"),
+      },
+      physicalDataModel: {
+        label: "Physical Data Model",
+        index: 8,
+        closed: !expandedGroups.has("physicalDataModel"),
+      },
+      objectOrientedModel: {
+        label: "Object-Oriented Model",
+        index: 9,
+        closed: !expandedGroups.has("objectOrientedModel"),
+      },
+      multidimensionalModel: {
+        label: "Multidimensional Model",
+        index: 10,
+        closed: !expandedGroups.has("multidimensionalModel"),
+      },
+      processHierarchyModel: {
+        label: "Process Hierarchy Model",
+        index: 11,
+        closed: !expandedGroups.has("processHierarchyModel"),
+      },
+      freeModel: {
+        label: "Common Tool Stencil",
+        index: 12,
+        closed: !expandedGroups.has("freeModel"),
+      },
+      organizationalChartModel: {
+        label: "Organizational Chart Model Stencil",
+        index: 13,
+        closed: !expandedGroups.has("organizationalChartModel"),
+      },
+      enterpriseArchitectureModel: {
+        label: "Enterprise Architecture Model Stencil",
+        index: 14,
+        closed: !expandedGroups.has("enterpriseArchitectureModel"),
+      },
+      dataMovementModel: {
+        label: "Data Movement Model Stencil",
+        index: 15,
+        closed: !expandedGroups.has("dataMovementModel"),
+      },
+      informationLifecycleManagement: {
+        label: "Information Lifecycle Management Stencil",
+        index: 16,
+        closed: !expandedGroups.has("informationLifecycleManagement"),
+      },
+      impactAnalysisModel: {
+        label: "Impact Analysis Model Stencil",
+        index: 17,
+        closed: !expandedGroups.has("impactAnalysisModel"),
+      },
+      dependencyPropagationModel: {
+        label: "Dependency Propagation Model",
+        index: 18,
+        closed: !expandedGroups.has("dependencyPropagationModel"),
+      },
+    };
+
+    // If no model types selected, show basic and complex groups only
+    if (selectedModelTypes.size === 0) {
+      return {
+        basic: allGroups.basic,
+        freeModel: allGroups.freeModel,
+      };
+    }
+
+    // Filter groups based on selected model types
+    const filteredGroups: any = {
+      basic: allGroups.basic,
+      // freeModel: allGroups.freeModel,
+    };
+
+    MODEL_TYPES.forEach((modelType) => {
+      if (selectedModelTypes.has(modelType.id)) {
+        filteredGroups[modelType.groupKey] =
+          allGroups[modelType.groupKey as keyof typeof allGroups];
+      }
+    });
+
+    return filteredGroups;
+  };
+
+  // Get filtered shapes data for loading into stencil
+  const getFilteredShapesData = () => {
+    const shapesData: any = {};
+
+    // Always include basic and complex
+    shapesData.basic = []; // Will be populated with model type buttons
+    shapesData.complex = []; // Will be populated with allElements
+
+    // Add selected model types
+    MODEL_TYPES.forEach((modelType) => {
+      if (selectedModelTypes.has(modelType.id)) {
+        shapesData[modelType.groupKey] = [];
+      }
+    });
+
+    return shapesData;
+  };
 
   useEffect(() => {
     if (!paper || !graph || !stencilContainerRef.current) return;
@@ -122,104 +469,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       },
       dropAnimation: { duration: 200, easing: "ease-out" },
       scaleClones: true,
-      groups: {
-        entities: {
-          label: "Project Folders",
-          index: 1,
-          closed: !expandedGroups.has("entities"),
-        },
-        basic: {
-          label: "Model Types",
-          index: 2,
-          closed: !expandedGroups.has("basic"),
-        },
-        complex: {
-          label: "Stencil Tools",
-          index: 3,
-          closed: !expandedGroups.has("complex"),
-        },
-        mindMap: {
-          label: "Mind Map Stencil",
-          index: 4,
-          closed: !expandedGroups.has("mindMap"),
-        },
-        businessProcess: {
-          label: "Business Process Model",
-          index: 5,
-          closed: !expandedGroups.has("businessProcess"),
-        },
-        requirementsModel: {
-          label: "Requirements Model Stencil",
-          index: 7,
-          closed: !expandedGroups.has("requirementsModel"),
-        },
-        conceptualDataModel: {
-          label: "Conceptual Data Model",
-          index: 6,
-          closed: !expandedGroups.has("conceptualDataModel"),
-        },
-        logicalDataModel: {
-          label: "Logical Data Model Stencil",
-          index: 19,
-          closed: !expandedGroups.has("logicalDataModel"),
-        },
-
-        physicalDataModel: {
-          label: "Physical Data Model",
-          index: 8,
-          closed: !expandedGroups.has("physicalDataModel"),
-        },
-        objectOrientedModel: {
-          label: "Object-Oriented Model",
-          index: 9,
-          closed: !expandedGroups.has("objectOrientedModel"),
-        },
-        multidimensionalModel: {
-          label: "Multidimensional Model",
-          index: 10,
-          closed: !expandedGroups.has("multidimensionalModel"),
-        },
-        processHierarchyModel: {
-          label: "Process Hierarchy Model",
-          index: 11,
-          closed: !expandedGroups.has("processHierarchyModel"),
-        },
-        freeModel: {
-          label: "Free Model/Common Tool Stencil",
-          index: 12,
-          closed: !expandedGroups.has("freeModel"),
-        },
-        organizationalChartModel: {
-          label: "Organizational Chart Model Stencil",
-          index: 13,
-          closed: !expandedGroups.has("organizationalChartModel"),
-        },
-        enterpriseArchitectureModel: {
-          label: "Enterprise Architecture Model Stencil",
-          index: 14,
-          closed: !expandedGroups.has("enterpriseArchitectureModel"),
-        },
-        dataMovementModel: {
-          label: "Data Movement Model Stencil",
-          index: 15,
-          closed: !expandedGroups.has("dataMovementModel"),
-        },
-        informationLifecycleManagement: {
-          label: "Information Lifecycle Management Stencil",
-          index: 16,
-          closed: !expandedGroups.has("informationLifecycleManagement"),
-        },
-        impactAnalysisModel: {
-          label: "Impact Analysis Model Stencil",
-          index: 17,
-          closed: !expandedGroups.has("impactAnalysisModel"),
-        },
-        dependencyPropagationModel: {
-          label: "Dependency Propagation Model",
-          index: 18,
-          closed: !expandedGroups.has("dependencyPropagationModel"),
-        },
-      },
+      groups: getFilteredGroups(),
       search: {
         "*": ["attrs/headerText/text", "attrs/label/text"],
         "erd.Entity": ["attrs/headerText/text"],
@@ -373,11 +623,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.size(100, 100);
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Actor") {
-          const newSvg = `<svg width="120" height="180" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="30" r="15" stroke="#2F855A" stroke-width="1" fill="none" /><line x1="60" y1="45" x2="60" y2="100" stroke="#2F855A" stroke-width="1" /><line x1="30" y1="65" x2="90" y2="65" stroke="#2F855A" stroke-width="1" /><line x1="60" y1="100" x2="40" y2="140" stroke="#2F855A" stroke-width="1" /><line x1="60" y1="100" x2="80" y2="140" stroke="#2F855A" stroke-width="1" /><g id="gear" transform="translate(85,10) scale(0.4)"><circle cx="20" cy="20" r="8" stroke="#2F855A" stroke-width="1" fill="none"/><line x1="20" y1="10" x2="20" y2="30" stroke="#2F855A" stroke-width="1"/><line x1="10" y1="20" x2="30" y2="20" stroke="#2F855A" stroke-width="1"/></g><text x="60" y="170" font-family="Arial, sans-serif" font-size="16" fill="#2F855A" text-anchor="middle">Actor Name</text><text x="60" y="155" font-family="Arial, sans-serif" font-size="12" fill="#4A5568" text-anchor="middle">Human User</text></svg>`;
-          finalElement.attr(
-            "image/xlink:href",
-            `data:image/svg+xml;utf8,${encodeURIComponent(newSvg)}`
-          );
+          finalElement.attr("image/xlink:href", actorSvg);
           finalElement.size(120, 180);
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Use Case") {
@@ -1275,37 +1521,236 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       entitiesGroupLabel.appendChild(addBtn);
     }
 
-    // ========== Add [+] to "MODEL TYPES" (basic group) ==========
+    // ========== Add Model Type Filter Dropdown to "MODEL TYPES" (basic group) ==========
+
     const basicLabel = stencil.el.querySelector(
       '[data-name="basic"] .group-label'
     );
     if (basicLabel) {
-      const addModelTypeBtn = createAddButton("Add Model Type", () => {
-        const name = prompt("Enter model type name:");
-        if (name) {
-          const modelElement = new shapes.standard.Rectangle({
-            size: { width: 160, height: 50 },
-            attrs: {
-              body: {
-                fill: "#ecfdf5",
-                stroke: "#10b981",
-                rx: 6,
-                ry: 6,
-              },
-              label: {
-                text: `🧩 ${name}`,
-                fill: "#065f46",
-                fontSize: 14,
-                fontWeight: "bold",
-              },
-            },
-          });
+      // Create dropdown container
+      const dropdownContainer = document.createElement("div");
+      dropdownContainer.style.cssText = `
+        position: relative;
+        display: inline-block;
+        margin-left: 8px;
+        z-index: 3000;
+      `;
 
-          stencil.load({ basic: [modelElement] }, { addToExisting: true });
+      // Create dropdown button
+      const dropdownBtn = document.createElement("button");
+      dropdownBtn.innerHTML = `
+        <span class="dropdown-label" style="font-size: 11px;">
+    ${
+      Array.from(selectedModelTypes)
+        .map((id) => MODEL_TYPES.find((type) => type.id === id)?.label)
+        .filter(Boolean)
+        .join(", ") || "Select Models"
+    }
+  </span>
+      `;
+      dropdownBtn.title = "Filter Model Types";
+      dropdownBtn.style.cssText = `
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        font-size: 11px;
+        border-radius: 4px;
+        border: 1px solid #2563eb;
+        background-color: white;
+        color: #2563eb;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      `;
+
+      // Create dropdown menu
+      const dropdownMenu = document.createElement("div");
+      dropdownMenu.style.cssText = `
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        background: white;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+         z-index: 4000; /* Make sure it's on top of everything */
+        display: none;
+        max-height: 250px;
+        overflow-y: auto;
+      `;
+
+      // Create Select All option
+      const selectAllOption = document.createElement("div");
+      const selectAllState = getSelectAllState();
+      selectAllOption.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6; font-size: 12px;">
+          <div style="width: 14px; height: 14px; border: 1px solid #d1d5db; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: white;">
+            ${
+              selectAllState === "all"
+                ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
+                : ""
+            }
+            ${
+              selectAllState === "partial"
+                ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
+                : ""
+            }
+          </div>
+          <span style="font-weight: 500; color: #374151;">Select All</span>
+        </div>
+      `;
+      selectAllOption.addEventListener("mouseover", () => {
+        if (selectAllOption.firstElementChild) {
+          (
+            selectAllOption.firstElementChild as HTMLElement
+          ).style.backgroundColor = "#f8fafc";
         }
       });
-      basicLabel.appendChild(addModelTypeBtn);
+      selectAllOption.addEventListener("mouseout", () => {
+        if (selectAllOption.firstElementChild) {
+          (
+            selectAllOption.firstElementChild as HTMLElement
+          ).style.backgroundColor = "transparent";
+        }
+      });
+      selectAllOption.addEventListener("click", () => {
+        // Define handleSelectAll to toggle all model types
+        const handleSelectAll = () => {
+          if (selectedModelTypes.size === MODEL_TYPES.length) {
+            setSelectedModelTypes(new Set());
+          } else {
+            setSelectedModelTypes(new Set(MODEL_TYPES.map((type) => type.id)));
+          }
+        };
+        handleSelectAll();
+        updateDropdownUI();
+      });
+
+      // Create individual model type options
+      const modelTypeOptions = document.createElement("div");
+
+      const updateDropdownUI = () => {
+        // Update button text
+        const spanEl = dropdownBtn.querySelector(".dropdown-label");
+        if (spanEl) {
+          const selectedLabels = Array.from(selectedModelTypes)
+            .map((id) => MODEL_TYPES.find((type) => type.id === id)?.label)
+            .filter(Boolean);
+
+          spanEl.textContent =
+            selectedLabels.length > 0
+              ? selectedLabels.join(", ")
+              : "Select Models";
+        }
+
+        // Update Select All state
+        const newSelectAllState = getSelectAllState();
+        const selectAllCheckbox = selectAllOption.querySelector("div > div");
+        if (selectAllCheckbox) {
+          selectAllCheckbox.innerHTML =
+            newSelectAllState === "all"
+              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
+              : newSelectAllState === "partial"
+              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
+              : "";
+        }
+
+        // Update individual checkboxes
+        MODEL_TYPES.forEach((modelType, index) => {
+          const option = modelTypeOptions.children[index];
+          const checkbox = option.querySelector("div > div");
+          if (checkbox) {
+            checkbox.innerHTML = selectedModelTypes.has(modelType.id)
+              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
+              : "";
+          }
+        });
+
+        // Re-render stencil with updated selection
+        // This will be handled by the existing useEffect
+      };
+
+      MODEL_TYPES.forEach((modelType) => {
+        const option = document.createElement("div");
+        option.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; font-size: 12px;">
+            <div style="width: 14px; height: 14px; border: 1px solid #d1d5db; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: white;">
+              ${
+                selectedModelTypes.has(modelType.id)
+                  ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
+                  : ""
+              }
+            </div>
+            <span style="color: #374151;">${modelType.label}</span>
+          </div>
+        `;
+        option.addEventListener("mouseover", () => {
+          if (option.firstElementChild) {
+            (option.firstElementChild as HTMLElement).style.backgroundColor =
+              "#f8fafc";
+          }
+        });
+        option.addEventListener("mouseout", () => {
+          if (option.firstElementChild) {
+            (option.firstElementChild as HTMLElement).style.backgroundColor =
+              "transparent";
+          }
+        });
+        option.addEventListener("click", () => {
+          handleModelTypeToggle(modelType.id);
+          updateDropdownUI();
+        });
+        modelTypeOptions.appendChild(option);
+      });
+
+      // Assemble dropdown
+      dropdownMenu.appendChild(selectAllOption);
+      dropdownMenu.appendChild(modelTypeOptions);
+      dropdownContainer.appendChild(dropdownBtn);
+      dropdownContainer.appendChild(dropdownMenu);
+
+      // Toggle dropdown on button click
+      dropdownBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        // Fix: normalize current display state (in case it's empty)
+        const currentDisplay = dropdownMenu.style.display.trim();
+        const isVisible = currentDisplay === "block";
+
+        // Toggle display
+        dropdownMenu.style.display = isVisible ? "none" : "block";
+
+        // Optional: scroll to top of dropdown every time it's opened
+        if (!isVisible) {
+          dropdownMenu.scrollTop = 0;
+        }
+
+        // Optional debug
+        console.log(`Dropdown is now ${isVisible ? "hidden" : "shown"}`);
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        const target = e.target as Node | null;
+        if (dropdownContainer && !dropdownContainer.contains(target)) {
+          dropdownMenu.style.display = "none";
+        }
+      });
+
+      // Hover effects for button
+      dropdownBtn.addEventListener("mouseover", () => {
+        dropdownBtn.style.backgroundColor = "#eff6ff";
+        dropdownBtn.style.borderColor = "#3b82f6";
+      });
+      dropdownBtn.addEventListener("mouseout", () => {
+        dropdownBtn.style.backgroundColor = "white";
+        dropdownBtn.style.borderColor = "#2563eb";
+      });
+
+      basicLabel.appendChild(dropdownContainer);
+      console.log("Dropdown container added to basicLabel");
     }
+    stencilContainerRef.current.style.position = "relative";
 
     stencilContainerRef.current.innerHTML = "";
     stencilContainerRef.current.appendChild(stencil.el);
@@ -1331,9 +1776,29 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       });
     });
 
-    const createBoundedIcon = (title: string, svg: string) => {
+    const createBoundedIcon = (
+      title: string,
+      svg: string,
+      isCollapsed: boolean
+    ) => {
+      const size = isCollapsed
+        ? { width: 36, height: 36 }
+        : { width: 60, height: 60 };
+      const imageSize = isCollapsed ? 30 : 50;
+      const imageOffset = isCollapsed ? 3 : 5;
+
+      const labelAttrs = isCollapsed
+        ? { text: "" } // No label
+        : {
+            text: title,
+            fontSize: 11,
+            textAnchor: "middle",
+            x: 30,
+            y: 58,
+          };
+
       return new shapes.standard.Image({
-        size: { width: 60, height: 60 },
+        size,
         attrs: {
           root: {
             title,
@@ -1345,148 +1810,67 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           },
           image: {
             "xlink:href": `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
-            width: 50,
-            height: 50,
-            x: 5,
-            y: 5,
+            width: imageSize,
+            height: imageSize,
+            x: imageOffset,
+            y: imageOffset,
           },
-          label: {
-            text: title,
-            fontSize: 11,
-            textAnchor: "middle", // center horizontally
-            x: 30, // horizontally center in 60×60 box
-            y: 58, // place just below the icon
-          },
+          label: labelAttrs,
         },
       });
     };
 
-    const topicSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" fill-opacity="0.4" />
+    const topicShape = createBoundedIcon("Topic", topicSvg, isPanelCollapsed);
+    const subtopicShape = createBoundedIcon(
+      "Subtopic",
+      subtopicSvg,
+      isPanelCollapsed
+    );
+    const linkShape = createBoundedIcon("Link", linkSvg, isPanelCollapsed);
 
-</svg>
-`;
-    const topicShape = createBoundedIcon("Topic", topicSvg);
-    const subtopicSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="25" cy="25" rx="24" ry="16" fill="currentColor" fill-opacity="0.2"  />
-  
+    const noteShape = createBoundedIcon("Note", noteSvg, isPanelCollapsed);
 
-</svg>
-`;
-    const subtopicShape = createBoundedIcon("Subtopic", subtopicSvg);
-    const linkSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Sharp arrowhead scaled and positioned to fit viewBox -->
-    <marker id="arrowhead" markerWidth="8" markerHeight="8" 
-            refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0 0, 8 4, 0 8" fill="currentColor" />
-    </marker>
-  </defs>
+    const startEventShape = createBoundedIcon(
+      "Start Event",
+      startEventSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Full-width line with pointed arrowhead -->
-  <line x1="2" y1="25" x2="48" y2="25" stroke="currentColor" stroke-width="0.5" marker-end="url(#arrowhead)" />
-</svg>
-
-
-
-`;
-    const linkShape = createBoundedIcon("Link", linkSvg);
-
-    const noteSvg = `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" stroke-width="0.5">
-  <!-- Document outline with folded corner -->
-  <path d="M10 5.5 H30 L39.5 15 V44.5 H10 Z M30 5.5 V15 H39.5" />
-
-  <!-- Text lines -->
-  <line x1="15" y1="20" x2="35" y2="20" />
-  <line x1="15" y1="25" x2="35" y2="25" />
-  <line x1="15" y1="30" x2="35" y2="30" />
-  <line x1="15" y1="35" x2="32" y2="35" />
-  <line x1="15" y1="40" x2="28" y2="40" />
-</svg>
-
-
-`;
-    const noteShape = createBoundedIcon("Note", noteSvg);
-
-    const startEventSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="25" cy="25" r="13" />
-</svg>
-
-
-`;
-    const startEventShape = createBoundedIcon("Start Event", startEventSvg);
-
-    const taskActivitySvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="2" y="13" width="46" height="24" rx="8" ry="8" />
-</svg>
-
-`;
     const taskActivityShape = createBoundedIcon(
       "Task/Activity",
-      taskActivitySvg
+      taskactivitySvg,
+      isPanelCollapsed
     );
 
-    const gatewaySvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="25,8 44,27 25,46 6,27" />
-</svg>
+    const gatewayShape = createBoundedIcon(
+      "Gateway",
+      gatewaySvg,
+      isPanelCollapsed
+    );
 
+    const endEventShape = createBoundedIcon(
+      "End Event",
+      endeventSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const gatewayShape = createBoundedIcon("Gateway", gatewaySvg);
-
-    const endEventSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Centered circle -->
-   <circle cx="25" cy="25" r="13" />
-</svg>
-
-
-`;
-    const endEventShape = createBoundedIcon("End Event", endEventSvg);
-
-    const sequenceFlowSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     stroke="currentColor" stroke-width="0.5"
-     fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Centered horizontal line -->
-  <line x1="6" y1="25" x2="41" y2="25" />
-
-  <!-- Arrowhead (fits within 50 width) -->
-  <polygon points="41,20 49,25 41,30" fill="currentColor" fill-opacity="0.4" />
-</svg>
-
-`;
     const sequenceFlowShape = createBoundedIcon(
       "Sequence Flow",
-      sequenceFlowSvg
+      sequenceflowSvg,
+      isPanelCollapsed
     );
 
-    const requirementSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5 5 L40 5 L40 45 L5 45 Z" />
-  <polyline points="40,5 40,12.5 32.5,12.5 32.5,5 40,5" />
-  <line x1="10" y1="15" x2="35" y2="15" />
-  <line x1="10" y1="22.5" x2="30" y2="22.5" />
-  <line x1="10" y1="30" x2="35" y2="30" />
-  <line x1="10" y1="37.5" x2="25" y2="37.5" />
-  <text x="7.5" y="10" font-family="Arial" font-size="7" font-weight="normal" fill="currentColor">R</text>
-</svg>
+    const requirementShape = createBoundedIcon(
+      "Requirement",
+      requirementSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const requirementShape = createBoundedIcon("Requirement", requirementSvg);
-
-    const usecaseSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ellipse representing the use case -->
-  <ellipse cx="25" cy="25" rx="20" ry="12" />
-
-  
-  
-</svg>
-
-
-`;
-    const usecaseShape = createBoundedIcon("Use Case", usecaseSvg);
+    const usecaseShape = createBoundedIcon(
+      "Use Case",
+      useCaseSvg,
+      isPanelCollapsed
+    );
 
     const EntitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
   <!-- Outer rounded rectangle (table frame) -->
@@ -1500,7 +1884,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const EntityShape = createBoundedIcon("Entity", EntitySvg);
+    const EntityShape = createBoundedIcon(
+      "Entity",
+      EntitySvg,
+      isPanelCollapsed
+    );
 
     const TableSvg = `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -1527,35 +1915,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <path d="M 20 17.5 V 40" />
 </svg>
 `;
-    const TableShape = createBoundedIcon("Table", TableSvg);
-    const Tablesvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Main outer rectangle for the table -->
-  <rect x="10" y="10" width="30" height="30" rx="3" ry="3" />
+    const TableShape = createBoundedIcon("Table", TableSvg, isPanelCollapsed);
 
-  <!-- Top row separator -->
-  <path d="M 10 17.5 H 40" />
-
-  <!-- Middle row separator -->
-  <path d="M 10 25 H 40" />
-  
-  <!-- Bottom row separator -->
-  <path d="M 10 32.5 H 40" />
-
-  <!-- Added column from the 2nd row to the end -->
-  <path d="M 20 17.5 V 40" />
-</svg>
-
-
-`;
-    const Tableshape = createBoundedIcon("Table", Tablesvg);
     const EntitystencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Table Header -->
   <rect x="1.6665" y="2.7775" width="46.666" height="10" />
@@ -1588,115 +1949,30 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const EntitystencilShape = createBoundedIcon("Entity", EntitystencilSvg);
-    const ActorSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Head -->
-  <circle cx="25" cy="14" r="4.5"/>
+    const EntitystencilShape = createBoundedIcon(
+      "Entity",
+      EntitystencilSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Body (shoulders and torso, smaller width) -->
-  <path d="M20 19
-           h10
-           a6 6 0 0 1 6 6
-           v4
-           a1.5 1.5 0 0 1 -1.5 1.5
-           h-19
-           a1.5 1.5 0 0 1 -1.5 -1.5
-           v-4
-           a6 6 0 0 1 6 -6
-           z"/>
-</svg>
+    const ActorShape = createBoundedIcon("Actor", actorSvg, isPanelCollapsed);
 
+    const stakeholderShape = createBoundedIcon(
+      "Stakeholder",
+      stakeholderSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const ActorShape = createBoundedIcon("Actor", ActorSvg);
+    const InheritanceShape = createBoundedIcon(
+      "Inheritance",
+      inheritanceSvg,
+      isPanelCollapsed
+    );
 
-    const stakeholderSvg = `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="none" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Top screen -->
-  <rect x="10" y="4" width="30" height="15" rx="2" ry="2"/>
-
-  <!-- Central circle -->
-  <circle cx="25" cy="11.5" r="4"/>
-
-  <!-- Left and right smaller circles -->
-  <circle cx="17" cy="11.5" r="1"/>
-  <circle cx="33" cy="11.5" r="1"/>
-
-  <!-- Connector lines -->
-  <line x1="25" y1="19" x2="25" y2="24"/>
-  <line x1="17" y1="24" x2="33" y2="24"/>
-  <line x1="17" y1="24" x2="17" y2="28"/>
-  <line x1="25" y1="24" x2="25" y2="28"/>
-  <line x1="33" y1="24" x2="33" y2="28"/>
-
-  <!-- Person icons -->
-  <!-- Left -->
-  <circle cx="17" cy="32" r="2"/>
-  <path d="M14.5 36 Q17 34 19.5 36"/>
-
-  <!-- Center -->
-  <circle cx="25" cy="32" r="2"/>
-  <path d="M22.5 36 Q25 34 27.5 36"/>
-
-  <!-- Right -->
-  <circle cx="33" cy="32" r="2"/>
-  <path d="M30.5 36 Q33 34 35.5 36"/>
-</svg>
-
-
-`;
-    const stakeholderShape = createBoundedIcon("Stakeholder", stakeholderSvg);
-
-    const InheritanceSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Top square node -->
-  <rect x="18.75" y="6.25" width="12.5" height="9.375"/>
-
-  <!-- Connecting vertical line -->
-  <line x1="25" y1="15.625" x2="25" y2="25"/>
-
-  <!-- Horizontal line connecting bottom nodes -->
-  <line x1="12.5" y1="25" x2="37.5" y2="25"/>
-
-  <!-- Bottom left square node -->
-  <rect x="9.375" y="25" width="9.375" height="9.375"/>
-
-  <!-- Bottom right square node -->
-  <rect x="31.25" y="25" width="9.375" height="9.375"/>
-</svg>
-
-
-`;
-    const InheritanceShape = createBoundedIcon("Inheritance", InheritanceSvg);
-
-    const InheritanceLDMSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Top square node -->
-  <rect x="18.75" y="6.25" width="12.5" height="9.375"/>
-
-  <!-- Connecting vertical line -->
-  <line x1="25" y1="15.625" x2="25" y2="25"/>
-
-  <!-- Horizontal line connecting bottom nodes -->
-  <line x1="12.5" y1="25" x2="37.5" y2="25"/>
-
-  <!-- Bottom left square node -->
-  <rect x="9.375" y="25" width="9.375" height="9.375"/>
-
-  <!-- Bottom right square node -->
-  <rect x="31.25" y="25" width="9.375" height="9.375"/>
-</svg>
-
-
-
-`;
     const InheritanceLDMShape = createBoundedIcon(
       "Inheritance",
-      InheritanceLDMSvg
+      inheritanceSvg,
+      isPanelCollapsed
     );
 
     const onetoNSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
@@ -1718,7 +1994,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const onetoNShape = createBoundedIcon("1:N Relationship", onetoNSvg);
+    const onetoNShape = createBoundedIcon(
+      "1:N Relationship",
+      onetoNSvg,
+      isPanelCollapsed
+    );
 
     const OneToNSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
   xmlns="http://www.w3.org/2000/svg"
@@ -1738,7 +2018,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const OneToNShape = createBoundedIcon("1:N Relationship", OneToNSvg);
+    const OneToNShape = createBoundedIcon(
+      "1:N Relationship",
+      OneToNSvg,
+      isPanelCollapsed
+    );
 
     const onetooneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
@@ -1758,7 +2042,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const onetooneShape = createBoundedIcon("1:1 Relationship", onetooneSvg);
+    const onetooneShape = createBoundedIcon(
+      "1:1 Relationship",
+      onetooneSvg,
+      isPanelCollapsed
+    );
 
     const OneToOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
@@ -1777,7 +2065,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const OneToOneShape = createBoundedIcon("1:1 Relationship", OneToOneSvg);
+    const OneToOneShape = createBoundedIcon(
+      "1:1 Relationship",
+      OneToOneSvg,
+      isPanelCollapsed
+    );
 
     const OnetoOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
@@ -1795,7 +2087,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const OnetoOneShape = createBoundedIcon("1:1 Relationship", OnetoOneSvg);
+    const OnetoOneShape = createBoundedIcon(
+      "1:1 Relationship",
+      OnetoOneSvg,
+      isPanelCollapsed
+    );
 
     const NtoNSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
      fill="none" stroke="currentColor" stroke-width="0.5"
@@ -1818,7 +2114,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const NtoNShape = createBoundedIcon("N:N Relationship", NtoNSvg);
+    const NtoNShape = createBoundedIcon(
+      "N:N Relationship",
+      NtoNSvg,
+      isPanelCollapsed
+    );
 
     const ntonSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
      fill="none" stroke="currentColor" stroke-width="0.5"
@@ -1841,231 +2141,103 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const ntonShape = createBoundedIcon("N:N Relationship", ntonSvg);
-    const goalSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-  <circle cx="25" cy="25" r="22" />
-  <circle cx="25" cy="25" r="12" />
-  <circle cx="25" cy="25" r="4"  />
-</svg>
+    const ntonShape = createBoundedIcon(
+      "N:N Relationship",
+      ntonSvg,
+      isPanelCollapsed
+    );
 
+    const goalShape = createBoundedIcon("Goal", goalSvg, isPanelCollapsed);
 
-`;
-    const goalShape = createBoundedIcon("Goal", goalSvg);
-    const SubProcessSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 2" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="12" width="42" height="26" rx="3"/>
-</svg>
+    const SubProcessShape = createBoundedIcon(
+      "Sub Process",
+      subprocessSvg,
+      isPanelCollapsed
+    );
 
+    const TransactionShape = createBoundedIcon(
+      "Transaction",
+      transactionSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const SubProcessShape = createBoundedIcon("Sub Process", SubProcessSvg);
-    const TransactionSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
-     xmlns="http://www.w3.org/2000/svg" 
-     fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M4 12a2 2 0 0 1 2-2h38a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V12z"/>
-  <path d="M8 16a2 2 0 0 1 2-2h30a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V16z"/>
-</svg>
-
-
-`;
-    const TransactionShape = createBoundedIcon("Transaction", TransactionSvg);
-    const CallActivitySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <rect x="5" y="15" width="40" height="20" rx="6" />
-</svg>
-
-
-`;
     const CallActivityShape = createBoundedIcon(
       "Call Activity",
-      CallActivitySvg
+      callactivitySvg,
+      isPanelCollapsed
     );
 
-    const ExclusiveGatewaySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Diamond outline -->
-  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
-
-  <!-- Diagonal cross perfectly touching inside of diamond -->
-  <line x1="13.75" y1="13.75" x2="36.25" y2="36.25" />
-  <line x1="36.25" y1="13.75" x2="13.75" y2="36.25" />
-</svg>
-
-
-
-`;
     const ExclusiveGatewayShape = createBoundedIcon(
       "Exclusive Gateway",
-      ExclusiveGatewaySvg
+      exclusivegatewaySvg,
+      isPanelCollapsed
     );
-    const EventGatewaySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Diamond shape -->
-  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
 
-  <!-- Inner circle -->
-  <circle cx="25" cy="25" r="7.5" />
-</svg>
-
-
-
-`;
     const EventGatewayShape = createBoundedIcon(
       "Event Gateway",
-      EventGatewaySvg
+      eventgatewaySvg,
+      isPanelCollapsed
     );
-    const ParallelGatewaySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Diamond shape -->
-  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
 
-  <!-- Vertical line (centered) -->
-  <line x1="25" y1="12.5" x2="25" y2="37.5" />
-
-  <!-- Horizontal line (centered) -->
-  <line x1="12.5" y1="25" x2="37.5" y2="25" />
-</svg>
-
-`;
     const ParallelGatewayShape = createBoundedIcon(
       "Parallel Gateway",
-      ParallelGatewaySvg
+      parallelgatewaySvg,
+      isPanelCollapsed
     );
 
-    const MessageFlowSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5"
-     stroke-dasharray="4 2">
-  <!-- Dashed horizontal line -->
-  <line x1="8" y1="25" x2="42" y2="25" />
-  
-  <!-- Arrowhead pointing right -->
-  <polyline points="42,22 46,25 42,28" stroke-dasharray="0" />
-</svg>
-
-`;
-    const MessageFlowShape = createBoundedIcon("Message Flow", MessageFlowSvg);
+    const MessageFlowShape = createBoundedIcon(
+      "Message Flow",
+      messageflowSvg,
+      isPanelCollapsed
+    );
 
     const AssociationSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
      fill="none"
      stroke="currentColor"
      stroke-width="0.5"
-     stroke-dasharray="2 2">
+     >
   <!-- Dashed horizontal line (centered, with padding) -->
-  <line x1="10" y1="25" x2="40" y2="25" />
+  <line x1="2" y1="25" x2="48" y2="25" stroke-dasharray="2 2" />
 </svg>
 
 `;
-    const AssociationShape = createBoundedIcon("Association", AssociationSvg);
+    const AssociationShape = createBoundedIcon(
+      "Association",
+      AssociationSvg,
+      isPanelCollapsed
+    );
     const associationSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
      xmlns="http://www.w3.org/2000/svg"
      fill="none"
      stroke="currentColor"
      stroke-width="0.5"
-     stroke-dasharray="2 2">
-  <!-- Dashed horizontal line 60px long, centered at y=25 -->
-  <line x1="-5" y1="25" x2="55" y2="25" />
+     >
+  <!-- Dashed horizontal line (centered, with padding) -->
+  <line x1="2" y1="25" x2="48" y2="25" stroke-dasharray="2 2" />
 </svg>
-
 `;
-    const associationShape = createBoundedIcon("Association", associationSvg);
+    const associationShape = createBoundedIcon(
+      "Association",
+      associationSvg,
+      isPanelCollapsed
+    );
 
-    const anchorlinkSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Left circle -->
-  <circle cx="11" cy="25" r="2" />
+    const anchorlinkShape = createBoundedIcon(
+      "Anchor Link",
+      anchorLinkSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Right circle -->
-  <circle cx="39" cy="25" r="2" />
+    const classShape = createBoundedIcon("Class", classSvg, isPanelCollapsed);
 
-  <!-- Horizontal relationship line -->
-  <line x1="13" y1="25" x2="37" y2="25" />
-</svg>
+    const interfaceShape = createBoundedIcon(
+      "Interface",
+      interfaceSvg,
+      isPanelCollapsed
+    );
 
-
-
-`;
-    const anchorlinkShape = createBoundedIcon("Anchor Link", anchorlinkSvg);
-
-    const classStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Outer rounded rectangle -->
-  <rect x="8" y="8" width="34" height="34" rx="2" ry="2"/>
-  <!-- Horizontal separator 1 (top third) -->
-  <line x1="8" y1="19.33" x2="42" y2="19.33"/>
-  <!-- Horizontal separator 2 (middle third) -->
-  <line x1="8" y1="30.67" x2="42" y2="30.67"/>
-</svg>
-
-
-
-`;
-    const classShape = createBoundedIcon("Class", classStencilSvg);
-
-    const interfaceStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
-     xmlns="http://www.w3.org/2000/svg" 
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Outer rounded rectangle -->
-  <rect x="8" y="8" width="34" height="34" rx="2" ry="2"/>
-
-  <!-- Abstract '<<I>>' representation -->
-  <!-- Chevrons to imply stereotype brackets -->
-  <polyline points="16,22 14,25 16,28" />
-  <polyline points="34,22 36,25 34,28" />
-
-  <!-- Upright 'I' made of 3 lines -->
-  <line x1="24" y1="20" x2="28" y2="20" />
-  <line x1="26" y1="20" x2="26" y2="30" />
-  <line x1="24" y1="30" x2="28" y2="30" />
-</svg>
-
-
-`;
-    const interfaceShape = createBoundedIcon("Interface", interfaceStencilSvg);
-
-    const enumStencilSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" stroke="currentColor" fill="none" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Document outline with folded corner -->
-  <path d="M12 6 H30 L38 14 V42 A2 2 0 0 1 36 44 H14 A2 2 0 0 1 12 42 V6 Z"/>
-  <path d="M30 6 V14 H38"/>
-
-  <!-- List lines -->
-  <path d="M20 18 H32"/>
-  <path d="M20 24 H32"/>
-  <path d="M20 30 H32"/>
-  <path d="M20 36 H32"/>
-
-  <!-- Bullet circles -->
-  <circle cx="16" cy="18" r="1.25"/>
-  <circle cx="16" cy="24" r="1.25"/>
-  <circle cx="16" cy="30" r="1.25"/>
-  <circle cx="16" cy="36" r="1.25"/>
-</svg>
-
-
-`;
-    const enumShape = createBoundedIcon("Enum", enumStencilSvg);
+    const enumShape = createBoundedIcon("Enum", enumSvg, isPanelCollapsed);
     //package needs to be fixed.
     const PackagestencilSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
   <!-- Main server body -->
@@ -2082,362 +2254,98 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const PackagestencilShape = createBoundedIcon("Package", PackagestencilSvg);
+    const PackagestencilShape = createBoundedIcon(
+      "Package",
+      PackagestencilSvg,
+      isPanelCollapsed
+    );
 
-    const cubeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Top face -->
-  <path d="M25 10L40 18L25 26L10 18L25 10Z" stroke-linejoin="round"/>
-  <!-- Left face -->
-  <path d="M10 18V34L25 42V26L10 18Z" stroke-linejoin="round"/>
-  <!-- Right face -->
-  <path d="M40 18V34L25 42V26L40 18Z" stroke-linejoin="round"/>
-</svg>
+    const cubeShape = createBoundedIcon("Cube", cubeSvg, isPanelCollapsed);
 
+    const dimensionShape = createBoundedIcon(
+      "Dimension",
+      dimensionSvg,
+      isPanelCollapsed
+    );
 
+    const measureShape = createBoundedIcon(
+      "Measure",
+      measureSvg,
+      isPanelCollapsed
+    );
 
+    const freeNodeShape = createBoundedIcon(
+      "Free Node",
+      freeNodeSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const cubeShape = createBoundedIcon("Cube", cubeStencilSvg);
+    const freeGroupShape = createBoundedIcon(
+      "Group",
+      groupSvg,
+      isPanelCollapsed
+    );
 
-    const dimensionStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" fill-opacity="0.4"  stroke-width="0.5">
-  <defs>
-    <!-- Arrow marker definition -->
-    <marker id="arrowhead" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L3,1.5 L0,3"  />
-    </marker>
-  </defs>
-
-  <!-- Center point -->
-  <circle cx="25" cy="25" r="0.5" />
-
-  <!-- Y-shape arrows -->
-  <line x1="25" y1="25" x2="25" y2="10" marker-end="url(#arrowhead)" />
-  <line x1="25" y1="25" x2="37.5" y2="32.5" marker-end="url(#arrowhead)" />
-  <line x1="25" y1="25" x2="12.5" y2="32.5" marker-end="url(#arrowhead)" />
-
-  <!-- Isometric cube -->
-  <!-- Vertical edges -->
-  <line x1="25" y1="32.5" x2="25" y2="25" />
-  <line x1="25" y1="25" x2="25" y2="17.5" />
-  <line x1="18.5" y1="28.75" x2="18.5" y2="21.25" />
-  <line x1="31.5" y1="28.75" x2="31.5" y2="21.25" />
-
-  <!-- Diagonal edges -->
-  <line x1="25" y1="25" x2="18.5" y2="28.75" />
-  <line x1="25" y1="25" x2="31.5" y2="28.75" />
-  <line x1="25" y1="25" x2="18.5" y2="21.25" />
-  <line x1="25" y1="25" x2="31.5" y2="21.25" />
-
-  <!-- Bottom face diagonals -->
-  <line x1="25" y1="32.5" x2="18.5" y2="28.75" />
-  <line x1="25" y1="32.5" x2="31.5" y2="28.75" />
-
-  <!-- Top face diagonals -->
-  <line x1="25" y1="17.5" x2="18.5" y2="21.25" />
-  <line x1="25" y1="17.5" x2="31.5" y2="21.25" />
-</svg>
-
-
-`;
-    const dimensionShape = createBoundedIcon("Dimension", dimensionStencilSvg);
-
-    const measureStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5">
-  <line x1="10" y1="40" x2="40" y2="40" stroke-linecap="round"/>
-  <rect x="14" y="25" width="4" height="15" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4"  />
-  <rect x="22" y="18" width="4" height="22" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4" />
-  <rect x="30" y="30" width="4" height="10" rx="0.5" ry="0.5" fill="currentColor" fill-opacity="0.4"  />
-</svg>
-
-
-`;
-    const measureShape = createBoundedIcon("Measure", measureStencilSvg);
-
-    const freeNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5"
-     fill="none">
-  <rect x="10" y="15" width="30" height="20" rx="2" stroke-dasharray="4 2" />
-</svg>
-
-
-`;
-    const freeNodeShape = createBoundedIcon("Free Node", freeNodeStencilSvg);
-
-    const freeGroupStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  
-  <!-- Outer Dashed Rounded Rectangle -->
-  <rect x="5" y="10" width="40" height="30" rx="4"
-        stroke="currentColor" stroke-dasharray="3 2" />
-
-  <!-- Inner Rectangle -->
-  <rect x="12" y="16" width="26" height="18" rx="1"
-        stroke="currentColor" />
-
-  <!-- Group of shapes (circle, square, rectangle) centered in inner rectangle -->
-  <g transform="translate(25, 25)">
-    <!-- Square -->
-    <rect x="-6" y="-6" width="4" height="4" />
-    <!-- Circle -->
-    <circle cx="0" cy="0" r="2" />
-    <!-- Rectangle -->
-    <rect x="3" y="-2" width="5" height="4" />
-  </g>
-</svg>
-
-
-`;
-    const freeGroupShape = createBoundedIcon("Group", freeGroupStencilSvg);
-
-    const connectorLineStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5"
-     fill="currentColor" fill-opacity="0.4">
-  <defs>
-    <!-- Enlarged arrowhead marker -->
-    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L6,3 L0,6 Z" />
-    </marker>
-  </defs>
-
-  <!-- Horizontal line ending before the arrowhead starts -->
-  <line x1="2" y1="25" x2="44" y2="25" marker-end="url(#arrowhead)" />
-</svg>
-
-
-
-`;
     const connectorLineShape = createBoundedIcon(
       "Connector Line",
-      connectorLineStencilSvg
+      connectorlineSvg,
+      isPanelCollapsed
     );
 
-    const annotationStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     fill="none" xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5">
-  <path d="M18 15H32L37 20V35H18V15Z" />
-  <path d="M32 15V20H37" />
-</svg>
-
-
-`;
     const annotationShape = createBoundedIcon(
       "Annotation",
-      annotationStencilSvg
+      annotationSvg,
+      isPanelCollapsed
     );
 
-    const titleboxSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" fill="none"
-     stroke-width="0.5">
-  <!-- Rounded title box -->
-  <rect x="10" y="15" width="30" height="20" rx="2" ry="2" />
-  <!-- Title line -->
-  <line x1="13" y1="20" x2="37" y2="20" stroke-linecap="round" />
-  <!-- Subtitle line -->
-  <line x1="13" y1="25" x2="27" y2="25" stroke-linecap="round" />
-</svg>
+    const titleboxShape = createBoundedIcon(
+      "Title Box",
+      titleBoxSvg,
+      isPanelCollapsed
+    );
 
-
-`;
-    const titleboxShape = createBoundedIcon("Title Box", titleboxSvg);
-
-    const processNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Rounded rectangle -->
-  <rect x="7" y="12" width="36" height="26" rx="6" ry="6" />
-  <!-- Fully centered plus symbol -->
-  <path d="M22 25 H28 M25 22 V28" />
-</svg>
-
-
-`;
     const processNodeShape = createBoundedIcon(
       "Process Node",
-      processNodeStencilSvg
+      processNodeSvg,
+      isPanelCollapsed
     );
 
-    const subprocessNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" fill="none" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Rounded rectangle -->
-  <rect x="7" y="12" width="36" height="26" rx="6" ry="6" />
-  
-  <!-- Plus symbol moved upward -->
-  <path d="M22 29h6M25 26v6" />
-</svg>
-
-`;
     const subprocessNodeShape = createBoundedIcon(
       "Subprocess Node",
-      subprocessNodeStencilSvg
+      subprocessNodeSvg,
+      isPanelCollapsed
     );
 
-    const activityNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" fill="none" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <rect x="10" y="20" width="30" height="20" rx="10" ry="10" />
-</svg>
-
-`;
     const activityNodeShape = createBoundedIcon(
       "Activity Node",
-      activityNodeStencilSvg
+      activityNodeSvg,
+      isPanelCollapsed
     );
 
-    const organizationStencilSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Tall building -->
-  <path d="M 10 5 V 45 H 30 V 5 Z" />
-  
-  <!-- Windows for the tall building -->
-  <path d="M 14 9 H 18 V 13 H 14 Z M 22 9 H 26 V 13 H 22 Z M 14 17 H 18 V 21 H 14 Z M 22 17 H 26 V 21 H 22 Z M 14 25 H 18 V 29 H 14 Z M 22 25 H 26 V 29 H 22 Z" />
-  
-  <!-- Entrance for the tall building -->
-  <path d="M 14 45 V 39 A 3 3 0 0 1 16 39 H 24 A 3 3 0 0 1 26 39 V 45" />
-
-  <!-- Shorter building -->
-  <path d="M 30 25 V 45 H 45 V 25 Z" />
-
-  <!-- Windows for the shorter building, now centered -->
-  <path d="M 32 29 H 36 V 33 H 32 Z M 39 29 H 43 V 33 H 39 Z" />
-
-  <!-- Entrance for the shorter building, now centered -->
-  <path d="M 34 45 V 39 A 3 3 0 0 1 37 39 H 38 A 3 3 0 0 1 41 39 V 45" />
-
-</svg>
-
-
-`;
     const organizationShape = createBoundedIcon(
       "Organization",
-      organizationStencilSvg
+      organizationSvg,
+      isPanelCollapsed
     );
 
-    const departmentStencilSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  width="50"
-  height="50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Parent node (top square) -->
-  <path d="M15 5 H35 V20 H15 Z" />
-
-  <!-- Connectors -->
-  <path d="M25 20 V26 M8 26 H42 M8 26 V33 M25 26 V33 M42 26 V33" />
-
-  <!-- Child nodes (bottom circles) -->
-  <path d="M4 38 A5 5 0 1 0 14 38 A5 5 0 1 0 4 38 Z" />
-  <path d="M20 38 A5 5 0 1 0 30 38 A5 5 0 1 0 20 38 Z" />
-  <path d="M36 38 A5 5 0 1 0 46 38 A5 5 0 1 0 36 38 Z" />
-</svg>
-
-
-`;
     const departmentShape = createBoundedIcon(
       "Department",
-      departmentStencilSvg
+      departmentSvg,
+      isPanelCollapsed
     );
 
-    const roleStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  <!-- Shield -->
-  <path d="M25 5 L40 12 V24 C40 33 33 42 25 45 C17 42 10 33 10 24 V12 L25 5 Z" />
+    const roleShape = createBoundedIcon("Role", roleSvg, isPanelCollapsed);
 
-  <!-- Person inside shield -->
-  <circle cx="25" cy="20" r="4" />
-  <!-- Further enlarged body -->
-  <path d="M16 34 C16 26, 34 26, 34 34 Z" />
-</svg>
+    const positionShape = createBoundedIcon(
+      "Position",
+      positionSvg,
+      isPanelCollapsed
+    );
 
-
-
-`;
-    const roleShape = createBoundedIcon("Role", roleStencilSvg);
-
-    const positionStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" fill="none" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  
-  <!-- Head -->
-  <circle cx="25" cy="12" r="5" />
-
-  <!-- Shoulders -->
-  <path d="M20.2 16.6 Q17 20 17 25" />
-  <path d="M29.8 16.6 Q33 20 33 25" />
-
-  <!-- Tie -->
-  <path d="M24 17 L23.5 22 L25 23 L26.5 22 L26 17" />
-
-  <!-- Central vertical line -->
-  <line x1="25" y1="25" x2="25" y2="32" />
-
-  <!-- Horizontal connector -->
-  <path d="M17 32 Q17 30 19 30 H31 Q33 30 33 32" />
-
-  <!-- Bottom three circles -->
-  <circle cx="25" cy="37" r="3" />
-  <circle cx="17" cy="37" r="3" />
-  <circle cx="33" cy="37" r="3" />
-</svg>
-
-`;
-    const positionShape = createBoundedIcon("Position", positionStencilSvg);
-
-    const reportingLineStencilSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <!-- House body -->
-  <path d="M10 30 L25 17 L40 30 M15 30 V45 H35 V30" />
-
-  <!-- Person inside house (head and body, no legs, properly spaced) -->
-  <circle cx="25" cy="34" r="2" />
-  <path d="M23 39 C23 36.5 24.5 36 25 36 C25.5 36 27 36.5 27 39" />
-
-  <!-- Top vertical line from house roof -->
-  <path d="M25 17 V12" />
-
-  <!-- Horizontal line for branches -->
-  <path d="M18 12 H32" />
-
-  <!-- Branch vertical lines -->
-  <path d="M18 12 V10" />
-  <path d="M25 12 V10" />
-  <path d="M32 12 V10" />
-
-  <!-- Circles at branch tips -->
-  <circle cx="18" cy="9" r="1" />
-  <circle cx="25" cy="9" r="1" />
-  <circle cx="32" cy="9" r="1" />
-</svg>
-
-
-
-`;
     const reportingLineShape = createBoundedIcon(
       "Reporting Line",
-      reportingLineStencilSvg
+      reportingLineSvg,
+      isPanelCollapsed
     );
 
     const groupStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
@@ -2464,228 +2372,71 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 </svg>
 
 `;
-    const groupShape = createBoundedIcon("Group", groupStencilSvg);
+    const groupShape = createBoundedIcon(
+      "Group",
+      groupStencilSvg,
+      isPanelCollapsed
+    );
 
-    const businessCapabilityStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Bars -->
-  <rect x="10" y="32" width="5" height="8" rx="0.5" ry="0.5"/>
-  <rect x="17" y="28" width="5" height="12" rx="0.5" ry="0.5"/>
-  <rect x="24" y="24" width="5" height="16" rx="0.5" ry="0.5"/>
-  <rect x="31" y="20" width="5" height="20" rx="0.5" ry="0.5"/>
-
-  <!-- Diagonal Line -->
-  <line x1="10" y1="20" x2="36" y2="8"/>
-
-  <!-- Exaggerated Arrowhead Rotation -->
-  <path d="M36 8 L33 12 L30 7 Z" fill="currentColor" fill-opacity = "0.5"/>
-  
-   
-</svg>
-
-
-
-`;
     const businessCapabilityShape = createBoundedIcon(
       "Business",
-      businessCapabilityStencilSvg
+      businessSvg,
+      isPanelCollapsed
     );
 
-    const applicationStencilSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-  <path fill="none" stroke="currentColor" stroke-width="0.5" d="M12.5 13.5h22.5c.828 0 1.5.672 1.5 1.5v20c0 .828-.672 1.5-1.5 1.5H12.5c-.828 0-1.5-.672-1.5-1.5v-20c0-.828.672-1.5 1.5-1.5z"/>
-  <path fill="currentColor" d="M16 16.5h1.5v1.5H16zm3.5 0h1.5v1.5h-1.5zm3.5 0h1.5v1.5h-1.5z"/>
-  <path fill="none" stroke="currentColor" stroke-width="0.5" d="M16 20h18M16 22h18M16 24h18M16 26h18"/>
-</svg>
-
-`;
     const applicationShape = createBoundedIcon(
       "Application",
-      applicationStencilSvg
+      applicationSvg,
+      isPanelCollapsed
     );
 
-    const technologyComponentStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="12" width="30" height="6" />
-  <rect x="10" y="22" width="30" height="6" />
-  <rect x="10" y="32" width="30" height="6" />
-</svg>
-
-
-`;
     const technologyComponentShape = createBoundedIcon(
       "Technology",
-      technologyComponentStencilSvg
+      technologySvg,
+      isPanelCollapsed
     );
 
-    const dataObjecttStencilSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Top oval of the database cylinder -->
-  <ellipse cx="25" cy="15" rx="15" ry="5" />
-  
-  <!-- Side lines of the database cylinder -->
-  <path d="M 10 15 V 40" />
-  <path d="M 40 15 V 40" />
-  
-  <!-- First middle oval section, creating the top section -->
-  <path d="M 10 25 A 15 5 0 0 0 40 25" />
-  
-  <!-- Second middle oval section, creating the middle section -->
-  <path d="M 10 32 A 15 5 0 0 0 40 32" />
-  
-  <!-- Bottom oval section, creating the bottom section -->
-  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
-</svg>
-
-`;
     const dataObjecttShape = createBoundedIcon(
       "Database",
-      dataObjecttStencilSvg
+      databaseSvg,
+      isPanelCollapsed
     );
 
-    const processStencilSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Rectangles -->
-  <rect x="18" y="5" width="14" height="8" rx="2" ry="2" />
-  <rect x="18" y="21" width="14" height="8" rx="2" ry="2" />
-  <rect x="18" y="37" width="14" height="8" rx="2" ry="2" />
+    const processShape = createBoundedIcon(
+      "Process",
+      processSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Top curved arrow from 1st to 2nd (right side to right side) -->
-  <path d="M32 9 C38 9, 38 25, 32 25" />
-  <!-- Arrowhead pointing left-down -->
-  <path d="M32 25 L34 23" />
-  <path d="M32 25 L34 27" />
+    const sourceShape = createBoundedIcon(
+      "Source",
+      sourceSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Bottom curved arrow from 3rd to 2nd (left side to left side) -->
-  <path d="M18 41 C12 41, 12 25, 18 25" />
-  <!-- Arrowhead pointing right-up -->
-  <path d="M18 25 L16 23" />
-  <path d="M18 25 L16 27" />
-</svg>
+    const targetShape = createBoundedIcon(
+      "Target",
+      targetSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const processShape = createBoundedIcon("Process", processStencilSvg);
+    const DataFlowShape = createBoundedIcon(
+      "Data Flow",
+      dataFlowSvg,
+      isPanelCollapsed
+    );
 
-    const sourceStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#535965" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Database (cylinder) - back top-left -->
-  <ellipse cx="17" cy="9" rx="12" ry="4" fill="currentColor" fill-opacity="0.2"  />
-
-  <path d="M5 9 V25 A12 4 0 0 0 29 25 V9 A12 4 0 0 1 5 9 Z"  fill="currentColor" fill-opacity="0.2" />
-   
-  <ellipse cx="17" cy="25" rx="12" ry="4" fill="currentColor" fill-opacity="0.2" />
- 
-
-  <!-- Document (file) - front bottom-right -->
-  <rect x="20" y="20" width="15" height="20" fill="currentColor" fill-opacity="0.4" />
-  
-  <path d="M30 20 L35 25 L30 25 Z" fill="currentColor" fill-opacity="0.4" />
-
-  <path d="M30 20 L35 25" fill="currentColor" fill-opacity="0.4" />
-   
-  <path d="M30 25 H35" fill="currentColor" fill-opacity="0.4" />
-   
-</svg>
-
-`;
-    const sourceShape = createBoundedIcon("Source", sourceStencilSvg);
-
-    const targetStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#535965" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Cylinder (database) at the back, bottom-right -->
-  <ellipse cx="30" cy="25" rx="12" ry="4" fill="currentColor" fill-opacity="0.4"/>
-  
-  <path d="M18 25 L18 41 A12 4 0 0 0 42 41 L42 25 A12 4 0 0 1 18 25 Z"  fill="currentColor" fill-opacity="0.4" />
-  
-  <ellipse cx="30" cy="41" rx="12" ry="4"  fill="currentColor" fill-opacity="0.4"/>
-  
-
-
-  <!-- File (document with folded corner) in front, top-left overlapping cylinder -->
-  <path d="M10 10 H25 V30 H10 Z" fill="currentColor" fill-opacity="0.2" />
-   
-  <path d="M20 10 L25 15 L20 15 Z" fill="currentColor" fill-opacity="0.2" />
-  
-  <path d="M20 10 L25 15" fill="currentColor" fill-opacity="0.2"  />
-
-  <path d="M20 15 L25 15" fill="currentColor" fill-opacity="0.2"  />
-
-  </svg>
-
-`;
-    const targetShape = createBoundedIcon("Target", targetStencilSvg);
-
-    const DataFlowStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-
-  <!-- Line segments -->
-  <line x1="5" y1="25" x2="18" y2="25" />
-  <line x1="20" y1="25" x2="33" y2="25" />
-  <line x1="35" y1="25" x2="39" y2="25" />
-
-  <!-- Arrowhead as an outlined triangle -->
-  <path d="M39 21 L45 25 L39 29 L39 21 Z" fill="currentColor" fill-opacity="0.4"  />
-</svg>
-
-`;
-    const DataFlowShape = createBoundedIcon("Data Flow", DataFlowStencilSvg);
-
-    const TransformationStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Square box -->
-  <rect x="6" y="19" width="12" height="12" />
-
-  <!-- Arrow shaft -->
-  <line x1="18" y1="25" x2="32" y2="25" />
-
-  <!-- Arrowhead -->
-  <path d="M32 21 L38 25 L32 29 Z" fill="currentColor" fill-opacity="0.4" />
-
-  <!-- Circle -->
-  <circle cx="44" cy="25" r="5" />
-</svg>
-
-
-`;
     const TransformationShape = createBoundedIcon(
       "Transformation",
-      TransformationStencilSvg
+      transformationSvg,
+      isPanelCollapsed
     );
 
-    const ServerSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
-     xmlns="http://www.w3.org/2000/svg" 
-     stroke="currentColor" stroke-width="0.5" 
-     fill="none" stroke-linecap="round" stroke-linejoin="round">
-  
-  <!-- Outer container -->
-  <rect x="14" y="10" width="22" height="30" rx="2" ry="2" />
-
-  <!-- Tier dividers -->
-  <line x1="16" y1="18" x2="34" y2="18" />
-  <line x1="16" y1="26" x2="34" y2="26" />
-
-  <!-- Small port circles on each tier -->
-  <circle cx="18" cy="14" r="0.75" />
-  <circle cx="18" cy="22" r="0.75" />
-  <circle cx="18" cy="30" r="0.75" />
-
-  <!-- Power button / activity light -->
-  <circle cx="25" cy="36" r="1.25" />
-</svg>
-
-
-`;
-    const ServerShape = createBoundedIcon("Server", ServerSvg);
+    const ServerShape = createBoundedIcon(
+      "Server",
+      serverSvg,
+      isPanelCollapsed
+    );
 
     const DatabaseSvg = `<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -2713,589 +2464,113 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
 </svg>
 `;
-    const DatabaseShape = createBoundedIcon("Database", DatabaseSvg);
+    const DatabaseShape = createBoundedIcon(
+      "Database",
+      DatabaseSvg,
+      isPanelCollapsed
+    );
 
-    const informationNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none" stroke="currentColor" stroke-width="0.5">
+    const xmlShape = createBoundedIcon("XML", xmlSvg, isPanelCollapsed);
 
-  <!-- Document/Book body -->
-  <rect x="10" y="10" width="20" height="30" rx="2"/>
-
-  <!-- Three lines inside the document -->
-  <line x1="14" y1="20" x2="26" y2="20"/>
-  <line x1="14" y1="24" x2="26" y2="24"/>
-  <line x1="14" y1="28" x2="24" y2="28"/>
-
-  <!-- Information circle overlapping the book -->
-  <circle cx="35" cy="35" r="10"/>
-
-  <!-- 'i' symbol inside the circle -->
-  <line x1="35" y1="31" x2="35" y2="37"/>
-  <circle cx="35" cy="29" r="0.8"/>
-</svg>
-
-
-`;
-    const XMLShape = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Document with folded corner -->
-  <path d="M15 10 H30 L35 15 V40 H15 Z" />
-  <path d="M30 10 V15 H35" />
-  <path d="M30 10 L35 15 L30 15" />
-
-  <text x="25" y="32" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="currentColor">XML</text>
-</svg>
-
-
-`;
-    const xmlShape = createBoundedIcon("XML", XMLShape);
-
-    const BusinessProcessSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- Bars -->
-  <rect x="10" y="32" width="5" height="8" rx="0.5" ry="0.5"/>
-  <rect x="17" y="28" width="5" height="12" rx="0.5" ry="0.5"/>
-  <rect x="24" y="24" width="5" height="16" rx="0.5" ry="0.5"/>
-  <rect x="31" y="20" width="5" height="20" rx="0.5" ry="0.5"/>
-
-  <!-- Diagonal Line -->
-  <line x1="10" y1="20" x2="36" y2="8"/>
-
-  <!-- Exaggerated Arrowhead Rotation -->
-  <path d="M36 8 L33 12 L30 7 Z" fill="currentColor" fill-opacity="0.4" />
-  
-
-</svg>
-`;
     const businessProcessShape = createBoundedIcon(
       "Business Process",
-      BusinessProcessSvg
+      businessProcessSvg,
+      isPanelCollapsed
     );
 
-    const replicationSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" stroke="currentColor" fill="none" stroke-width="0.5" stroke-linecap="square">
-  <!-- Circles -->
-  <circle cx="10" cy="40" r="4" />
-  <circle cx="40" cy="10" r="4" />
+    const replicationShape = createBoundedIcon(
+      "Replication",
+      replicationSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Diagonal line touching circle edges -->
-  <line x1="12.83" y1="37.17" x2="37.17" y2="12.83" />
-
-  <!-- Top left curved arrow -->
-  <path d="M10 20 A15 15 0 0 1 25 5" />
-  <line x1="10" y1="20" x2="15" y2="15" />
-  <line x1="10" y1="20" x2="9" y2="14" />
-
-  <!-- Bottom right curved arrow -->
-  <path d="M40 30 A15 15 0 0 1 25 45" />
-  <line x1="40" y1="30" x2="43" y2="35" />
-  <line x1="40" y1="30" x2="36" y2="36" />
-</svg>
-
-
-
-
-`;
-    const replicationShape = createBoundedIcon("Replication", replicationSvg);
-
-    const ReplicationServerSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     fill="none" xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-  
-  <!-- Top server rectangle -->
-  <rect x="10" y="6" width="30" height="12" rx="2"/>
-
-  <!-- Top server indicators -->
-  <line x1="17" y1="11" x2="17" y2="13"/>
-  <line x1="23" y1="11" x2="23" y2="13"/>
-  <line x1="29" y1="11" x2="29" y2="13"/>
-
-  <!-- Bottom server rectangle -->
-  <rect x="10" y="32" width="30" height="12" rx="2"/>
-
-  <!-- Bottom server indicators -->
-  <line x1="17" y1="37" x2="17" y2="39"/>
-  <line x1="23" y1="37" x2="23" y2="39"/>
-  <line x1="29" y1="37" x2="29" y2="39"/>
-
-  <!-- Downward arrow from top server -->
-  <path d="M25 18 V23 H15 V28"/>
-  <path d="M13 26 L15 28 L17 26"/>
-
-  <!-- Upward arrow from bottom server -->
-  <path d="M25 32 V27 H35 V22"/>
-  <path d="M33 24 L35 22 L37 24"/>
-
-</svg>
-
-`;
     const ReplicationServerShape = createBoundedIcon(
       "Replication Server",
-      ReplicationServerSvg
-    );
-    const TransformationProcessSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1">
-  <!-- Gear circle -->
-  <circle cx="25" cy="25" r="8" />
-  <!-- Teeth -->
-  <line x1="25" y1="15" x2="25" y2="12" />
-  <line x1="25" y1="35" x2="25" y2="38" />
-  <line x1="15" y1="25" x2="12" y2="25" />
-  <line x1="35" y1="25" x2="38" y2="25" />
-  
-  <!-- Incoming arrow left -->
-  <line x1="5" y1="25" x2="12" y2="25" />
-  <polygon points="12,25 9.5,23.5 9.5,26.5" fill="currentColor" fill-opacity="0.4"  />
-  
-  <!-- Outgoing arrow right -->
-  <line x1="38" y1="25" x2="45" y2="25" />
-  <polygon points="45,25 42.5,23.5 42.5,26.5" fill="currentColor" fill-opacity="0.4"  />
-</svg>
-`;
-    const TransformationProcessShape = createBoundedIcon(
-      "Transformation Process",
-      TransformationProcessSvg
+      replicationServerSvg,
+      isPanelCollapsed
     );
 
-    const ConnectionSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round"  >
-  <!-- Left Node (outlined circle) -->
-  <circle cx="4" cy="25" r="4" fill="currentColor" fill-opacity="0.4" />
-  
-
-  <!-- Right Node (outlined circle) -->
-  <circle cx="46" cy="25" r="4" fill="currentColor" fill-opacity="0.4" />
-   
-
-  <!-- Connecting Line -->
-  <line x1="8" y1="25" x2="42" y2="25" />
-</svg>
-
-`;
-    const ConnectionShape = createBoundedIcon("Connection", ConnectionSvg);
+    const ConnectionShape = createBoundedIcon(
+      "Connection",
+      connectionSvg,
+      isPanelCollapsed
+    );
 
     const informationNodeShape = createBoundedIcon(
       "Information",
-      informationNodeStencilSvg
+      informationSvg,
+      isPanelCollapsed
     );
-    const inputStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" 
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none" 
-     stroke-linecap="round" stroke-linejoin="round">
-  <!-- Horizontal base line -->
-  <path d="M5 25 L25 25" />
-  
-  <!-- Diagonal connector / arrow -->
-  <path d="M20 20 L25 25 L20 30" />
 
-  <!-- Box shape (like a node or data object) -->
-  <path d="M15 15 H35 V35 H15 Z M15 15 V35" />
-</svg>
+    const inputShape = createBoundedIcon("Input", inputSvg, isPanelCollapsed);
 
-`;
-    const inputShape = createBoundedIcon("Input", inputStencilSvg);
+    const printShape = createBoundedIcon("Print", printSvg, isPanelCollapsed);
 
-    const printSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Printer body -->
-  <rect x="10" y="18" width="30" height="15" rx="2" ry="2"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
+    const StoreShape = createBoundedIcon("Store", storeSvg, isPanelCollapsed);
 
-  <!-- Paper tray -->
-  <rect x="15" y="10" width="20" height="8" rx="1" ry="1"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
+    const ManageShape = createBoundedIcon(
+      "Manage",
+      manageSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Printed paper -->
-  <rect x="15" y="33" width="20" height="8" rx="1" ry="1"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
+    const secureShape = createBoundedIcon(
+      "Secure",
+      secureSvg,
+      isPanelCollapsed
+    );
 
-  <!-- Lines on printed paper -->
-  <line x1="17" y1="37" x2="33" y2="37"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-  <line x1="17" y1="39" x2="33" y2="39"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-  <line x1="17" y1="41" x2="30" y2="41"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+    const shredShape = createBoundedIcon("Shred", shredSvg, isPanelCollapsed);
 
-  <!-- Small circle on printer body (indicator light) -->
-  <circle cx="37" cy="23" r="1"
-          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
-</svg>
+    const flowShape = createBoundedIcon("Flow", flowSvg, isPanelCollapsed);
 
+    const AccessPoint = createBoundedIcon(
+      "Access Point",
+      accesspointSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const printShape = createBoundedIcon("Print", printSvg);
+    const Repository = createBoundedIcon(
+      "Repository",
+      repositorySvg,
+      isPanelCollapsed
+    );
 
-    const StoreSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Top oval of the database cylinder -->
-  <ellipse cx="25" cy="15" rx="15" ry="5" />
-  
-  <!-- Side lines of the database cylinder -->
-  <path d="M 10 15 V 40" />
-  <path d="M 40 15 V 40" />
-  
-  <!-- First middle oval section, creating the top section -->
-  <path d="M 10 25 A 15 5 0 0 0 40 25" />
-  
-  <!-- Second middle oval section, creating the middle section -->
-  <path d="M 10 32 A 15 5 0 0 0 40 32" />
-  
-  <!-- Bottom oval section, creating the bottom section -->
-  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
-</svg>
+    const impactNodeShape = createBoundedIcon(
+      "Impact",
+      impactSvg,
+      isPanelCollapsed
+    );
 
-
-`;
-    const StoreShape = createBoundedIcon("Store", StoreSvg);
-
-    const ManageSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="#535965" stroke-width="1" fill="none">
-
-  <!-- Folder (Manage icon) in front -->
-  <path d="M12 20 H34 L38 24 H44 V38 H12 Z" fill="currentColor" fill-opacity="0.4" />
-
-  <!-- File inside the folder, moved up -->
-  <path d="M16 13 H30 L34 17 V29 H16 Z M30 13 V17 H34" />
-</svg>
-
-
-
-`;
-    const ManageShape = createBoundedIcon("Manage", ManageSvg);
-
-    const secureSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     fill="none" xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-
-  <!-- Proper shield outline with a pointed bottom -->
-  <path d="M25 5 L40 12 V24 C40 33 33 42 25 45 C17 42 10 33 10 24 V12 L25 5 Z" />
-
-  <!-- Lock body -->
-  <rect x="19" y="22" width="12" height="10" rx="2" />
-
-  <!-- Lock shackle -->
-  <path d="M21 22 V20 A4 4 0 0 1 29 20 V22" />
-
-  <!-- Lock keyhole -->
-  <circle cx="25" cy="27" r="0.5" />
-  <line x1="25" y1="27.5" x2="25" y2="29" />
-
-</svg>
-
-
-`;
-
-    const secureShape = createBoundedIcon("Secure", secureSvg);
-
-    const paperdestroySvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-
-  <!-- Shredder body -->
-  <rect x="5" y="15" width="40" height="5" rx="1" ry="1"/>
-  <path d="M10 15 C10 12, 13 10, 16 10 H34 C37 10, 40 12, 40 15 Z" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M18 2 L18 10 A2 2 0 0 0 20 12 H30 A2 2 0 0 0 32 10 L32 2 Z" stroke-linejoin="round"/>
-  <path d="M20 5 H30" stroke-linecap="round"/>
-  <path d="M20 8 H30" stroke-linecap="round"/>
-
-  <!-- Shred lines -->
-  <line x1="7" y1="20" x2="7" y2="25" />
-  <line x1="10" y1="20" x2="10" y2="26" />
-  <line x1="13" y1="20" x2="13" y2="27" />
-  <line x1="16" y1="20" x2="16" y2="25" />
-  <line x1="19" y1="20" x2="19" y2="26" />
-  <line x1="22" y1="20" x2="22" y2="27" />
-  <line x1="25" y1="20" x2="25" y2="25" />
-  <line x1="28" y1="20" x2="28" y2="26" />
-  <line x1="31" y1="20" x2="31" y2="27" />
-  <line x1="34" y1="20" x2="34" y2="25" />
-  <line x1="37" y1="20" x2="37" y2="26" />
-  <line x1="40" y1="20" x2="40" y2="27" />
-</svg>
-
-
-`;
-    const shredShape = createBoundedIcon("Shred", paperdestroySvg);
-
-    const flowStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-
-  <!-- Horizontal line -->
-  <line x1="12.5" y1="25" x2="43.75" y2="25"/>
-
-  <!-- Arrowhead -->
-  <path d="M38.75 22 L43.75 25 L38.75 28 Z" fill="currentColor" fill-opacity="0.4" />
-</svg>
-
-
-`;
-    const flowShape = createBoundedIcon("Flow", flowStencilSvg);
-
-    const AccessPointSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-
-  <!-- Outer rectangle (scaled) -->
-  <rect x="14.29" y="10.71" width="21.43" height="10.71"/>
-
-  <!-- Central circle -->
- 
-   <circle cx="25" cy="25" r="3.21" fill="currentColor" fill-opacity="0.4" />
-
-  <!-- Downward line -->
-  <line x1="25" y1="28.21" x2="25" y2="35" stroke-linecap="round"/>
-</svg>
-
-`;
-    const AccessPoint = createBoundedIcon("Access Point", AccessPointSvg);
-
-    const RepositorySvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Database Cylinder -->
-  <!-- Top ellipse of the database -->
-  <ellipse cx="15" cy="12" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <!-- Middle ellipse of the database -->
-  <ellipse cx="15" cy="22" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <!-- Bottom ellipse of the database -->
-  <ellipse cx="15" cy="32" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <!-- Left vertical line of the database -->
-  <line x1="7" y1="12" x2="7" y2="32" stroke="currentColor" stroke-width="0.5"/>
-  <!-- Right vertical line of the database -->
-  <line x1="23" y1="12" x2="23" y2="32" stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Folder 1 -->
-  <path d="M28 10 H32 L33 12 H43 V18 H28 Z"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-
-  <!-- Folder 2 -->
-  <path d="M28 20 H32 L33 22 H43 V28 H28 Z"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-
-  <!-- Folder 3 -->
-  <path d="M28 30 H32 L33 32 H43 V38 H28 Z"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-
-  <!-- Connecting dotted lines -->
-  <line x1="23" y1="12" x2="28" y2="14" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
-  <line x1="23" y1="22" x2="28" y2="24" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
-  <line x1="23" y1="32" x2="28" y2="34" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
-</svg>
-
-
-`;
-    const Repository = createBoundedIcon("Repository", RepositorySvg);
-
-    const impactNodeStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     stroke-linecap="round" stroke-linejoin="round">
-
-  <!-- Outer circle -->
-  <circle cx="25" cy="25" r="10" />
-
-  <!-- Inner circle -->
-  <circle cx="25" cy="25" r="5" />
-
-  <!-- Checkmark -->
-  <path d="M22 25 l2 2 l4 -4" />
-
-  <!-- Top arrow -->
-  <line x1="25" y1="5" x2="25" y2="15" />
-  <polyline points="23,13 25,15 27,13" />
-
-  <!-- Bottom arrow -->
-  <line x1="25" y1="45" x2="25" y2="35" />
-  <polyline points="23,37 25,35 27,37" />
-
-  <!-- Left arrow -->
-  <line x1="5" y1="25" x2="15" y2="25" />
-  <polyline points="13,23 15,25 13,27" />
-
-  <!-- Right arrow -->
-  <line x1="45" y1="25" x2="35" y2="25" />
-  <polyline points="37,23 35,25 37,27" />
-
-  <!-- Top-left diagonal arrow -->
-  <line x1="12" y1="12" x2="18" y2="18" />
-  <circle cx="12" cy="12" r="1.5" />
-
-  <!-- Top-right diagonal arrow -->
-  <line x1="38" y1="12" x2="32" y2="18" />
-  <circle cx="38" cy="12" r="1.5" />
-
-  <!-- Bottom-left diagonal arrow -->
-  <line x1="12" y1="38" x2="18" y2="32" />
-  <circle cx="12" cy="38" r="1.5" />
-
-  <!-- Bottom-right diagonal arrow -->
-  <line x1="38" y1="38" x2="32" y2="32" />
-  <circle cx="38" cy="38" r="1.5" />
-
-</svg>
-
-
-`;
-    const impactNodeShape = createBoundedIcon("Impact", impactNodeStencilSvg);
-
-    const changeEventStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Calendar body -->
-  <rect x="10" y="15" width="30" height="25" rx="3" ry="3"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-
-  <!-- Top bar of the calendar -->
-  <line x1="10" y1="20" x2="40" y2="20"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Top left peg -->
-  <line x1="17" y1="10" x2="17" y2="15"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-  <line x1="14" y1="10" x2="20" y2="10"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-
-  <!-- Top right peg -->
-  <line x1="33" y1="10" x2="33" y2="15"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-  <line x1="30" y1="10" x2="36" y2="10"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-</svg>
-`;
     const changeEventShape = createBoundedIcon(
       "Change Event",
-      changeEventStencilSvg
+      changeEventSvg,
+      isPanelCollapsed
     );
 
-    const riskEffectStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer triangle shape -->
-  <path d="M25 5 L45 45 L5 45 Z"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-
-  <!-- Exclamation mark body -->
-  <line x1="25" y1="18" x2="25" y2="30"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-
-  <!-- Exclamation mark dot -->
-  <circle cx="25" cy="35" r="1.5"
-          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
-</svg>
-
-`;
     const riskEffectShape = createBoundedIcon(
       "Risk/Effect",
-      riskEffectStencilSvg
+      riskSvg,
+      isPanelCollapsed
     );
 
-    const causeEffectLinkStencilSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Cause box (left) -->
-  <rect x="5" y="20" width="10" height="10" rx="2" ry="2" />
-  
-  <!-- "C" text for the cause box -->
-  <text x="10" y="25" dominant-baseline="middle" text-anchor="middle" font-size="6" fill="currentColor">C</text>
-  
-  <!-- Effect box (right) -->
-  <rect x="35" y="20" width="10" height="10" rx="2" ry="2" />
-
-  <!-- "E" text for the effect box -->
-  <text x="40" y="25" dominant-baseline="middle" text-anchor="middle" font-size="6" fill="currentColor">E</text>
-
-  <!-- The connecting arrow -->
-  <path d="M 15 25 H 35" />
-  <path d="M 35 25 L 30 20 M 35 25 L 30 30" />
-</svg>
-
-
-`;
     const causeEffectLinkShape = createBoundedIcon(
       "Cause-Effect Link",
-      causeEffectLinkStencilSvg
+      causeeffectSvg,
+      isPanelCollapsed
     );
 
-    const mitigationStrategyStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Warning triangle -->
-  <path d="M25 5 L40 30 L10 30 Z"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <line x1="25" y1="12" x2="25" y2="22"
-        stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
-  <circle cx="25" cy="26" r="1.5"
-          stroke="currentColor" fill="currentColor" stroke-width="0.5"/>
-
-  <!-- Top connecting line -->
-  <line x1="25" y1="30" x2="25" y2="35"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Horizontal connecting line -->
-  <line x1="10" y1="35" x2="40" y2="35"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Left square node -->
-  <rect x="8" y="38" width="8" height="8" rx="2" ry="2"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <line x1="12" y1="35" x2="12" y2="38"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Middle square node -->
-  <rect x="21" y="38" width="8" height="8" rx="2" ry="2"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <line x1="25" y1="35" x2="25" y2="38"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Right square node -->
-  <rect x="34" y="38" width="8" height="8" rx="2" ry="2"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-  <line x1="38" y1="35" x2="38" y2="38"
-        stroke="currentColor" stroke-width="0.5"/>
-</svg>
-
-`;
     const mitigationStrategyShape = createBoundedIcon(
       "Mitigation",
-      mitigationStrategyStencilSvg
+      mitigationSvg,
+      isPanelCollapsed
     );
 
-    const matrixStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer square border -->
-  <rect x="12" y="12" width="26" height="26" rx="3" ry="3"
-        stroke="currentColor" fill="none" stroke-width="0.5"/>
-  
-  <!-- Inner dividing lines -->
-  <line x1="25" y1="12" x2="25" y2="38"
-        stroke="currentColor" stroke-width="0.5"/>
-  <line x1="12" y1="25" x2="38" y2="25"
-        stroke="currentColor" stroke-width="0.5"/>
-
-  <!-- Top-left circle -->
-  <circle cx="18.5" cy="18.5" r="2.5"
-          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
-  
-  <!-- Bottom-left circle -->
-  <circle cx="18.5" cy="31.5" r="2.5"
-          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
-  
-  <!-- Bottom-right circle -->
-  <circle cx="31.5" cy="31.5" r="2.5"
-          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
-</svg>
-`;
-    const matrixShape = createBoundedIcon("Matrix", matrixStencilSvg);
+    const matrixShape = createBoundedIcon(
+      "Matrix",
+      matrixSvg,
+      isPanelCollapsed
+    );
 
     const entitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
   <!-- Outer rounded rectangle (table frame) -->
@@ -3307,18 +2582,23 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 
 
 `;
-    const entityShape = createBoundedIcon("Entity", entitySvg);
+    const entityShape = createBoundedIcon(
+      "Entity",
+      entitySvg,
+      isPanelCollapsed
+    );
 
-    const DependencyLinkSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <line x1="5" y1="25" x2="45" y2="25"/>
-  <path d="M40 20 L45 25 L40 30 Z" fill="currentColor" fill-opacity="0.4" />
-
+    const DependencyLinkSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1 25h44" stroke-dasharray="2 1"/>
+  <path d="M44 21l4 4-4 4" stroke-dasharray="2 1"/>
 </svg>
+
 
 `;
     const DependencyLinkShape = createBoundedIcon(
       "Dependency Link",
-      DependencyLinkSvg
+      DependencyLinkSvg,
+      isPanelCollapsed
     );
     const packageSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
   <!-- Main server body -->
@@ -3333,7 +2613,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   <rect x="32" y="24" width="4" height="6"/>
 </svg>
 `;
-    const packagelinkShape = createBoundedIcon("Package", packageSvg);
+    const packagelinkShape = createBoundedIcon(
+      "Package",
+      packageSvg,
+      isPanelCollapsed
+    );
 
     const PackageSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
   <!-- Main server body -->
@@ -3349,149 +2633,86 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 </svg>
 
 `;
-    const PackagelinkShape = createBoundedIcon("Package", PackageSvg);
+    const PackagelinkShape = createBoundedIcon(
+      "Package",
+      PackageSvg,
+      isPanelCollapsed
+    );
 
-    const ViewSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Main outer rectangle with only a stroke -->
-  <rect x="10" y="10" width="30" height="30" />
+    const ViewShape = createBoundedIcon("View", viewSvg, isPanelCollapsed);
 
-  <!-- Top bar of the calendar, now with a solid fill -->
-  <rect x="10" y="10" width="30" height="10"  fill="currentColor" fill-opacity="0.4"  />
-  
-  <!-- The body of the calendar with three small filled squares in two rows -->
-  <rect x="12.5" y="22.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4"  />
-  <rect x="22.5" y="22.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
-  <rect x="32.5" y="22.5" width="5" height="5"  fill="currentColor" fill-opacity="0.4" />
+    const ReferenceShape = createBoundedIcon(
+      "Reference",
+      referenceSvg,
+      isPanelCollapsed
+    );
 
-  <rect x="12.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
-  <rect x="22.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
-  <rect x="32.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
-</svg>
+    const ProcedureShape = createBoundedIcon(
+      "Procedure",
+      procedureSvg,
+      isPanelCollapsed
+    );
 
-`;
-    const ViewShape = createBoundedIcon("View", ViewSvg);
+    const FileIconShape = createBoundedIcon("File", fileSvg, isPanelCollapsed);
 
-    const ReferenceSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Left square -->
-  <rect x="8" y="8" width="10" height="10" rx="1"/>
-
-  <!-- Right square -->
-  <rect x="32" y="32" width="10" height="10" rx="1"/>
-
-  <!-- Curved connector ending just before the square -->
-  <path d="M13 18 C13 30, 37 20, 37 31.5"/>
-
-  <!-- Arrowhead pointing exactly at top center of the square -->
-  <path d="M36 30 L38 30 L37 31.5 Z" fill="currentColor" fill-opacity="0.4" />
-  <path d="M36 30 L38 30 L37 31.5 Z"/>
-</svg>
-
-`;
-    const ReferenceShape = createBoundedIcon("Reference", ReferenceSvg);
-
-    //need fix this Procedure
-    const ProcedureSvg = `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Gear outer path -->
-  <path d="M34.39 20.68l-3.064-.614a15.1 15.1 0 0 0-.537-1.289l1.736-2.604a1.778 1.778 0 0 0-.25-2.523l-1.924-1.924a1.778 1.778 0 0 0-2.523-.25l-2.604 1.735a15.1 15.1 0 0 0-1.291-.536L23.32 9.61a1.778 1.778 0 0 0-1.961-1.608h-2.72a1.778 1.778 0 0 0-1.961 1.608l-.614 3.065a15.1 15.1 0 0 0-1.289.536L12.17 11.476a1.778 1.778 0 0 0-2.11-.336l-1.924 1.924a1.778 1.778 0 0 0-.25 2.523l1.735 2.604a15.1 15.1 0 0 0-.536 1.29L5.608 20.68A1.778 1.778 0 0 0 4 22.641v2.72c0 .953.673 1.775 1.608 1.961l3.065.615a15.1 15.1 0 0 0 .536 1.289L7.475 31.83a1.778 1.778 0 0 0 .25 2.523l1.924 1.924a1.778 1.778 0 0 0 2.523.25l2.604-1.736a15.1 15.1 0 0 0 1.29.537l.613 3.064a1.778 1.778 0 0 0 1.961 1.609h2.72a1.778 1.778 0 0 0 1.961-1.609l.615-3.064a15.1 15.1 0 0 0 1.289-.537l2.604 1.736a1.778 1.778 0 0 0 2.523-.25l1.924-1.924a1.778 1.778 0 0 0 .25-2.523l-1.736-2.604a15.1 15.1 0 0 0 .537-1.291l3.064-.613A1.778 1.778 0 0 0 36 25.361v-2.72a1.778 1.778 0 0 0-1.61-1.961z"/>
-  
-  <!-- Mid ring -->
-  <path d="M20 17c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 13.13c-3.38 0-6.13-2.75-6.13-6.13s2.75-6.13 6.13-6.13 6.13 2.75 6.13 6.13-2.75 6.13-6.13 6.13z"/>
-
-  <!-- Inner ring -->
-  <path d="M20 20a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-</svg>
-
-`;
-    const ProcedureShape = createBoundedIcon("Procedure", ProcedureSvg);
-    const FileIconSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5">
-  <!-- Folder body -->
-  <rect x="10" y="15" width="30" height="25" rx="2" ry="2" />
-  
-  <!-- Folder tab -->
-  <path d="M10 15 V12 C10 10.9 10.9 10 12 10 H20 C20.6 10 21.1 10.3 21.5 10.8 L24 14 H38 C39.1 14 40 14.9 40 16 V15" />
-  <line x1="10" y1="15" x2="40" y2="15" />
-</svg>
-
-
-`;
-    const FileIconShape = createBoundedIcon("File", FileIconSvg);
-
-    const portSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Center cube -->
-  <rect x="20" y="20" width="10" height="10" />
-  
-  <!-- Left line -->
-  <line x1="5" y1="25" x2="20" y2="25" />
-  
-  <!-- Right line -->
-  <line x1="30" y1="25" x2="45" y2="25" />
-</svg>
-
-`;
-    const portShape = createBoundedIcon("Port", portSvg);
+    const portShape = createBoundedIcon("Port", portSvg, isPanelCollapsed);
     //Important
-    const generalizationSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="25,10 17,28 33,28"/>
-  <line x1="25" y1="28" x2="25" y2="40"/>
-</svg>
 
-`;
     const generalizationShape = createBoundedIcon(
       "Generalization",
-      generalizationSvg
+      generalizationSvg,
+      isPanelCollapsed
     );
-    const aggregationSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Resized, centered diamond -->
- 
-  <path d="M12 25L20 17L28 25L20 33Z" />
-  <!-- Extended line -->
-  <line x1="28" y1="25" x2="48" y2="25" />
-</svg>
 
-`;
-    const aggregationShape = createBoundedIcon("Aggregation", aggregationSvg);
+    const aggregationShape = createBoundedIcon(
+      "Aggregation",
+      aggregationSvg,
+      isPanelCollapsed
+    );
 
-    const compositionSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Resized, centered diamond -->
-  <path d="M12 25L20 17L28 25L20 33Z" fill="currentColor" fill-opacity="0.4" />
-  
-  <!-- Extended line -->
-  <line x1="28" y1="25" x2="48" y2="25" />
-</svg>
-
-
-`;
-    const compositionShape = createBoundedIcon("Composition", compositionSvg);
+    const compositionShape = createBoundedIcon(
+      "Composition",
+      compositionSvg,
+      isPanelCollapsed
+    );
     const dependencySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 25h34" stroke-dasharray="2 1"/>
-  <path d="M38 21l4 4-4 4"/>
+  <path d="M1 25h44" stroke-dasharray="2 1"/>
+  <path d="M44 21l4 4-4 4" stroke-dasharray="2 1"/>
 </svg>
 
 
 
 `;
-    const dependencyShape = createBoundedIcon("Dependency", dependencySvg);
+    const dependencyShape = createBoundedIcon(
+      "Dependency",
+      dependencySvg,
+      isPanelCollapsed
+    );
+    // Prepare filtered shapes data
+    const shapesToLoad: any = {};
 
-    stencil.load({
-      mindMap: [topicShape, subtopicShape, noteShape, linkShape],
-      businessProcess: [
+    // Always load complex group
+    shapesToLoad.freeModel = [
+      freeNodeShape,
+      groupShape,
+      linkShape,
+      noteShape,
+      titleboxShape,
+    ];
+
+    // Load shapes for selected model types only
+    if (selectedModelTypes.has("mindMap")) {
+      shapesToLoad.mindMap = [topicShape, subtopicShape, noteShape, linkShape];
+    }
+
+    if (selectedModelTypes.has("businessProcess")) {
+      shapesToLoad.businessProcess = [
         startEventShape,
         taskActivityShape,
         gatewayShape,
         endEventShape,
         sequenceFlowShape,
+        // Add other business process shapes as they're defined
         SubProcessShape,
         TransactionShape,
         CallActivityShape,
@@ -3500,97 +2721,116 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         ParallelGatewayShape,
         MessageFlowShape,
         AssociationShape,
-      ],
-      requirementsModel: [
+      ];
+    }
+
+    if (selectedModelTypes.has("conceptualDataModel")) {
+      shapesToLoad.conceptualDataModel = [
+        EntityShape,
+        InheritanceShape,
+        onetoNShape,
+        NtoNShape,
+        onetooneShape,
+      ];
+    }
+
+    if (selectedModelTypes.has("requirementsModel")) {
+      shapesToLoad.requirementsModel = [
         requirementShape,
         usecaseShape,
         linkShape,
         ActorShape,
         stakeholderShape,
         goalShape,
-      ],
-      conceptualDataModel: [
-        EntityShape,
-        InheritanceShape,
-        onetoNShape,
-        NtoNShape,
-        onetooneShape,
-        anchorlinkShape,
-      ],
-      physicalDataModel: [
+      ];
+    }
+
+    if (selectedModelTypes.has("physicalDataModel")) {
+      shapesToLoad.physicalDataModel = [
         TableShape,
         packagelinkShape,
         ViewShape,
         ReferenceShape,
         ProcedureShape,
         FileIconShape,
-      ],
-      logicalDataModel: [
-        EntitystencilShape,
-        InheritanceLDMShape,
-        OneToOneShape,
-        OneToNShape,
-        ntonShape,
-      ],
-      objectOrientedModel: [
+      ];
+    }
+    if (selectedModelTypes.has("objectOrientedModel")) {
+      shapesToLoad.objectOrientedModel = [
         classShape,
         interfaceShape,
         enumShape,
         PackagestencilShape,
         portShape,
         generalizationShape,
-        associationShape,
         aggregationShape,
         compositionShape,
         dependencyShape,
-        // RelationshipShape,
-      ],
-      multidimensionalModel: [cubeShape, dimensionShape, measureShape],
-      processHierarchyModel: [
+        associationShape,
+      ];
+    }
+    if (selectedModelTypes.has("multidimensionalModel")) {
+      shapesToLoad.multidimensionalModel = [
+        cubeShape,
+        dimensionShape,
+        measureShape,
+      ];
+    }
+
+    if (selectedModelTypes.has("processHierarchyModel")) {
+      shapesToLoad.processHierarchyModel = [
         processNodeShape,
         subprocessNodeShape,
         activityNodeShape,
-      ],
-      freeModel: [
+      ];
+    }
+
+    if (selectedModelTypes.has("freeModel")) {
+      shapesToLoad.freeModel = [
         freeNodeShape,
-        freeGroupShape,
+        groupShape,
         linkShape,
         noteShape,
         titleboxShape,
-      ],
-
-      organizationalChartModel: [
+      ];
+    }
+    if (selectedModelTypes.has("organizationalChartModel")) {
+      shapesToLoad.organizationalChartModel = [
         organizationShape,
         departmentShape,
         roleShape,
         positionShape,
         reportingLineShape,
-        groupShape,
-      ],
-      enterpriseArchitectureModel: [
+      ];
+    }
+    if (selectedModelTypes.has("enterpriseArchitectureModel")) {
+      shapesToLoad.enterpriseArchitectureModel = [
         businessCapabilityShape,
         applicationShape,
-        technologyComponentShape,
-        dataObjecttShape,
         processShape,
+        positionShape,
         connectorLineShape,
-      ],
-      dataMovementModel: [
+        DatabaseShape,
+      ];
+    }
+    if (selectedModelTypes.has("dataMovementModel")) {
+      shapesToLoad.dataMovementModel = [
         sourceShape,
         targetShape,
         DataFlowShape,
         ServerShape,
-        DatabaseShape,
         xmlShape,
         businessProcessShape,
         replicationShape,
         ReplicationServerShape,
-
         ConnectionShape,
-        PackagelinkShape,
-        TransformationShape,
-      ],
-      informationLifecycleManagement: [
+        packagelinkShape,
+        DatabaseShape,
+      ];
+    }
+
+    if (selectedModelTypes.has("informationLifecycleManagement")) {
+      shapesToLoad.informationLifecycleManagement = [
         informationNodeShape,
         inputShape,
         printShape,
@@ -3602,28 +2842,48 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         AccessPoint,
         Repository,
         annotationShape,
-      ],
-      impactAnalysisModel: [
+      ];
+    }
+
+    if (selectedModelTypes.has("impactAnalysisModel")) {
+      shapesToLoad.impactAnalysisModel = [
         impactNodeShape,
         changeEventShape,
         riskEffectShape,
         causeEffectLinkShape,
         mitigationStrategyShape,
-      ],
-      dependencyPropagationModel: [
+      ];
+    }
+
+    if (selectedModelTypes.has("dependencyPropagationModel")) {
+      shapesToLoad.dependencyPropagationModel = [
         matrixShape,
         entityShape,
-        DependencyLinkShape,
-      ],
-    });
-    stencil.load({ complex: allElements });
+        dependencyShape,
+      ];
+    }
+
+    if (selectedModelTypes.has("logicalDataModel")) {
+      shapesToLoad.logicalDataModel = [
+        EntityShape,
+        InheritanceShape,
+        OneToNShape,
+        onetooneShape,
+      ];
+    }
+
+    // Load all shapes into stencil
+    stencil.load(shapesToLoad);
+
     stencilInstanceRef.current = stencil;
 
     return () => {
       stencilInstanceRef.current?.remove();
       stencilInstanceRef.current = null;
     };
-  }, [paper, graph, expandedGroups]);
+  }, [paper, graph, selectedModelTypes, expandedGroups, isPanelCollapsed]);
+
+  const selectAllState = getSelectAllState();
 
   return (
     <div
@@ -3714,7 +2974,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
                 }}
               >
                 {/* Project Folders */}
-                <div>
+                {/* <div>
                   <button
                     onClick={() => handleSectionClick("folders")}
                     style={{
@@ -3795,7 +3055,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
                       </ul>
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 {/* Stencil Section */}
                 <div>
@@ -3828,24 +3088,17 @@ const Stencil = ({ paper, graph }: StencilProps) => {
                         padding: "10px",
                       }}
                     >
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                        <h2 className="text-lg font-semibold mb-3 text-blue-800">
-                          Element Palette
-                        </h2>
-                        <p className="text-sm text-blue-600 mb-3">
-                          Drag elements from the palette to the canvas
-                        </p>
-                        <div
-                          ref={stencilContainerRef}
-                          className="stencil-container"
-                          style={{
-                            minHeight: "400px",
-                            border: "1px solid #e5e7eb",
-                            borderRadius: "8px",
-                            backgroundColor: "#ffffff",
-                          }}
-                        />
-                      </div>
+                      <div
+                        // className="bg-blue-50 border border-blue-200 rounded-lg p-3"
+                        ref={stencilContainerRef}
+                        className="stencil-container"
+                        style={{
+                          minHeight: "500px",
+                          border: "1px solid #e5e7eb",
+                          borderRadius: "8px",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
                     </div>
                   )}
                 </div>

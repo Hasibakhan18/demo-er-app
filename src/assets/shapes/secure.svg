@@ -1,0 +1,19 @@
+`<svg width="50" height="50" viewBox="0 0 50 50"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5"
+     stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- Proper shield outline with a pointed bottom -->
+  <path d="M25 5 L40 12 V24 C40 33 33 42 25 45 C17 42 10 33 10 24 V12 L25 5 Z" />
+
+  <!-- Lock body -->
+  <rect x="19" y="22" width="12" height="10" rx="2" />
+
+  <!-- Lock shackle -->
+  <path d="M21 22 V20 A4 4 0 0 1 29 20 V22" />
+
+  <!-- Lock keyhole -->
+  <circle cx="25" cy="27" r="0.5" />
+  <line x1="25" y1="27.5" x2="25" y2="29" />
+
+</svg>

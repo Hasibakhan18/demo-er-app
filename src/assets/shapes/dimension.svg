@@ -1,0 +1,37 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" fill-opacity="0.4"  stroke-width="0.5">
+  <defs>
+    <!-- Arrow marker definition -->
+    <marker id="arrowhead" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L3,1.5 L0,3"  />
+    </marker>
+  </defs>
+
+  <!-- Center point -->
+  <circle cx="25" cy="25" r="0.5" />
+
+  <!-- Y-shape arrows -->
+  <line x1="25" y1="25" x2="25" y2="10" marker-end="url(#arrowhead)" />
+  <line x1="25" y1="25" x2="37.5" y2="32.5" marker-end="url(#arrowhead)" />
+  <line x1="25" y1="25" x2="12.5" y2="32.5" marker-end="url(#arrowhead)" />
+
+  <!-- Isometric cube -->
+  <!-- Vertical edges -->
+  <line x1="25" y1="32.5" x2="25" y2="25" />
+  <line x1="25" y1="25" x2="25" y2="17.5" />
+  <line x1="18.5" y1="28.75" x2="18.5" y2="21.25" />
+  <line x1="31.5" y1="28.75" x2="31.5" y2="21.25" />
+
+  <!-- Diagonal edges -->
+  <line x1="25" y1="25" x2="18.5" y2="28.75" />
+  <line x1="25" y1="25" x2="31.5" y2="28.75" />
+  <line x1="25" y1="25" x2="18.5" y2="21.25" />
+  <line x1="25" y1="25" x2="31.5" y2="21.25" />
+
+  <!-- Bottom face diagonals -->
+  <line x1="25" y1="32.5" x2="18.5" y2="28.75" />
+  <line x1="25" y1="32.5" x2="31.5" y2="28.75" />
+
+  <!-- Top face diagonals -->
+  <line x1="25" y1="17.5" x2="18.5" y2="21.25" />
+  <line x1="25" y1="17.5" x2="31.5" y2="21.25" />
+</svg>

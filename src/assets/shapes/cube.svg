@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  <!-- Top face -->
+  <path d="M25 10L40 18L25 26L10 18L25 10Z" stroke-linejoin="round"/>
+  <!-- Left face -->
+  <path d="M10 18V34L25 42V26L10 18Z" stroke-linejoin="round"/>
+  <!-- Right face -->
+  <path d="M40 18V34L25 42V26L40 18Z" stroke-linejoin="round"/>
+</svg>

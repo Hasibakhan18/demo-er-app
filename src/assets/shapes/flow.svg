@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none">
+
+  <!-- Horizontal line -->
+  <line x1="12.5" y1="25" x2="43.75" y2="25"/>
+
+  <!-- Arrowhead -->
+  <path d="M38.75 22 L43.75 25 L38.75 28 Z" fill="currentColor" fill-opacity="0.4" />
+</svg>

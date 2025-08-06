@@ -1,0 +1,26 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" fill="none" stroke-width="0.5"
+     stroke-linecap="round" stroke-linejoin="round">
+  
+  <!-- Head -->
+  <circle cx="25" cy="12" r="5" />
+
+  <!-- Shoulders -->
+  <path d="M20.2 16.6 Q17 20 17 25" />
+  <path d="M29.8 16.6 Q33 20 33 25" />
+
+  <!-- Tie -->
+  <path d="M24 17 L23.5 22 L25 23 L26.5 22 L26 17" />
+
+  <!-- Central vertical line -->
+  <line x1="25" y1="25" x2="25" y2="32" />
+
+  <!-- Horizontal connector -->
+  <path d="M17 32 Q17 30 19 30 H31 Q33 30 33 32" />
+
+  <!-- Bottom three circles -->
+  <circle cx="25" cy="37" r="3" />
+  <circle cx="17" cy="37" r="3" />
+  <circle cx="33" cy="37" r="3" />
+</svg>

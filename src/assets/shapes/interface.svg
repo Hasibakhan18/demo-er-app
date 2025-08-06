@@ -1,0 +1,16 @@
+<svg width="50" height="50" viewBox="0 0 50 50" 
+     xmlns="http://www.w3.org/2000/svg" 
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  <!-- Outer rounded rectangle -->
+  <rect x="8" y="8" width="34" height="34" rx="2" ry="2"/>
+
+  <!-- Abstract '<<I>>' representation -->
+  <!-- Chevrons to imply stereotype brackets -->
+  <polyline points="16,22 14,25 16,28" />
+  <polyline points="34,22 36,25 34,28" />
+
+  <!-- Upright 'I' made of 3 lines -->
+  <line x1="24" y1="20" x2="28" y2="20" />
+  <line x1="26" y1="20" x2="26" y2="30" />
+  <line x1="24" y1="30" x2="28" y2="30" />
+</svg>

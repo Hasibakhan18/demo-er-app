@@ -1,0 +1,11 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none">
+  <!-- Shield -->
+  <path d="M25 5 L40 12 V24 C40 33 33 42 25 45 C17 42 10 33 10 24 V12 L25 5 Z" />
+
+  <!-- Person inside shield -->
+  <circle cx="25" cy="20" r="4" />
+  <!-- Further enlarged body -->
+  <path d="M16 34 C16 26, 34 26, 34 34 Z" />
+</svg>

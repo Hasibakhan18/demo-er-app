@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  width="50"
+  height="50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Parent node (top square) -->
+  <path d="M15 5 H35 V20 H15 Z" />
+
+  <!-- Connectors -->
+  <path d="M25 20 V26 M8 26 H42 M8 26 V33 M25 26 V33 M42 26 V33" />
+
+  <!-- Child nodes (bottom circles) -->
+  <path d="M4 38 A5 5 0 1 0 14 38 A5 5 0 1 0 4 38 Z" />
+  <path d="M20 38 A5 5 0 1 0 30 38 A5 5 0 1 0 20 38 Z" />
+  <path d="M36 38 A5 5 0 1 0 46 38 A5 5 0 1 0 36 38 Z" />
+</svg>

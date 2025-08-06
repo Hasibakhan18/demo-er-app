@@ -1,0 +1,30 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5"
+     stroke-linecap="round" stroke-linejoin="round">
+  
+  <!-- Top server rectangle -->
+  <rect x="10" y="6" width="30" height="12" rx="2"/>
+
+  <!-- Top server indicators -->
+  <line x1="17" y1="11" x2="17" y2="13"/>
+  <line x1="23" y1="11" x2="23" y2="13"/>
+  <line x1="29" y1="11" x2="29" y2="13"/>
+
+  <!-- Bottom server rectangle -->
+  <rect x="10" y="32" width="30" height="12" rx="2"/>
+
+  <!-- Bottom server indicators -->
+  <line x1="17" y1="37" x2="17" y2="39"/>
+  <line x1="23" y1="37" x2="23" y2="39"/>
+  <line x1="29" y1="37" x2="29" y2="39"/>
+
+  <!-- Downward arrow from top server -->
+  <path d="M25 18 V23 H15 V28"/>
+  <path d="M13 26 L15 28 L17 26"/>
+
+  <!-- Upward arrow from bottom server -->
+  <path d="M25 32 V27 H35 V22"/>
+  <path d="M33 24 L35 22 L37 24"/>
+
+</svg>

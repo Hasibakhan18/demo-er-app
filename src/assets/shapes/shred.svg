@@ -1,0 +1,26 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none">
+
+  <!-- Shredder body -->
+  <rect x="5" y="15" width="40" height="5" rx="1" ry="1"/>
+  <path d="M10 15 C10 12, 13 10, 16 10 H34 C37 10, 40 12, 40 15 Z" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M18 2 L18 10 A2 2 0 0 0 20 12 H30 A2 2 0 0 0 32 10 L32 2 Z" stroke-linejoin="round"/>
+  <path d="M20 5 H30" stroke-linecap="round"/>
+  <path d="M20 8 H30" stroke-linecap="round"/>
+
+  <!-- Shred lines -->
+  <line x1="7" y1="20" x2="7" y2="25" />
+  <line x1="10" y1="20" x2="10" y2="26" />
+  <line x1="13" y1="20" x2="13" y2="27" />
+  <line x1="16" y1="20" x2="16" y2="25" />
+  <line x1="19" y1="20" x2="19" y2="26" />
+  <line x1="22" y1="20" x2="22" y2="27" />
+  <line x1="25" y1="20" x2="25" y2="25" />
+  <line x1="28" y1="20" x2="28" y2="26" />
+  <line x1="31" y1="20" x2="31" y2="27" />
+  <line x1="34" y1="20" x2="34" y2="25" />
+  <line x1="37" y1="20" x2="37" y2="26" />
+  <line x1="40" y1="20" x2="40" y2="27" />
+</svg>
+

@@ -1,0 +1,13 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none" stroke="currentColor" stroke-width="0.5">
+
+  <!-- Horizontal connector -->
+  <line x1="2" y1="25" x2="48" y2="25"/>
+
+  <!-- Left vertical bar -->
+ <line x1="2" y1="21" x2="2" y2="29"/>
+
+  <!-- Right vertical bar -->
+ <line x1="48" y1="21" x2="48" y2="29"/>
+</svg>

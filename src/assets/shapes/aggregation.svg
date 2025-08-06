@@ -1,0 +1,7 @@
+<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left-shifted diamond -->
+  <path d="M7 25L15 17L23 25L15 33Z" />
+  
+  <!-- Horizontal line from right edge of diamond to far right -->
+  <line x1="23" y1="25" x2="48" y2="25" />
+</svg>

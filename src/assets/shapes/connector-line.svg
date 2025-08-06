@@ -1,0 +1,14 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5"
+     fill="currentColor" fill-opacity="0.4">
+  <defs>
+    <!-- Enlarged arrowhead marker -->
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,3 L0,6 Z" />
+    </marker>
+  </defs>
+
+  <!-- Horizontal line ending before the arrowhead starts -->
+  <line x1="2" y1="25" x2="44" y2="25" marker-end="url(#arrowhead)" />
+</svg>

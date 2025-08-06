@@ -1,0 +1,23 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer square border -->
+  <rect x="12" y="12" width="26" height="26" rx="3" ry="3"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  
+  <!-- Inner dividing lines -->
+  <line x1="25" y1="12" x2="25" y2="38"
+        stroke="currentColor" stroke-width="0.5"/>
+  <line x1="12" y1="25" x2="38" y2="25"
+        stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Top-left circle -->
+  <circle cx="18.5" cy="18.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+  
+  <!-- Bottom-left circle -->
+  <circle cx="18.5" cy="31.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+  
+  <!-- Bottom-right circle -->
+  <circle cx="31.5" cy="31.5" r="2.5"
+          stroke="currentColor" fill="currentColor" fill-opacity="0.4" />
+</svg>

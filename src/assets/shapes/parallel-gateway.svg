@@ -1,0 +1,14 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="0.5">
+  <!-- Diamond shape -->
+  <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
+
+  <!-- Vertical line (centered) -->
+  <line x1="25" y1="12.5" x2="25" y2="37.5" />
+
+  <!-- Horizontal line (centered) -->
+  <line x1="12.5" y1="25" x2="37.5" y2="25" />
+</svg>

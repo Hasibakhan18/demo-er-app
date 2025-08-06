@@ -1,0 +1,20 @@
+<svg width="50" height="50" viewBox="0 0 50 50" 
+     xmlns="http://www.w3.org/2000/svg" 
+     stroke="currentColor" stroke-width="0.5" 
+     fill="none" stroke-linecap="round" stroke-linejoin="round">
+  
+  <!-- Outer container -->
+  <rect x="14" y="10" width="22" height="30" rx="2" ry="2" />
+
+  <!-- Tier dividers -->
+  <line x1="16" y1="18" x2="34" y2="18" />
+  <line x1="16" y1="26" x2="34" y2="26" />
+
+  <!-- Small port circles on each tier -->
+  <circle cx="18" cy="14" r="0.75" />
+  <circle cx="18" cy="22" r="0.75" />
+  <circle cx="18" cy="30" r="0.75" />
+
+  <!-- Power button / activity light -->
+  <circle cx="25" cy="36" r="1.25" />
+</svg>

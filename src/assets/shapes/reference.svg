@@ -1,0 +1,14 @@
+<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left square -->
+  <rect x="8" y="8" width="10" height="10" rx="1"/>
+
+  <!-- Right square -->
+  <rect x="32" y="32" width="10" height="10" rx="1"/>
+
+  <!-- Curved connector ending just before the square -->
+  <path d="M13 18 C13 30, 37 20, 37 31.5"/>
+
+  <!-- Arrowhead pointing exactly at top center of the square -->
+  <path d="M36 30 L38 30 L37 31.5 Z" fill="currentColor" fill-opacity="0.4" />
+  <path d="M36 30 L38 30 L37 31.5 Z"/>
+</svg>

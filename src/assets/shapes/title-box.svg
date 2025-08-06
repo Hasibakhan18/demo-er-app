@@ -1,0 +1,11 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" fill="none"
+     stroke-width="0.5">
+  <!-- Rounded title box -->
+  <rect x="10" y="15" width="30" height="20" rx="2" ry="2" />
+  <!-- Title line -->
+  <line x1="13" y1="20" x2="37" y2="20" stroke-linecap="round" />
+  <!-- Subtitle line -->
+  <line x1="13" y1="25" x2="27" y2="25" stroke-linecap="round" />
+</svg>

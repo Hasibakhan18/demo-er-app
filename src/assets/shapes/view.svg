@@ -1,0 +1,24 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 50 50"
+  stroke="currentColor"
+  fill="none"
+  stroke-width="0.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Main outer rectangle with only a stroke -->
+  <rect x="10" y="10" width="30" height="30" />
+
+  <!-- Top bar of the calendar, now with a solid fill -->
+  <rect x="10" y="10" width="30" height="10"  fill="currentColor" fill-opacity="0.4"  />
+  
+  <!-- The body of the calendar with three small filled squares in two rows -->
+  <rect x="12.5" y="22.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4"  />
+  <rect x="22.5" y="22.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
+  <rect x="32.5" y="22.5" width="5" height="5"  fill="currentColor" fill-opacity="0.4" />
+
+  <rect x="12.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
+  <rect x="22.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
+  <rect x="32.5" y="32.5" width="5" height="5"   fill="currentColor" fill-opacity="0.4" />
+</svg>

@@ -1,0 +1,15 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+  xmlns="http://www.w3.org/2000/svg"
+  stroke="currentColor" fill="none" stroke-width="0.5">
+
+  <!-- Left vertical bar (One) -->
+<line x1="2" y1="21" x2="2" y2="29"/>
+
+  <!-- Horizontal connector -->
+  <line x1="2" y1="25" x2="42" y2="25"/>
+
+  <!-- Right side Crow’s foot (Many) with reduced angle -->
+  <line x1="42" y1="25" x2="48" y2="21"/>
+  <line x1="42" y1="25" x2="48" y2="25"/>
+  <line x1="42" y1="25" x2="48" y2="29"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" stroke="#535965" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cylinder (database) at the back, bottom-right -->
+  <ellipse cx="30" cy="25" rx="12" ry="4" fill="currentColor" fill-opacity="0.4"/>
+  
+  <path d="M18 25 L18 41 A12 4 0 0 0 42 41 L42 25 A12 4 0 0 1 18 25 Z"  fill="currentColor" fill-opacity="0.4" />
+  
+  <ellipse cx="30" cy="41" rx="12" ry="4"  fill="currentColor" fill-opacity="0.4"/>
+  
+
+
+  <!-- File (document with folded corner) in front, top-left overlapping cylinder -->
+  <path d="M10 10 H25 V30 H10 Z" fill="currentColor" fill-opacity="0.2" />
+   
+  <path d="M20 10 L25 15 L20 15 Z" fill="currentColor" fill-opacity="0.2" />
+  
+  <path d="M20 10 L25 15" fill="currentColor" fill-opacity="0.2"  />
+
+  <path d="M20 15 L25 15" fill="currentColor" fill-opacity="0.2"  />
+
+  </svg>

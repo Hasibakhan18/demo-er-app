@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50"
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="#535965" stroke-width="1" fill="none">
+
+  <!-- Folder (Manage icon) in front -->
+  <path d="M12 20 H34 L38 24 H44 V38 H12 Z" fill="currentColor" fill-opacity="0.4" />
+
+  <!-- File inside the folder, moved up -->
+  <path d="M16 13 H30 L34 17 V29 H16 Z M30 13 V17 H34" />
+</svg>

@@ -1,0 +1,30 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Database Cylinder -->
+  <!-- Top ellipse of the database -->
+  <ellipse cx="15" cy="12" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Middle ellipse of the database -->
+  <ellipse cx="15" cy="22" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Bottom ellipse of the database -->
+  <ellipse cx="15" cy="32" rx="8" ry="3" stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <!-- Left vertical line of the database -->
+  <line x1="7" y1="12" x2="7" y2="32" stroke="currentColor" stroke-width="0.5"/>
+  <!-- Right vertical line of the database -->
+  <line x1="23" y1="12" x2="23" y2="32" stroke="currentColor" stroke-width="0.5"/>
+
+  <!-- Folder 1 -->
+  <path d="M28 10 H32 L33 12 H43 V18 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Folder 2 -->
+  <path d="M28 20 H32 L33 22 H43 V28 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Folder 3 -->
+  <path d="M28 30 H32 L33 32 H43 V38 H28 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+
+  <!-- Connecting dotted lines -->
+  <line x1="23" y1="12" x2="28" y2="14" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
+  <line x1="23" y1="22" x2="28" y2="24" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
+  <line x1="23" y1="32" x2="28" y2="34" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1"/>
+</svg>

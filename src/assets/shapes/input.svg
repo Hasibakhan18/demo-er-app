@@ -1,0 +1,13 @@
+<svg width="50" height="50" viewBox="0 0 50 50" 
+     xmlns="http://www.w3.org/2000/svg"
+     stroke="currentColor" stroke-width="0.5" fill="none" 
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- Horizontal base line -->
+  <path d="M5 25 L25 25" />
+  
+  <!-- Diagonal connector / arrow -->
+  <path d="M20 20 L25 25 L20 30" />
+
+  <!-- Box shape (like a node or data object) -->
+  <path d="M15 15 H35 V35 H15 Z M15 15 V35" />
+</svg>
