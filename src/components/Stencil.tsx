@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import iconCollapse from "../assets/inspector/icon-collapse.svg";
 import iconExpand from "../assets/inspector/icon-expand.svg";
 import iconSlide from "../assets/navigator/right-arrows.png";
@@ -6,95 +6,109 @@ import { paletteGroups, stencilElements } from "../config/stencil";
 import { dia, ui, shapes } from "@joint/plus";
 import * as joint from "@joint/core";
 import { createEREntity } from "../config/customShapes";
-import topicSvg from "../assets/shapes/topic.svg?raw";
-import portSvg from "../assets/shapes/port.svg?raw";
-import referenceSvg from "../assets/shapes/reference.svg?raw";
-import subtopicSvg from "../assets/shapes/subtopic.svg?raw";
-import noteSvg from "../assets/shapes/note.svg?raw";
-import startEventSvg from "../assets/shapes/start-event.svg?raw";
-import processNodeSvg from "../assets/shapes/process-node.svg?raw";
-import subprocessNodeSvg from "../assets/shapes/subprocess-node.svg?raw";
-import linkSvg from "../assets/shapes/link.svg?raw";
-import activityNodeSvg from "../assets/shapes/activity-node.svg?raw";
-import requirementSvg from "../assets/shapes/requirement.svg?raw";
-import mitigationSvg from "../assets/shapes/mitigation.svg?raw";
-import useCaseSvg from "../assets/shapes/use-case.svg?raw";
-import entitySvg from "../assets/shapes/entity.svg?raw";
-import classSvg from "../assets/shapes/class.svg?raw";
-import interfaceSvg from "../assets/shapes/interface.svg?raw";
-import packageSvg from "../assets/shapes/package.svg?raw";
-import generalizationSvg from "../assets/shapes/generalization.svg?raw";
-import aggregationSvg from "../assets/shapes/aggregation.svg?raw";
-import compositionSvg from "../assets/shapes/composition.svg?raw";
-import associationSvg from "../assets/shapes/association.svg?raw";
-import dependencySvg from "../assets/shapes/dependency.svg?raw";
-import tableSvg from "../assets/shapes/table.svg?raw";
-import viewSvg from "../assets/shapes/view.svg?raw";
-import procedureSvg from "../assets/shapes/procedure.svg?raw";
-import onenRelationshipSvg from "../assets/shapes/1-n-relationship.svg?raw";
-import onenRealtionshipSvg from "../assets/shapes/1-1-relationship.svg?raw";
-import nnRealtionshipSvg from "../assets/shapes/n-n-relationship.svg?raw";
-import businessProcessSvg from "../assets/shapes/business-process.svg?raw";
-import freeNodeSvg from "../assets/shapes/free-node.svg?raw";
-import anchorLinkSvg from "../assets/shapes/anchor-link.svg?raw";
-import titleBoxSvg from "../assets/shapes/title-box.svg?raw";
-import organizationSvg from "../assets/shapes/organization.svg?raw";
-import departmentSvg from "../assets/shapes/department.svg?raw";
-import positionSvg from "../assets/shapes/position.svg?raw";
-import roleSvg from "../assets/shapes/role.svg?raw";
-import reportingLineSvg from "../assets/shapes/reporting-line.svg?raw";
-import applicationSvg from "../assets/shapes/application.svg?raw";
-import technologySvg from "../assets/shapes/technology.svg?raw";
-import businessSvg from "../assets/shapes/business.svg?raw";
-import informationSvg from "../assets/shapes/information.svg?raw";
-import processSvg from "../assets/shapes/process.svg?raw";
-import goalSvg from "../assets/shapes/goal.svg?raw";
-import stakeholderSvg from "../assets/shapes/stakeholder.svg?raw";
-import dataFlowSvg from "../assets/shapes/data-flow.svg?raw";
-import connectionSvg from "../assets/shapes/connection.svg?raw";
-import serverSvg from "../assets/shapes/server.svg?raw";
-import databaseSvg from "../assets/shapes/database.svg?raw";
-import replicationServerSvg from "../assets/shapes/replication-server.svg?raw";
-import fileSvg from "../assets/shapes/file.svg?raw";
-import xmlSvg from "../assets/shapes/xml.svg?raw";
-import sourceSvg from "../assets/shapes/source.svg?raw";
-import targetSvg from "../assets/shapes/target.svg?raw";
-import transformationSvg from "../assets/shapes/transformation.svg?raw";
-import replicationSvg from "../assets/shapes/replication.svg?raw";
-import inputSvg from "../assets/shapes/input.svg?raw";
-import groupSvg from "../assets/shapes/group.svg?raw";
-import matrixSvg from "../assets/shapes/matrix.svg?raw";
-import causeeffectSvg from "../assets/shapes/cause-effect.svg?raw";
-import riskSvg from "../assets/shapes/riskeffect.svg?raw";
-import changeEventSvg from "../assets/shapes/changeevent.svg?raw";
-import impactSvg from "../assets/shapes/impact.svg?raw";
-import repositorySvg from "../assets/shapes/repository.svg?raw";
-import accesspointSvg from "../assets/shapes/accesspoint.svg?raw";
-import flowSvg from "../assets/shapes/flow.svg?raw";
-import shredSvg from "../assets/shapes/shred.svg?raw";
-import secureSvg from "../assets/shapes/secure.svg?raw";
-import manageSvg from "../assets/shapes/manage.svg?raw";
-import storeSvg from "../assets/shapes/store.svg?raw";
-import printSvg from "../assets/shapes/print.svg?raw";
-import annotationSvg from "../assets/shapes/annotation.svg?raw";
-import connectorlineSvg from "../assets/shapes/connector-line.svg?raw";
-import measureSvg from "../assets/shapes/measure.svg?raw";
-import dimensionSvg from "../assets/shapes/dimension.svg?raw";
-import cubeSvg from "../assets/shapes/cube.svg?raw";
-import enumSvg from "../assets/shapes/enum.svg?raw";
-import messageflowSvg from "../assets/shapes/message-flow.svg?raw";
-import parallelgatewaySvg from "../assets/shapes/parallel-gateway.svg?raw";
-import exclusivegatewaySvg from "../assets/shapes/exclusive-gateway.svg?raw";
-import eventgatewaySvg from "../assets/shapes/event-gateway.svg?raw";
-import callactivitySvg from "../assets/shapes/call-activity.svg?raw";
-import transactionSvg from "../assets/shapes/transaction.svg?raw";
-import subprocessSvg from "../assets/shapes/subprocess-node.svg?raw";
-import inheritanceSvg from "../assets/shapes/inheritance.svg?raw";
-import actorSvg from "../assets/shapes/actor.svg?raw";
-import sequenceflowSvg from "../assets/shapes/sequence-flow.svg?raw";
-import endeventSvg from "../assets/shapes/end-event.svg?raw";
-import gatewaySvg from "../assets/shapes/gateway.svg?raw";
-import taskactivitySvg from "../assets/shapes/task-activity.svg?raw";
+import mmdtopicSvg from "../assets/shapes/mmd-topic.svg?raw";
+import oomportSvg from "../assets/shapes/oom-port.svg?raw";
+import pdmreferenceSvg from "../assets/shapes/pdm-reference.svg?raw";
+import mmdsubtopicSvg from "../assets/shapes/mmd-subtopic.svg?raw";
+import mmdnoteSvg from "../assets/shapes/mmd-note.svg?raw";
+import bpmstarteventSvg from "../assets/shapes/bpm-startevent.svg?raw";
+import phmprocessnodeSvg from "../assets/shapes/phm-process-node.svg?raw";
+import ctlinkSvg from "../assets/shapes/ct-link.svg?raw";
+import mmdlinkSvg from "../assets/shapes/mmd-link.svg?raw";
+import phmactivitynodeSvg from "../assets/shapes/phm-activity-node.svg?raw";
+import rmrequirementSvg from "../assets/shapes/rm-requirement.svg?raw";
+import iammitigationSvg from "../assets/shapes/iam-mitigation.svg?raw";
+import rmusecaseSvg from "../assets/shapes/rm-usecase.svg?raw";
+import rmactorSvg from "../assets/shapes/rm-actor.svg?raw";
+import rmlinkSvg from "../assets/shapes/rm-link.svg?raw";
+import cdmentitySvg from "../assets/shapes/cdm-entity.svg?raw";
+import oomclassSvg from "../assets/shapes/oom-class.svg?raw";
+import oominterfaceSvg from "../assets/shapes/oom-interface.svg?raw";
+import oompackageSvg from "../assets/shapes/oom-package.svg?raw";
+import pdmpackageSvg from "../assets/shapes/pdm-package.svg?raw";
+import oomgeneralizationSvg from "../assets/shapes/oom-generalization.svg?raw";
+import oomassociationSvg from "../assets/shapes/oom-association.svg?raw";
+import oomaggregationSvg from "../assets/shapes/oom-aggregation.svg?raw";
+import oomcompositionSvg from "../assets/shapes/oom-composition.svg?raw";
+import bpmassociationSvg from "../assets/shapes/bpm-association.svg?raw";
+import oomdependencySvg from "../assets/shapes/oom-dependency.svg?raw";
+import pdmtableSvg from "../assets/shapes/pdm-table.svg?raw";
+import pdmviewSvg from "../assets/shapes/pdm-view.svg?raw";
+import pdmprocedureSvg from "../assets/shapes/pdm-procedure.svg?raw";
+import cdmonetonRelationshipSvg from "../assets/shapes/cdm-1:n-relationship.svg?raw";
+import cdmonetoonerelationshipSvg from "../assets/shapes/cdm-1:1-relationship.svg?raw";
+import cdmntonRealtionshipSvg from "../assets/shapes/cdm-n:n-relationship.svg?raw";
+import eambusinessSvg from "../assets/shapes/eam-business.svg?raw";
+import ctfreenodeSvg from "../assets/shapes/ct-free-node.svg?raw";
+import ctanchorlinkSvg from "../assets/shapes/ct-anchor-link.svg?raw";
+import cttitleboxSvg from "../assets/shapes/ct-title-box.svg?raw";
+import ocmorganizationSvg from "../assets/shapes/ocm-organization.svg?raw";
+import ocmdepartmentSvg from "../assets/shapes/ocm-department.svg?raw";
+import ocmpositionSvg from "../assets/shapes/ocm-position.svg?raw";
+import ocmroleSvg from "../assets/shapes/ocm-role.svg?raw";
+import ocmreportinglineSvg from "../assets/shapes/ocm-reporting-line.svg?raw";
+import eamapplicationSvg from "../assets/shapes/eam-application.svg?raw";
+import eamtechnologySvg from "../assets/shapes/eam-technology.svg?raw";
+import dmmbusinessSvg from "../assets/shapes/dmm-business.svg?raw";
+import ilminformationSvg from "../assets/shapes/ilm-information.svg?raw";
+import eamprocessSvg from "../assets/shapes/eam-process.svg?raw";
+import rmgoalSvg from "../assets/shapes/rm-goal.svg?raw";
+import rmstakeholderSvg from "../assets/shapes/rm-stakeholder.svg?raw";
+import dmmdataflowSvg from "../assets/shapes/dmm-data-flow.svg?raw";
+import dmmdatabaseSvg from "../assets/shapes/dmm-database.svg?raw";
+import dmmconnectionSvg from "../assets/shapes/dmm-connection.svg?raw";
+import dmmpackageSvg from "../assets/shapes/dmm-package.svg?raw";
+import dmmserverSvg from "../assets/shapes/dmm-server.svg?raw";
+import eamdatabaseSvg from "../assets/shapes/eam-database.svg?raw";
+import dmmreplicationserverSvg from "../assets/shapes/dmm-replication-server.svg?raw";
+import pdmfileSvg from "../assets/shapes/pdm-file.svg?raw";
+import dmmxmlSvg from "../assets/shapes/dmm-xml.svg?raw";
+import dmmsourceSvg from "../assets/shapes/dmm-source.svg?raw";
+import dmmtargetSvg from "../assets/shapes/dmm-target.svg?raw";
+import dmmtransformationSvg from "../assets/shapes/dmm-transformation.svg?raw";
+import dmmreplicationSvg from "../assets/shapes/dmm-replication.svg?raw";
+import ilminputSvg from "../assets/shapes/ilm-input.svg?raw";
+import ctgroupSvg from "../assets/shapes/ct-group.svg?raw";
+import ctnoteSvg from "../assets/shapes/ct-note.svg?raw";
+import ocmgroupSvg from "../assets/shapes/ocm-group.svg?raw";
+import iammatrixSvg from "../assets/shapes/iam-matrix.svg?raw";
+import iamentitySvg from "../assets/shapes/iam-entity.svg?raw";
+import iamdependencySvg from "../assets/shapes/iam-dependency-link.svg?raw";
+import iamcauseeffectSvg from "../assets/shapes/iam-cause-effect.svg?raw";
+import iamriskSvg from "../assets/shapes/iam-risk.svg?raw";
+import iamchangeeventSvg from "../assets/shapes/iam-change-event.svg?raw";
+import iamimapactSvg from "../assets/shapes/iam-imapact.svg?raw";
+import ilmrepositorySvg from "../assets/shapes/ilm-repository.svg?raw";
+import ilmaccesspointSvg from "../assets/shapes/ilm-access-point.svg?raw";
+import ilmflowSvg from "../assets/shapes/ilm-flow.svg?raw";
+import ilmshredSvg from "../assets/shapes/ilm-shred.svg?raw";
+import ilmsecureSvg from "../assets/shapes/ilm-secure.svg?raw";
+import ilmmanageSvg from "../assets/shapes/ilm-manage.svg?raw";
+import ilmstoreSvg from "../assets/shapes/ilm-store.svg?raw";
+import ilmprintSvg from "../assets/shapes/ilm-print.svg?raw";
+import ilmannotationSvg from "../assets/shapes/ilm-annotation.svg?raw";
+import ldmentitySvg from "../assets/shapes/ldm-entity.svg?raw";
+import ldminteritanceSvg from "../assets/shapes/ldm-inheritance.svg?raw";
+import ldmonetooneSvg from "../assets/shapes/ldm-1:1-relationship.svg?raw";
+import ldmonetomanySvg from "../assets/shapes/ldm-1:n-relationship.svg?raw";
+import eamconnectorlineSvg from "../assets/shapes/eam-connector-line.svg?raw";
+import mdmmeasureSvg from "../assets/shapes/mdm-measure.svg?raw";
+import mdmdimensionSvg from "../assets/shapes/mdm-dimension.svg?raw";
+import mdmcubevg from "../assets/shapes/mdm-cube.svg?raw";
+import oomenumSvg from "../assets/shapes/oom-enum.svg?raw";
+import bpmmessageflowSvg from "../assets/shapes/bpm-messageflow.svg?raw";
+import bpmparallelgatewaySvg from "../assets/shapes/bpm-parallelgateway.svg?raw";
+import bpmexclusivegatewaySvg from "../assets/shapes/bpm-exclusivegateway.svg?raw";
+import bpmeventgatewaySvg from "../assets/shapes/bpm-eventgateway.svg?raw";
+import bpmcallactivitySvg from "../assets/shapes/bpm-callactivity.svg?raw";
+import bpmtransactionSvg from "../assets/shapes/bpm-transaction.svg?raw";
+import bpmsubprocessSvg from "../assets/shapes/bpm-subprocess.svg?raw";
+import phmsubprocessnodeSvg from "../assets/shapes/phm-subprocess-node.svg?raw";
+import cdminheritanceSvg from "../assets/shapes/cdm-inheritance.svg?raw";
+import bpmsequenceflowSvg from "../assets/shapes/bpm-sequenceflow.svg?raw";
+import bpmendeventSvg from "../assets/shapes/bpm-endevent.svg?raw";
+import bpmgatewaySvg from "../assets/shapes/bpm-gateway.svg?raw";
+import bpmtaskactivitySvg from "../assets/shapes/bpm-taskactivity.svg?raw";
 
 // Merge types from @joint/core into dia namespace for this component
 declare module "@joint/plus" {
@@ -120,6 +134,7 @@ interface ModelType {
   groupKey: string;
 }
 // Define the model types with their IDs, labels, and group keys
+
 const MODEL_TYPES: ModelType[] = [
   { id: "mindMap", label: "Mind Map Model", groupKey: "mindMap" },
   {
@@ -194,12 +209,281 @@ const MODEL_TYPES: ModelType[] = [
     groupKey: "dependencyPropagationModel",
   },
 ];
+// Define diagram type interface
+interface DiagramType {
+  id: string;
+  label: string;
+  modelTypeId: string;
+}
+// Define diagram types based on your spreadsheet data
+const DIAGRAM_TYPES: DiagramType[] = [
+  // Mind Map Model
+  { id: "mindMapDiagram", label: "Mind Map Diagram", modelTypeId: "mindMap" },
+
+  // Business Process Model
+  {
+    id: "processFlowDiagram",
+    label: "Process Flow Diagram",
+    modelTypeId: "businessProcess",
+  },
+  {
+    id: "gatewayDiagram",
+    label: "Gateway Diagram",
+    modelTypeId: "businessProcess",
+  },
+  {
+    id: "subprocessDiagram",
+    label: "Subprocess Diagram",
+    modelTypeId: "businessProcess",
+  },
+
+  // Conceptual Data Model
+  {
+    id: "conceptualDataModelDiagram",
+    label: "Conceptual Data Model Diagram",
+    modelTypeId: "conceptualDataModel",
+  },
+
+  // Requirements Model
+  {
+    id: "requirementsDiagram",
+    label: "Requirements Diagram",
+    modelTypeId: "requirementsModel",
+  },
+
+  // Physical Data Model
+  {
+    id: "physicalDataModelDiagram",
+    label: "Physical Data Model Diagram",
+    modelTypeId: "physicalDataModel",
+  },
+
+  // Object-Oriented Model
+  {
+    id: "classDiagram",
+    label: "Class Diagram",
+    modelTypeId: "objectOrientedModel",
+  },
+  {
+    id: "componentDiagram",
+    label: "Component Diagram",
+    modelTypeId: "objectOrientedModel",
+  },
+  {
+    id: "useCaseDiagram",
+    label: "Use Case Diagram",
+    modelTypeId: "objectOrientedModel",
+  },
+
+  // Multidimensional Model
+  {
+    id: "multidimensionalDiagram",
+    label: "Multidimensional Diagram",
+    modelTypeId: "multidimensionalModel",
+  },
+
+  // Process Hierarchy Model
+  {
+    id: "processTreeDiagram",
+    label: "Process Tree Diagram",
+    modelTypeId: "processHierarchyModel",
+  },
+
+  // Common Tool Stencil
+  {
+    id: "freeformDiagram",
+    label: "Freeform Diagram",
+    modelTypeId: "freeModel",
+  },
+
+  // Organizational Chart Model
+  {
+    id: "organizationalChart",
+    label: "Organizational Chart",
+    modelTypeId: "organizationalChartModel",
+  },
+
+  // Enterprise Architecture Model
+  {
+    id: "layeredArchitecture",
+    label: "Layered Architecture",
+    modelTypeId: "enterpriseArchitectureModel",
+  },
+  {
+    id: "applicationMap",
+    label: "Application Map",
+    modelTypeId: "enterpriseArchitectureModel",
+  },
+
+  // Data Movement Model
+  {
+    id: "dataMovementDiagram",
+    label: "Data Movement Diagram",
+    modelTypeId: "dataMovementModel",
+  },
+
+  // Information Lifecycle Management
+  {
+    id: "informationLifecycleDiagram",
+    label: "Information Lifecycle Diagram",
+    modelTypeId: "informationLifecycleManagement",
+  },
+
+  // Impact Analysis Model
+  {
+    id: "impactAnalysisDiagram",
+    label: "Impact Analysis Diagram",
+    modelTypeId: "impactAnalysisModel",
+  },
+
+  // Dependency Propagation Model
+  {
+    id: "dependencyMatrixDiagram",
+    label: "Dependency Matrix Diagram",
+    modelTypeId: "dependencyPropagationModel",
+  },
+
+  // Logical Data Model
+  {
+    id: "logicalDataModelDiagram",
+    label: "Logical Data Model Diagram",
+    modelTypeId: "logicalDataModel",
+  },
+];
+
+// Symbol type definitions based on your spreadsheet data
+const SYMBOL_TYPES = {
+  // Mind Map symbols
+  mindMapDiagram: ["Topic", "Subtopic", "Link", "Note"],
+
+  // Business Process symbols
+  processFlowDiagram: [
+    "Start Event",
+    "Task/Activity",
+    "End Event",
+    "Sequence Flow",
+    "Sub Process",
+    "Transaction",
+    "Call Activity",
+  ],
+  gatewayDiagram: [
+    "Gateway",
+    "Exclusive Gateway",
+    "Event Gateway",
+    "Parallel Gateway",
+  ],
+  subprocessDiagram: ["Message Flow", "Association"],
+
+  // Conceptual Data Model symbols
+  conceptualDataModelDiagram: [
+    "Entity",
+    "Inheritance",
+    "1:N Relationship",
+    "1:1 Relationship",
+    "N-N Relationship",
+  ],
+
+  // Requirements Model symbols
+  requirementsDiagram: [
+    "Requirement",
+    "Use Case",
+    "Link",
+    "Actor",
+    "Stakeholder",
+    "Goal",
+  ],
+
+  // Physical Data Model symbols
+  physicalDataModelDiagram: [
+    "Table",
+    "Package",
+    "View",
+    "Reference",
+    "Procedure",
+    "File",
+  ],
+
+  // Object-Oriented Model symbols
+  classDiagram: [
+    "Class",
+    "Interface",
+    "Enum",
+    "Package",
+    "Aggregation",
+    "Composition",
+  ],
+  componentDiagram: ["Port", "Dependency"],
+  useCaseDiagram: ["Generalization", "Association"],
+
+  // Other diagram types can be added here...
+  multidimensionalDiagram: ["Cube", "Dimension", "Measure"],
+  processTreeDiagram: ["Process Node", "Subprocess Node", "Activity Node"],
+  freeformDiagram: [
+    "Free Node",
+    "Group",
+    "Link",
+    "Note",
+    "Title Box",
+    "Anchor Link",
+  ],
+  organizationalChart: [
+    "Organization",
+    "Department",
+    "Role",
+    "Position",
+    "Reporting Line",
+    "Group",
+  ],
+  layeredArchitecture: ["Business", "Process", "Connector Line", "Database"],
+  applicationMap: ["Application", "Technology"],
+  dataMovementDiagram: [
+    "Source",
+    "Target",
+    "Data Flow",
+    "Server",
+    "Database",
+    "XML",
+    "Business process",
+    "Replication",
+    "Replication Server",
+    "Connection",
+    "Package",
+    "Transformation",
+  ],
+  informationLifecycleDiagram: [
+    "Information",
+    "Input",
+    "Print",
+    "Store",
+    "Manage",
+    "Secure",
+    "Shred",
+    "Flow",
+    "Access Point",
+    "Repository",
+    "Annotation",
+  ],
+  impactAnalysisDiagram: [
+    "Impact",
+    "Change Event",
+    "Risk/Effect",
+    "Cause/Effect Link",
+    "Mitigation",
+  ],
+  dependencyMatrixDiagram: ["Matrix", "Entity", "Dependency Link"],
+  logicalDataModelDiagram: [
+    "Entity",
+    "Inheritance",
+    "1:1 Relationship",
+    "1:N Relationship",
+  ],
+};
 
 const Stencil = ({ paper, graph }: StencilProps) => {
   const [openSection, setOpenSection] = useState<string | null>("stencil");
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set([
-      "basic",
+      // "basic",
       "advanced",
       "entities",
       "mindMap",
@@ -222,8 +506,11 @@ const Stencil = ({ paper, graph }: StencilProps) => {
     ])
   );
   // State to manage selected model types
-  const [selectedModelTypes, setSelectedModelTypes] = useState<Set<string>>(
-    new Set()
+  const [selectedModelType, setSelectedModelType] = useState<string | null>(
+    null // Default to first model type
+  );
+  const [selectedDiagramType, setSelectedDiagramType] = useState<string | null>(
+    null
   );
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -237,85 +524,36 @@ const Stencil = ({ paper, graph }: StencilProps) => {
   const stencilInstanceRef = useRef<any | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  //Handle model type selection
-  const handleModelTypeToggle = (modelTypeId: string) => {
-    const newSelectedTypes = new Set(selectedModelTypes);
-    if (newSelectedTypes.has(modelTypeId)) {
-      newSelectedTypes.delete(modelTypeId);
-    } else {
-      newSelectedTypes.add(modelTypeId);
-    }
-    setSelectedModelTypes(newSelectedTypes);
-  };
+  // --- REVISED HANDLERS WRAPPED IN useCallback ---
 
-  // Get checkbox state for select all
-  const getSelectAllState = () => {
-    if (selectedModelTypes.size === 0) return "none";
-    if (selectedModelTypes.size === MODEL_TYPES.length) return "all";
-    return "partial";
-  };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+  // Handles toggling openSection for collapsible sections
+  const handleSectionClick = useCallback((section: string) => {
+    setOpenSection((prev) => (prev === section ? null : section));
   }, []);
 
-  const toggleCollapse = () => {
-    const newState = !isPanelCollapsed;
-    setIsPanelCollapsed(newState);
-    if (contentRef.current) {
-      contentRef.current.style.height = newState ? "0" : "calc(100% - 92px)";
-    }
-  };
+  const getAvailableDiagramTypes = useCallback(() => {
+    if (!selectedModelType) return [];
+    return DIAGRAM_TYPES.filter((dt) => dt.modelTypeId === selectedModelType);
+  }, [selectedModelType]);
 
-  const toggleSlide = () => setIsPanelHidden((prev) => !prev);
+  const handleModelTypeSelect = useCallback((modelTypeId: string) => {
+    setSelectedModelType(modelTypeId);
+    // Reset diagram type when model type changes
+    setSelectedDiagramType(null);
 
-  const addFolder = () => {
-    const name = newFolderName.trim();
-    if (!name || folderNames.includes(name)) return;
-
-    setFolderNames([...folderNames, name]);
-
-    const folderElement = new shapes.standard.Rectangle({
-      size: { width: 180, height: 40 },
-      attrs: {
-        body: {
-          fill: "#f0f4ff",
-          stroke: "#2563eb",
-          rx: 6,
-          ry: 6,
-        },
-        label: {
-          text: `📁 ${name}`,
-          fill: "#1e40af",
-          fontSize: 14,
-          fontWeight: "bold",
-        },
-      },
-    });
-
-    stencilInstanceRef.current?.load(
-      { entities: [folderElement] },
-      { addToExisting: true }
+    // Auto-select first available diagram type for the selected model
+    const availableDiagrams = DIAGRAM_TYPES.filter(
+      (dt) => dt.modelTypeId === modelTypeId
     );
+    if (availableDiagrams.length > 0) {
+      setSelectedDiagramType(availableDiagrams[0].id);
+    }
+  }, []);
 
-    setNewFolderName("");
-  };
+  const handleDiagramTypeSelect = useCallback((diagramTypeId: string) => {
+    setSelectedDiagramType(diagramTypeId);
+  }, []);
 
-  const handleSectionClick = (section: string) => {
-    setOpenSection(openSection === section ? null : section);
-  };
-  // Filter groups based on selected model types
   const getFilteredGroups = () => {
     const allGroups = {
       basic: {
@@ -323,10 +561,15 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         index: 2,
         closed: !expandedGroups.has("basic"),
       },
+      diagramTypes: {
+        label: "Diagram Types",
+        index: 2.5,
+        closed: !expandedGroups.has("diagramTypes"),
+      },
       // complex: {
-      //   label: "Free Tools",
+      //   label: "Stencil Tools",
       //   index: 3,
-      //   closed: !expandedGroups.has("freeModel"),
+      //   closed: !expandedGroups.has("complex"),
       // },
       mindMap: {
         label: "Mind Map Stencil",
@@ -409,47 +652,36 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         closed: !expandedGroups.has("dependencyPropagationModel"),
       },
     };
-
-    // If no model types selected, show basic and complex groups only
-    if (selectedModelTypes.size === 0) {
+    if (!selectedModelType) {
       return {
         basic: allGroups.basic,
-        freeModel: allGroups.freeModel,
+        diagramTypes: allGroups.diagramTypes,
+        //complex: allGroups.complex,
       };
     }
 
-    // Filter groups based on selected model types
+    if (!selectedModelType) {
+      return {
+        basic: allGroups.basic,
+        diagramTypes: allGroups.diagramTypes,
+        //complex: allGroups.complex,
+      };
+    }
+
+    // Only show the selected model type's group
     const filteredGroups: any = {
       basic: allGroups.basic,
-      // freeModel: allGroups.freeModel,
+      diagramTypes: allGroups.diagramTypes,
+      //complex: allGroups.complex,
     };
 
-    MODEL_TYPES.forEach((modelType) => {
-      if (selectedModelTypes.has(modelType.id)) {
-        filteredGroups[modelType.groupKey] =
-          allGroups[modelType.groupKey as keyof typeof allGroups];
-      }
-    });
+    const selectedModel = MODEL_TYPES.find((mt) => mt.id === selectedModelType);
+    if (selectedModel) {
+      filteredGroups[selectedModel.groupKey] =
+        allGroups[selectedModel.groupKey as keyof typeof allGroups];
+    }
 
     return filteredGroups;
-  };
-
-  // Get filtered shapes data for loading into stencil
-  const getFilteredShapesData = () => {
-    const shapesData: any = {};
-
-    // Always include basic and complex
-    shapesData.basic = []; // Will be populated with model type buttons
-    shapesData.complex = []; // Will be populated with allElements
-
-    // Add selected model types
-    MODEL_TYPES.forEach((modelType) => {
-      if (selectedModelTypes.has(modelType.id)) {
-        shapesData[modelType.groupKey] = [];
-      }
-    });
-
-    return shapesData;
   };
 
   useEffect(() => {
@@ -474,10 +706,21 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         "*": ["attrs/headerText/text", "attrs/label/text"],
         "erd.Entity": ["attrs/headerText/text"],
       },
-      dragStartClone: (cell: dia.Element) => cell.clone(),
+      dragStartClone: (cell: dia.Element) => {
+        // Create a proper clone with a new unique ID
+        const clone = cell.clone();
+        clone.set("id", undefined); // Remove ID to force new one
+        return clone;
+      },
       dragEndClone: (cell: dia.Element) => {
+        // Create a completely new element with unique ID
         const finalElement = cell.clone();
+
+        // Force a new unique ID
         finalElement.set("id", undefined);
+        finalElement.set("id", joint.util.uuid());
+
+        // Reset any shared references to prevent conflicts
         if (finalElement.get("type") === "erd.Entity") {
           finalElement.attr("headerText/text", "New Entity");
           finalElement.attr(
@@ -565,9 +808,6 @@ const Stencil = ({ paper, graph }: StencilProps) => {
         } else if (finalElement.attr("root/title") === "Link") {
           const newSvg = `<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Tail marker -->
-    
-    <!-- Head marker -->
     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="currentColor" />
     </marker>
@@ -599,18 +839,14 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Requirement") {
           const newSvg = `<svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer rectangle -->
   <rect x="5" y="5" width="190" height="90" rx="5" ry="5" fill="#FAFFF5" stroke="#2F855A" stroke-width="1"/>
 
-  <!-- Horizontal line -->
   <line x1="5" y1="35" x2="195" y2="35" stroke="#2F855A" stroke-width="1"/>
 
-  <!-- Header text -->
   <text x="10" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2F855A">
     RED-001
   </text>
 
-  <!-- Description text -->
   <text x="10" y="60" font-family="Arial, sans-serif" font-size="16" fill="#4A5568">
     Describe requirement he
   </text>
@@ -623,7 +859,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.size(100, 100);
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Actor") {
-          finalElement.attr("image/xlink:href", actorSvg);
+          finalElement.attr("image/xlink:href", rmactorSvg);
           finalElement.size(120, 180);
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Use Case") {
@@ -1346,10 +1582,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      fill="none"
      stroke="currentColor"
      stroke-width="0.5">
-  <!-- Diamond outline -->
   <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
 
-  <!-- Diagonal cross perfectly touching inside of diamond -->
   <line x1="13.75" y1="13.75" x2="36.25" y2="36.25" />
   <line x1="36.25" y1="13.75" x2="13.75" y2="36.25" />
 </svg>
@@ -1366,10 +1600,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      fill="none"
      stroke="currentColor"
      stroke-width="0.5">
-  <!-- Diamond shape -->
   <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
 
-  <!-- Inner circle -->
   <circle cx="25" cy="25" r="7.5" />
 </svg>
 `;
@@ -1385,13 +1617,10 @@ const Stencil = ({ paper, graph }: StencilProps) => {
      fill="none"
      stroke="currentColor"
      stroke-width="0.5">
-  <!-- Diamond shape -->
   <polygon points="25,2.5 47.5,25 25,47.5 2.5,25" />
 
-  <!-- Vertical line (centered) -->
   <line x1="25" y1="12.5" x2="25" y2="37.5" />
 
-  <!-- Horizontal line (centered) -->
   <line x1="12.5" y1="25" x2="37.5" y2="25" />
 </svg>
 
@@ -1404,10 +1633,8 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.attr("label/text", "");
         } else if (finalElement.attr("root/title") === "Relationship") {
           const newSvg = `<svg width="60" height="20" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
-  <!-- Main horizontal line (longer) -->
   <line x1="0" y1="10" x2="35" y2="10" stroke="black" stroke-width="1" />
   
-  <!-- Crow's foot (3 lines) -->
   <line x1="35" y1="10" x2="60" y2="0" stroke="black" stroke-width="1" />
   <line x1="35" y1="10" x2="60" y2="10" stroke="black" stroke-width="1" />
   <line x1="35" y1="10" x2="60" y2="20" stroke="black" stroke-width="1" />
@@ -1421,9 +1648,16 @@ const Stencil = ({ paper, graph }: StencilProps) => {
           finalElement.size(70, 40);
           finalElement.attr("label/text", "");
         }
+        const position = finalElement.get("position");
+        if (!position || (position.x === 0 && position.y === 0)) {
+          // Set a default position if none exists
+          finalElement.position(50, 50);
+        }
+
         return finalElement;
       },
     });
+    stencilInstanceRef.current = stencil; // Store instance
 
     stencil.on(
       "element:drop",
@@ -1521,1369 +1755,614 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       entitiesGroupLabel.appendChild(addBtn);
     }
 
-    // ========== Add Model Type Filter Dropdown to "MODEL TYPES" (basic group) ==========
-
     const basicLabel = stencil.el.querySelector(
       '[data-name="basic"] .group-label'
     );
     if (basicLabel) {
-      // Create dropdown container
+      // Create a container for the dropdown
       const dropdownContainer = document.createElement("div");
       dropdownContainer.style.cssText = `
-        position: relative;
-        display: inline-block;
-        margin-left: 8px;
-        z-index: 3000;
-      `;
+      display: block;
+      margin: 8px 0 4px 0;
+      width: 100%;
+    `;
 
-      // Create dropdown button
-      const dropdownBtn = document.createElement("button");
-      dropdownBtn.innerHTML = `
-        <span class="dropdown-label" style="font-size: 11px;">
-    ${
-      Array.from(selectedModelTypes)
-        .map((id) => MODEL_TYPES.find((type) => type.id === id)?.label)
-        .filter(Boolean)
-        .join(", ") || "Select Models"
-    }
-  </span>
-      `;
-      dropdownBtn.title = "Filter Model Types";
-      dropdownBtn.style.cssText = `
-        display: flex;
-        align-items: center;
-        padding: 4px 8px;
-        font-size: 11px;
-        border-radius: 4px;
-        border: 1px solid #2563eb;
-        background-color: white;
-        color: #2563eb;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      `;
+      // Create the select element
+      const selectElement = document.createElement("select");
+      selectElement.style.cssText = `
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background-color: white;
+      color: #374151;
+      cursor: pointer;
+      outline: none;
+    `;
 
-      // Create dropdown menu
-      const dropdownMenu = document.createElement("div");
-      dropdownMenu.style.cssText = `
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 220px;
-        background: white;
-        border: 1px solid #d1d5db;
-        border-radius: 6px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-         z-index: 4000; /* Make sure it's on top of everything */
-        display: none;
-        max-height: 250px;
-        overflow-y: auto;
-      `;
-
-      // Create Select All option
-      const selectAllOption = document.createElement("div");
-      const selectAllState = getSelectAllState();
-      selectAllOption.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6; font-size: 12px;">
-          <div style="width: 14px; height: 14px; border: 1px solid #d1d5db; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: white;">
-            ${
-              selectAllState === "all"
-                ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
-                : ""
-            }
-            ${
-              selectAllState === "partial"
-                ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
-                : ""
-            }
-          </div>
-          <span style="font-weight: 500; color: #374151;">Select All</span>
-        </div>
-      `;
-      selectAllOption.addEventListener("mouseover", () => {
-        if (selectAllOption.firstElementChild) {
-          (
-            selectAllOption.firstElementChild as HTMLElement
-          ).style.backgroundColor = "#f8fafc";
-        }
-      });
-      selectAllOption.addEventListener("mouseout", () => {
-        if (selectAllOption.firstElementChild) {
-          (
-            selectAllOption.firstElementChild as HTMLElement
-          ).style.backgroundColor = "transparent";
-        }
-      });
-      selectAllOption.addEventListener("click", () => {
-        // Define handleSelectAll to toggle all model types
-        const handleSelectAll = () => {
-          if (selectedModelTypes.size === MODEL_TYPES.length) {
-            setSelectedModelTypes(new Set());
-          } else {
-            setSelectedModelTypes(new Set(MODEL_TYPES.map((type) => type.id)));
-          }
-        };
-        handleSelectAll();
-        updateDropdownUI();
+      // Add options to select
+      MODEL_TYPES.forEach((modelType) => {
+        const option = document.createElement("option");
+        option.value = modelType.id;
+        option.textContent = modelType.label;
+        option.selected = selectedModelType === modelType.id;
+        selectElement.appendChild(option);
       });
 
-      // Create individual model type options
-      const modelTypeOptions = document.createElement("div");
-
-      const updateDropdownUI = () => {
-        // Update button text
-        const spanEl = dropdownBtn.querySelector(".dropdown-label");
-        if (spanEl) {
-          const selectedLabels = Array.from(selectedModelTypes)
-            .map((id) => MODEL_TYPES.find((type) => type.id === id)?.label)
-            .filter(Boolean);
-
-          spanEl.textContent =
-            selectedLabels.length > 0
-              ? selectedLabels.join(", ")
-              : "Select Models";
-        }
-
-        // Update Select All state
-        const newSelectAllState = getSelectAllState();
-        const selectAllCheckbox = selectAllOption.querySelector("div > div");
-        if (selectAllCheckbox) {
-          selectAllCheckbox.innerHTML =
-            newSelectAllState === "all"
-              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
-              : newSelectAllState === "partial"
-              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
-              : "";
-        }
-
-        // Update individual checkboxes
-        MODEL_TYPES.forEach((modelType, index) => {
-          const option = modelTypeOptions.children[index];
-          const checkbox = option.querySelector("div > div");
-          if (checkbox) {
-            checkbox.innerHTML = selectedModelTypes.has(modelType.id)
-              ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
-              : "";
-          }
-        });
-
-        // Re-render stencil with updated selection
-        // This will be handled by the existing useEffect
+      // Handle selection change
+      selectElement.onchange = (e) => {
+        const target = e.target as HTMLSelectElement;
+        handleModelTypeSelect(target.value);
       };
 
-      MODEL_TYPES.forEach((modelType) => {
-        const option = document.createElement("div");
-        option.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; font-size: 12px;">
-            <div style="width: 14px; height: 14px; border: 1px solid #d1d5db; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: white;">
-              ${
-                selectedModelTypes.has(modelType.id)
-                  ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3"><polyline points="20,6 9,17 4,12"></polyline></svg>'
-                  : ""
-              }
-            </div>
-            <span style="color: #374151;">${modelType.label}</span>
-          </div>
-        `;
-        option.addEventListener("mouseover", () => {
-          if (option.firstElementChild) {
-            (option.firstElementChild as HTMLElement).style.backgroundColor =
-              "#f8fafc";
-          }
-        });
-        option.addEventListener("mouseout", () => {
-          if (option.firstElementChild) {
-            (option.firstElementChild as HTMLElement).style.backgroundColor =
-              "transparent";
-          }
-        });
-        option.addEventListener("click", () => {
-          handleModelTypeToggle(modelType.id);
-          updateDropdownUI();
-        });
-        modelTypeOptions.appendChild(option);
-      });
+      dropdownContainer.appendChild(selectElement);
 
-      // Assemble dropdown
-      dropdownMenu.appendChild(selectAllOption);
-      dropdownMenu.appendChild(modelTypeOptions);
-      dropdownContainer.appendChild(dropdownBtn);
-      dropdownContainer.appendChild(dropdownMenu);
-
-      // Toggle dropdown on button click
-      dropdownBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        // Fix: normalize current display state (in case it's empty)
-        const currentDisplay = dropdownMenu.style.display.trim();
-        const isVisible = currentDisplay === "block";
-
-        // Toggle display
-        dropdownMenu.style.display = isVisible ? "none" : "block";
-
-        // Optional: scroll to top of dropdown every time it's opened
-        if (!isVisible) {
-          dropdownMenu.scrollTop = 0;
-        }
-
-        // Optional debug
-        console.log(`Dropdown is now ${isVisible ? "hidden" : "shown"}`);
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener("click", (e) => {
-        const target = e.target as Node | null;
-        if (dropdownContainer && !dropdownContainer.contains(target)) {
-          dropdownMenu.style.display = "none";
-        }
-      });
-
-      // Hover effects for button
-      dropdownBtn.addEventListener("mouseover", () => {
-        dropdownBtn.style.backgroundColor = "#eff6ff";
-        dropdownBtn.style.borderColor = "#3b82f6";
-      });
-      dropdownBtn.addEventListener("mouseout", () => {
-        dropdownBtn.style.backgroundColor = "white";
-        dropdownBtn.style.borderColor = "#2563eb";
-      });
-
+      // Insert the dropdown after the label
       basicLabel.appendChild(dropdownContainer);
-      console.log("Dropdown container added to basicLabel");
     }
     stencilContainerRef.current.style.position = "relative";
 
     stencilContainerRef.current.innerHTML = "";
     stencilContainerRef.current.appendChild(stencil.el);
+    // ========== Updated Diagram Type Dropdown (Single Select) ==========
+    const diagramTypesLabel = stencil.el.querySelector(
+      '[data-name="diagramTypes"] .group-label'
+    );
+    if (diagramTypesLabel) {
+      // Create a container for the dropdown
+      const dropdownContainer = document.createElement("div");
+      dropdownContainer.style.cssText = `
+      display: block;
+      margin: 8px 0 4px 0;
+      width: 100%;
+    `;
 
-    const allElements: dia.Element[] = [];
+      // Create the select element
+      const selectElement = document.createElement("select");
+      selectElement.style.cssText = `
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background-color: white;
+      color: #374151;
+      cursor: pointer;
+      outline: none;
+    `;
 
-    paletteGroups.forEach((group) => {
-      group.elements.forEach((cfg) => {
-        if (cfg.type === "erd.Entity") {
-          allElements.push(new EREntity(cfg));
+      const updateDiagramSelect = () => {
+        // Clear existing options
+        selectElement.innerHTML = "";
+
+        const availableTypes = getAvailableDiagramTypes();
+
+        if (availableTypes.length === 0 || !selectedModelType) {
+          // Add placeholder option
+          const placeholderOption = document.createElement("option");
+          placeholderOption.value = "";
+          placeholderOption.textContent = "Select Model Type First";
+          placeholderOption.disabled = true;
+          placeholderOption.selected = true;
+          selectElement.appendChild(placeholderOption);
+          selectElement.disabled = true;
+          selectElement.style.opacity = "0.5";
         } else {
-          const shapeName = cfg.type.split(
-            "."
-          )[1] as keyof typeof shapes.standard;
-          const ShapeClass = shapes.standard[shapeName];
-          if (ShapeClass && typeof ShapeClass === "function") {
-            const Ctor = ShapeClass as new (args: any) => dia.Element;
-            allElements.push(new Ctor(cfg));
-          } else {
-            allElements.push(new shapes.standard.Rectangle(cfg));
-          }
+          selectElement.disabled = false;
+          selectElement.style.opacity = "1";
+
+          // Add default option
+          const defaultOption = document.createElement("option");
+          defaultOption.value = "";
+          defaultOption.textContent = "Select Diagram Type";
+          defaultOption.selected = !selectedDiagramType;
+          selectElement.appendChild(defaultOption);
+
+          // Add available diagram types
+          availableTypes.forEach((diagramType) => {
+            const option = document.createElement("option");
+            option.value = diagramType.id;
+            option.textContent = diagramType.label;
+            option.selected = selectedDiagramType === diagramType.id;
+            selectElement.appendChild(option);
+          });
         }
+      };
+
+      // Initial population
+      updateDiagramSelect();
+
+      // Handle selection change
+      selectElement.onchange = (e) => {
+        const target = e.target as HTMLSelectElement;
+        if (target.value) {
+          handleDiagramTypeSelect(target.value);
+        }
+      };
+
+      dropdownContainer.appendChild(selectElement);
+
+      // Insert the dropdown after the label
+      diagramTypesLabel.appendChild(dropdownContainer);
+
+      // Update the diagram select when model type changes
+      const observer = new MutationObserver(() => {
+        updateDiagramSelect();
       });
+
+      // Store reference to update function for external calls
+      (selectElement as any).updateOptions = updateDiagramSelect;
+    }
+    // We need to re-render the menu content whenever selections change
+  }, [paper, graph, selectedModelType, selectedDiagramType]);
+
+  const allElements: dia.Element[] = [];
+
+  paletteGroups.forEach((group) => {
+    group.elements.forEach((cfg) => {
+      if (cfg.type === "erd.Entity") {
+        allElements.push(createEREntity(cfg));
+      } else {
+        const shapeName = cfg.type.split(
+          "."
+        )[1] as keyof typeof shapes.standard;
+        const ShapeClass = shapes.standard[shapeName];
+        if (ShapeClass && typeof ShapeClass === "function") {
+          const Ctor = ShapeClass as new (args: any) => dia.Element;
+          allElements.push(new Ctor(cfg));
+        } else {
+          allElements.push(new shapes.standard.Rectangle(cfg));
+        }
+      }
     });
+  });
 
-    const createBoundedIcon = (
-      title: string,
-      svg: string,
-      isCollapsed: boolean
-    ) => {
-      const size = isCollapsed
-        ? { width: 36, height: 36 }
-        : { width: 60, height: 60 };
-      const imageSize = isCollapsed ? 30 : 50;
-      const imageOffset = isCollapsed ? 3 : 5;
+  const createBoundedIcon = (
+    title: string,
+    svg: string,
+    isCollapsed: boolean
+  ) => {
+    const size = isCollapsed
+      ? { width: 36, height: 36 }
+      : { width: 60, height: 60 };
+    const imageSize = isCollapsed ? 30 : 50;
+    const imageOffset = isCollapsed ? 3 : 5;
 
-      const labelAttrs = isCollapsed
-        ? { text: "" } // No label
-        : {
-            text: title,
-            fontSize: 11,
-            textAnchor: "middle",
-            x: 30,
-            y: 58,
-          };
+    const labelAttrs = isCollapsed
+      ? { text: "" } // No label
+      : {
+          text: title,
+          fontSize: 11,
+          textAnchor: "middle",
+          x: 30,
+          y: 58,
+        };
 
-      return new shapes.standard.Image({
-        size,
-        attrs: {
-          root: {
-            title,
-            stroke: "#535965ff",
-            strokeWidth: 1,
-            rx: 4,
-            ry: 4,
-            fill: "transparent",
-          },
-          image: {
-            "xlink:href": `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
-            width: imageSize,
-            height: imageSize,
-            x: imageOffset,
-            y: imageOffset,
-          },
-          label: labelAttrs,
+    return new shapes.standard.Image({
+      size,
+      attrs: {
+        root: {
+          title,
+          stroke: "#535965ff",
+          strokeWidth: 1,
+          rx: 4,
+          ry: 4,
+          fill: "transparent",
         },
-      });
-    };
-
-    const topicShape = createBoundedIcon("Topic", topicSvg, isPanelCollapsed);
-    const subtopicShape = createBoundedIcon(
-      "Subtopic",
-      subtopicSvg,
-      isPanelCollapsed
-    );
-    const linkShape = createBoundedIcon("Link", linkSvg, isPanelCollapsed);
-
-    const noteShape = createBoundedIcon("Note", noteSvg, isPanelCollapsed);
-
-    const startEventShape = createBoundedIcon(
-      "Start Event",
-      startEventSvg,
-      isPanelCollapsed
-    );
-
-    const taskActivityShape = createBoundedIcon(
-      "Task/Activity",
-      taskactivitySvg,
-      isPanelCollapsed
-    );
-
-    const gatewayShape = createBoundedIcon(
-      "Gateway",
-      gatewaySvg,
-      isPanelCollapsed
-    );
-
-    const endEventShape = createBoundedIcon(
-      "End Event",
-      endeventSvg,
-      isPanelCollapsed
-    );
-
-    const sequenceFlowShape = createBoundedIcon(
-      "Sequence Flow",
-      sequenceflowSvg,
-      isPanelCollapsed
-    );
-
-    const requirementShape = createBoundedIcon(
-      "Requirement",
-      requirementSvg,
-      isPanelCollapsed
-    );
-
-    const usecaseShape = createBoundedIcon(
-      "Use Case",
-      useCaseSvg,
-      isPanelCollapsed
-    );
-
-    const EntitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer rounded rectangle (table frame) -->
-  <rect x="7" y="10" width="36" height="30" rx="3" />
-  <!-- Horizontal divider for header -->
-  <line x1="7" y1="18" x2="43" y2="18" />
-</svg>
-
-
-
-
-
-`;
-    const EntityShape = createBoundedIcon(
-      "Entity",
-      EntitySvg,
-      isPanelCollapsed
-    );
-
-    const TableSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Main outer rectangle for the table -->
-  <rect x="10" y="10" width="30" height="30" rx="3" ry="3" />
-
-  <!-- Top row separator -->
-  <path d="M 10 17.5 H 40" />
-
-  <!-- Middle row separator -->
-  <path d="M 10 25 H 40" />
-  
-  <!-- Bottom row separator -->
-  <path d="M 10 32.5 H 40" />
-
-  <!-- Added column from the 2nd row to the end -->
-  <path d="M 20 17.5 V 40" />
-</svg>
-`;
-    const TableShape = createBoundedIcon("Table", TableSvg, isPanelCollapsed);
-
-    const EntitystencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50" stroke="currentColor" stroke-width="0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Table Header -->
-  <rect x="1.6665" y="2.7775" width="46.666" height="10" />
-  <!-- Table Body -->
-  <rect x="1.6665" y="11.665" width="46.666" height="20" />
-  <!-- Lines for rows -->
-  <line x1="1.6665" y1="16.665" x2="48.3325" y2="16.665" />
-  <line x1="1.6665" y1="21.665" x2="48.3325" y2="21.665" />
-  <line x1="1.6665" y1="26.665" x2="48.3325" y2="26.665" />
-  <!-- Lines for columns -->
-  <line x1="16.665" y1="11.665" x2="16.665" y2="31.665" />
-  <line x1="30.0005" y1="11.665" x2="30.0005" y2="31.665" />
-  <!-- Centered Table Label -->
-  <text
-    x="25"
-    y="7.7775"
-    font-family="Arial"
-    font-size="4"
-    font-weight="normal"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    fill="currentColor"
-    opacity="0.5"
-  >
-  >
-    Entity
-  </text>
-</svg>
-
-
-
-`;
-    const EntitystencilShape = createBoundedIcon(
-      "Entity",
-      EntitystencilSvg,
-      isPanelCollapsed
-    );
-
-    const ActorShape = createBoundedIcon("Actor", actorSvg, isPanelCollapsed);
-
-    const stakeholderShape = createBoundedIcon(
-      "Stakeholder",
-      stakeholderSvg,
-      isPanelCollapsed
-    );
-
-    const InheritanceShape = createBoundedIcon(
-      "Inheritance",
-      inheritanceSvg,
-      isPanelCollapsed
-    );
-
-    const InheritanceLDMShape = createBoundedIcon(
-      "Inheritance",
-      inheritanceSvg,
-      isPanelCollapsed
-    );
-
-    const onetoNSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-  xmlns="http://www.w3.org/2000/svg"
-  stroke="currentColor" fill="none" stroke-width="0.5">
-
-  <!-- Left vertical bar (One) -->
-<line x1="2" y1="21" x2="2" y2="29"/>
-
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="42" y2="25"/>
-
-  <!-- Right side Crow’s foot (Many) with reduced angle -->
-  <line x1="42" y1="25" x2="48" y2="21"/>
-  <line x1="42" y1="25" x2="48" y2="25"/>
-  <line x1="42" y1="25" x2="48" y2="29"/>
-</svg>
-
-
-
-`;
-    const onetoNShape = createBoundedIcon(
-      "1:N Relationship",
-      onetoNSvg,
-      isPanelCollapsed
-    );
-
-    const OneToNSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-  xmlns="http://www.w3.org/2000/svg"
-  stroke="currentColor" fill="none" stroke-width="0.5">
-
-  <!-- Left vertical bar (One) -->
-<line x1="2" y1="21" x2="2" y2="29"/>
-
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="42" y2="25"/>
-
-  <!-- Right side Crow’s foot (Many) with reduced angle -->
-  <line x1="42" y1="25" x2="48" y2="21"/>
-  <line x1="42" y1="25" x2="48" y2="25"/>
-  <line x1="42" y1="25" x2="48" y2="29"/>
-</svg>
-
-
-`;
-    const OneToNShape = createBoundedIcon(
-      "1:N Relationship",
-      OneToNSvg,
-      isPanelCollapsed
-    );
-
-    const onetooneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="48" y2="25"/>
-
-  <!-- Left vertical bar -->
- <line x1="2" y1="21" x2="2" y2="29"/>
-
-  <!-- Right vertical bar -->
- <line x1="48" y1="21" x2="48" y2="29"/>
-</svg>
-
-
-
-
-`;
-    const onetooneShape = createBoundedIcon(
-      "1:1 Relationship",
-      onetooneSvg,
-      isPanelCollapsed
-    );
-
-    const OneToOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="48" y2="25"/>
-
-  <!-- Left vertical bar -->
- <line x1="2" y1="21" x2="2" y2="29"/>
-
-  <!-- Right vertical bar -->
- <line x1="48" y1="21" x2="48" y2="29"/>
-</svg>
-
-
-
-`;
-    const OneToOneShape = createBoundedIcon(
-      "1:1 Relationship",
-      OneToOneSvg,
-      isPanelCollapsed
-    );
-
-    const OnetoOneSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none" stroke="currentColor" stroke-width="0.5">
-
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="48" y2="25"/>
-
-  <!-- Left vertical bar -->
- <line x1="2" y1="21" x2="2" y2="29"/>
-
-  <!-- Right vertical bar -->
- <line x1="48" y1="21" x2="48" y2="29"/>
-</svg>
-
-
-`;
-    const OnetoOneShape = createBoundedIcon(
-      "1:1 Relationship",
-      OnetoOneSvg,
-      isPanelCollapsed
-    );
-
-    const NtoNSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     xmlns="http://www.w3.org/2000/svg">
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="48" y2="25"/>
-
-  <!-- Left Crow’s foot (narrower angle) -->
-  <line x1="8" y1="25" x2="2" y2="21"/>
-  <line x1="8" y1="25" x2="2" y2="25"/>
-  <line x1="8" y1="25" x2="2" y2="29"/>
-
-  <!-- Right Crow’s foot (narrower angle) -->
-  <line x1="42" y1="25" x2="48" y2="21"/>
-  <line x1="42" y1="25" x2="48" y2="25"/>
-  <line x1="42" y1="25" x2="48" y2="29"/>
-</svg>
-
-
-
-
-`;
-    const NtoNShape = createBoundedIcon(
-      "N:N Relationship",
-      NtoNSvg,
-      isPanelCollapsed
-    );
-
-    const ntonSvg = `<svg viewBox="0 0 50 50" width="50" height="50"
-     fill="none" stroke="currentColor" stroke-width="0.5"
-     xmlns="http://www.w3.org/2000/svg">
-  <!-- Horizontal connector -->
-  <line x1="2" y1="25" x2="48" y2="25"/>
-
-  <!-- Left Crow’s foot (narrower angle) -->
-  <line x1="8" y1="25" x2="2" y2="21"/>
-  <line x1="8" y1="25" x2="2" y2="25"/>
-  <line x1="8" y1="25" x2="2" y2="29"/>
-
-  <!-- Right Crow’s foot (narrower angle) -->
-  <line x1="42" y1="25" x2="48" y2="21"/>
-  <line x1="42" y1="25" x2="48" y2="25"/>
-  <line x1="42" y1="25" x2="48" y2="29"/>
-</svg>
-
-
-
-
-`;
-    const ntonShape = createBoundedIcon(
-      "N:N Relationship",
-      ntonSvg,
-      isPanelCollapsed
-    );
-
-    const goalShape = createBoundedIcon("Goal", goalSvg, isPanelCollapsed);
-
-    const SubProcessShape = createBoundedIcon(
-      "Sub Process",
-      subprocessSvg,
-      isPanelCollapsed
-    );
-
-    const TransactionShape = createBoundedIcon(
-      "Transaction",
-      transactionSvg,
-      isPanelCollapsed
-    );
-
-    const CallActivityShape = createBoundedIcon(
-      "Call Activity",
-      callactivitySvg,
-      isPanelCollapsed
-    );
-
-    const ExclusiveGatewayShape = createBoundedIcon(
-      "Exclusive Gateway",
-      exclusivegatewaySvg,
-      isPanelCollapsed
-    );
-
-    const EventGatewayShape = createBoundedIcon(
-      "Event Gateway",
-      eventgatewaySvg,
-      isPanelCollapsed
-    );
-
-    const ParallelGatewayShape = createBoundedIcon(
-      "Parallel Gateway",
-      parallelgatewaySvg,
-      isPanelCollapsed
-    );
-
-    const MessageFlowShape = createBoundedIcon(
-      "Message Flow",
-      messageflowSvg,
-      isPanelCollapsed
-    );
-
-    const AssociationSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5"
-     >
-  <!-- Dashed horizontal line (centered, with padding) -->
-  <line x1="2" y1="25" x2="48" y2="25" stroke-dasharray="2 2" />
-</svg>
-
-`;
-    const AssociationShape = createBoundedIcon(
-      "Association",
-      AssociationSvg,
-      isPanelCollapsed
-    );
-    const associationSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="0.5"
-     >
-  <!-- Dashed horizontal line (centered, with padding) -->
-  <line x1="2" y1="25" x2="48" y2="25" stroke-dasharray="2 2" />
-</svg>
-`;
-    const associationShape = createBoundedIcon(
-      "Association",
-      associationSvg,
-      isPanelCollapsed
-    );
-
-    const anchorlinkShape = createBoundedIcon(
-      "Anchor Link",
-      anchorLinkSvg,
-      isPanelCollapsed
-    );
-
-    const classShape = createBoundedIcon("Class", classSvg, isPanelCollapsed);
-
-    const interfaceShape = createBoundedIcon(
-      "Interface",
-      interfaceSvg,
-      isPanelCollapsed
-    );
-
-    const enumShape = createBoundedIcon("Enum", enumSvg, isPanelCollapsed);
-    //package needs to be fixed.
-    const PackagestencilSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Main server body -->
-  <rect x="3" y="15" width="42" height="30" rx="2" ry="2"/>
-  
-  <!-- Header / label slot -->
-  <rect x="3" y="10" width="15" height="5"/>
-  
-  <!-- Lights / slots -->
-  <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="30" width="4" height="6"/>
-  <rect x="32" y="24" width="4" height="6"/>
-</svg>
-
-
-`;
-    const PackagestencilShape = createBoundedIcon(
-      "Package",
-      PackagestencilSvg,
-      isPanelCollapsed
-    );
-
-    const cubeShape = createBoundedIcon("Cube", cubeSvg, isPanelCollapsed);
-
-    const dimensionShape = createBoundedIcon(
-      "Dimension",
-      dimensionSvg,
-      isPanelCollapsed
-    );
-
-    const measureShape = createBoundedIcon(
-      "Measure",
-      measureSvg,
-      isPanelCollapsed
-    );
-
-    const freeNodeShape = createBoundedIcon(
-      "Free Node",
-      freeNodeSvg,
-      isPanelCollapsed
-    );
-
-    const freeGroupShape = createBoundedIcon(
-      "Group",
-      groupSvg,
-      isPanelCollapsed
-    );
-
-    const connectorLineShape = createBoundedIcon(
-      "Connector Line",
-      connectorlineSvg,
-      isPanelCollapsed
-    );
-
-    const annotationShape = createBoundedIcon(
-      "Annotation",
-      annotationSvg,
-      isPanelCollapsed
-    );
-
-    const titleboxShape = createBoundedIcon(
-      "Title Box",
-      titleBoxSvg,
-      isPanelCollapsed
-    );
-
-    const processNodeShape = createBoundedIcon(
-      "Process Node",
-      processNodeSvg,
-      isPanelCollapsed
-    );
-
-    const subprocessNodeShape = createBoundedIcon(
-      "Subprocess Node",
-      subprocessNodeSvg,
-      isPanelCollapsed
-    );
-
-    const activityNodeShape = createBoundedIcon(
-      "Activity Node",
-      activityNodeSvg,
-      isPanelCollapsed
-    );
-
-    const organizationShape = createBoundedIcon(
-      "Organization",
-      organizationSvg,
-      isPanelCollapsed
-    );
-
-    const departmentShape = createBoundedIcon(
-      "Department",
-      departmentSvg,
-      isPanelCollapsed
-    );
-
-    const roleShape = createBoundedIcon("Role", roleSvg, isPanelCollapsed);
-
-    const positionShape = createBoundedIcon(
-      "Position",
-      positionSvg,
-      isPanelCollapsed
-    );
-
-    const reportingLineShape = createBoundedIcon(
-      "Reporting Line",
-      reportingLineSvg,
-      isPanelCollapsed
-    );
-
-    const groupStencilSvg = `<svg width="50" height="50" viewBox="0 0 50 50"
-     xmlns="http://www.w3.org/2000/svg"
-     stroke="currentColor" stroke-width="0.5" fill="none">
-  
-  <!-- Outer Dashed Rounded Rectangle -->
-  <rect x="5" y="10" width="40" height="30" rx="4"
-        stroke="currentColor" stroke-dasharray="3 2" />
-
-  <!-- Inner Rectangle -->
-  <rect x="12" y="16" width="26" height="18" rx="1"
-        stroke="currentColor" />
-
-  <!-- Group of shapes (circle, square, rectangle) centered in inner rectangle -->
-  <g transform="translate(25, 25)">
-    <!-- Square -->
-    <rect x="-6" y="-6" width="4" height="4" />
-    <!-- Circle -->
-    <circle cx="0" cy="0" r="2" />
-    <!-- Rectangle -->
-    <rect x="3" y="-2" width="5" height="4" />
-  </g>
-</svg>
-
-`;
-    const groupShape = createBoundedIcon(
-      "Group",
-      groupStencilSvg,
-      isPanelCollapsed
-    );
-
-    const businessCapabilityShape = createBoundedIcon(
-      "Business",
-      businessSvg,
-      isPanelCollapsed
-    );
-
-    const applicationShape = createBoundedIcon(
-      "Application",
-      applicationSvg,
-      isPanelCollapsed
-    );
-
-    const technologyComponentShape = createBoundedIcon(
-      "Technology",
-      technologySvg,
-      isPanelCollapsed
-    );
-
-    const dataObjecttShape = createBoundedIcon(
-      "Database",
-      databaseSvg,
-      isPanelCollapsed
-    );
-
-    const processShape = createBoundedIcon(
-      "Process",
-      processSvg,
-      isPanelCollapsed
-    );
-
-    const sourceShape = createBoundedIcon(
-      "Source",
-      sourceSvg,
-      isPanelCollapsed
-    );
-
-    const targetShape = createBoundedIcon(
-      "Target",
-      targetSvg,
-      isPanelCollapsed
-    );
-
-    const DataFlowShape = createBoundedIcon(
-      "Data Flow",
-      dataFlowSvg,
-      isPanelCollapsed
-    );
-
-    const TransformationShape = createBoundedIcon(
-      "Transformation",
-      transformationSvg,
-      isPanelCollapsed
-    );
-
-    const ServerShape = createBoundedIcon(
-      "Server",
-      serverSvg,
-      isPanelCollapsed
-    );
-
-    const DatabaseSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 50 50"
-  stroke="currentColor"
-  fill="none"
-  stroke-width="0.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <!-- Top oval of the database cylinder -->
-  <ellipse cx="25" cy="15" rx="15" ry="5" />
-  
-  <!-- Side lines of the database cylinder -->
-  <path d="M 10 15 V 40" />
-  <path d="M 40 15 V 40" />
-  
-  <!-- First middle oval section, creating the top section -->
-  <path d="M 10 25 A 15 5 0 0 0 40 25" />
-  
-  <!-- Second middle oval section, creating the middle section -->
-  <path d="M 10 32 A 15 5 0 0 0 40 32" />
-  
-  <!-- Bottom oval section, creating the bottom section -->
-  <path d="M 10 40 A 15 5 0 0 0 40 40 A 15 5 0 0 1 10 40 Z" />
-</svg>
-`;
-    const DatabaseShape = createBoundedIcon(
-      "Database",
-      DatabaseSvg,
-      isPanelCollapsed
-    );
-
-    const xmlShape = createBoundedIcon("XML", xmlSvg, isPanelCollapsed);
-
-    const businessProcessShape = createBoundedIcon(
-      "Business Process",
-      businessProcessSvg,
-      isPanelCollapsed
-    );
-
-    const replicationShape = createBoundedIcon(
-      "Replication",
-      replicationSvg,
-      isPanelCollapsed
-    );
-
-    const ReplicationServerShape = createBoundedIcon(
-      "Replication Server",
-      replicationServerSvg,
-      isPanelCollapsed
-    );
-
-    const ConnectionShape = createBoundedIcon(
-      "Connection",
-      connectionSvg,
-      isPanelCollapsed
-    );
-
-    const informationNodeShape = createBoundedIcon(
-      "Information",
-      informationSvg,
-      isPanelCollapsed
-    );
-
-    const inputShape = createBoundedIcon("Input", inputSvg, isPanelCollapsed);
-
-    const printShape = createBoundedIcon("Print", printSvg, isPanelCollapsed);
-
-    const StoreShape = createBoundedIcon("Store", storeSvg, isPanelCollapsed);
-
-    const ManageShape = createBoundedIcon(
-      "Manage",
-      manageSvg,
-      isPanelCollapsed
-    );
-
-    const secureShape = createBoundedIcon(
-      "Secure",
-      secureSvg,
-      isPanelCollapsed
-    );
-
-    const shredShape = createBoundedIcon("Shred", shredSvg, isPanelCollapsed);
-
-    const flowShape = createBoundedIcon("Flow", flowSvg, isPanelCollapsed);
-
-    const AccessPoint = createBoundedIcon(
-      "Access Point",
-      accesspointSvg,
-      isPanelCollapsed
-    );
-
-    const Repository = createBoundedIcon(
-      "Repository",
-      repositorySvg,
-      isPanelCollapsed
-    );
-
-    const impactNodeShape = createBoundedIcon(
-      "Impact",
-      impactSvg,
-      isPanelCollapsed
-    );
-
-    const changeEventShape = createBoundedIcon(
-      "Change Event",
-      changeEventSvg,
-      isPanelCollapsed
-    );
-
-    const riskEffectShape = createBoundedIcon(
-      "Risk/Effect",
-      riskSvg,
-      isPanelCollapsed
-    );
-
-    const causeEffectLinkShape = createBoundedIcon(
-      "Cause-Effect Link",
-      causeeffectSvg,
-      isPanelCollapsed
-    );
-
-    const mitigationStrategyShape = createBoundedIcon(
-      "Mitigation",
-      mitigationSvg,
-      isPanelCollapsed
-    );
-
-    const matrixShape = createBoundedIcon(
-      "Matrix",
-      matrixSvg,
-      isPanelCollapsed
-    );
-
-    const entitySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer rounded rectangle (table frame) -->
-  <rect x="7" y="10" width="36" height="30" rx="3" />
-  <!-- Horizontal divider for header -->
-  <line x1="7" y1="18" x2="43" y2="18" />
-</svg>
-
-
-
-`;
-    const entityShape = createBoundedIcon(
-      "Entity",
-      entitySvg,
-      isPanelCollapsed
-    );
-
-    const DependencyLinkSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <path d="M1 25h44" stroke-dasharray="2 1"/>
-  <path d="M44 21l4 4-4 4" stroke-dasharray="2 1"/>
-</svg>
-
-
-`;
-    const DependencyLinkShape = createBoundedIcon(
-      "Dependency Link",
-      DependencyLinkSvg,
-      isPanelCollapsed
-    );
-    const packageSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Main server body -->
-  <rect x="3" y="15" width="42" height="30" rx="2" ry="2"/>
-  
-  <!-- Header / label slot -->
-  <rect x="3" y="10" width="15" height="5"/>
-  
-  <!-- Lights / slots -->
-  <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="30" width="4" height="6"/>
-  <rect x="32" y="24" width="4" height="6"/>
-</svg>
-`;
-    const packagelinkShape = createBoundedIcon(
-      "Package",
-      packageSvg,
-      isPanelCollapsed
-    );
-
-    const PackageSvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
-  <!-- Main server body -->
-  <rect x="4" y="15" width="42" height="30" rx="2" ry="2"/>
-  
-  <!-- Header / label slot -->
-  <rect x="4" y="10" width="15" height="5"/>
-  
-  <!-- Lights / slots -->
-  <rect x="12" y="24" width="4" height="6"/>
-  <rect x="22" y="30" width="4" height="6"/>
-  <rect x="32" y="24" width="4" height="6"/>
-</svg>
-
-`;
-    const PackagelinkShape = createBoundedIcon(
-      "Package",
-      PackageSvg,
-      isPanelCollapsed
-    );
-
-    const ViewShape = createBoundedIcon("View", viewSvg, isPanelCollapsed);
-
-    const ReferenceShape = createBoundedIcon(
-      "Reference",
-      referenceSvg,
-      isPanelCollapsed
-    );
-
-    const ProcedureShape = createBoundedIcon(
-      "Procedure",
-      procedureSvg,
-      isPanelCollapsed
-    );
-
-    const FileIconShape = createBoundedIcon("File", fileSvg, isPanelCollapsed);
-
-    const portShape = createBoundedIcon("Port", portSvg, isPanelCollapsed);
-    //Important
-
-    const generalizationShape = createBoundedIcon(
-      "Generalization",
-      generalizationSvg,
-      isPanelCollapsed
-    );
-
-    const aggregationShape = createBoundedIcon(
-      "Aggregation",
-      aggregationSvg,
-      isPanelCollapsed
-    );
-
-    const compositionShape = createBoundedIcon(
-      "Composition",
-      compositionSvg,
-      isPanelCollapsed
-    );
-    const dependencySvg = `<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <path d="M1 25h44" stroke-dasharray="2 1"/>
-  <path d="M44 21l4 4-4 4" stroke-dasharray="2 1"/>
-</svg>
-
-
-
-`;
-    const dependencyShape = createBoundedIcon(
-      "Dependency",
-      dependencySvg,
-      isPanelCollapsed
-    );
-    // Prepare filtered shapes data
-    const shapesToLoad: any = {};
-
-    // Always load complex group
-    shapesToLoad.freeModel = [
-      freeNodeShape,
-      groupShape,
-      linkShape,
-      noteShape,
-      titleboxShape,
-    ];
-
-    // Load shapes for selected model types only
-    if (selectedModelTypes.has("mindMap")) {
-      shapesToLoad.mindMap = [topicShape, subtopicShape, noteShape, linkShape];
+        image: {
+          "xlink:href": `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
+          width: imageSize,
+          height: imageSize,
+          x: imageOffset,
+          y: imageOffset,
+        },
+        label: labelAttrs,
+      },
+    });
+  };
+
+  // Updated useEffect for shape loading
+  useEffect(() => {
+    if (stencilInstanceRef.current && selectedDiagramType) {
+      // Update groups based on model type selection
+      stencilInstanceRef.current.groups = getFilteredGroups();
+
+      // Prepare an object to hold the shapes for the stencil
+      const shapesToLoad: { [key: string]: dia.Element[] } = {};
+
+      // Helper function to add shapes to a group
+      const addShapesToGroup = (groupKey: string, shapes: dia.Element[]) => {
+        if (!shapesToLoad[groupKey]) {
+          shapesToLoad[groupKey] = [];
+        }
+        shapesToLoad[groupKey].push(...shapes);
+      };
+
+      // Only load shapes for the selected diagram type
+      const selectedModel = MODEL_TYPES.find(
+        (mt) => mt.id === selectedModelType
+      );
+      if (!selectedModel) return;
+
+      // Load shapes based on the single selected diagram type
+      switch (selectedDiagramType) {
+        case "mindMapDiagram":
+          addShapesToGroup("mindMap", [
+            createBoundedIcon("Topic", mmdtopicSvg, isPanelCollapsed),
+            createBoundedIcon("Subtopic", mmdsubtopicSvg, isPanelCollapsed),
+            createBoundedIcon("Link", mmdlinkSvg, isPanelCollapsed),
+            createBoundedIcon("Note", mmdnoteSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "processFlowDiagram":
+          addShapesToGroup("businessProcess", [
+            createBoundedIcon(
+              "Start Event",
+              bpmstarteventSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("End Event", bpmendeventSvg, isPanelCollapsed),
+
+            createBoundedIcon(
+              "Task Activity",
+              bpmtaskactivitySvg,
+              isPanelCollapsed
+            ),
+
+            createBoundedIcon(
+              "Sequence Flow",
+              bpmsequenceflowSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Sub Process",
+              bpmsubprocessSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "gatewayDiagram":
+          addShapesToGroup("businessProcess", [
+            createBoundedIcon("Gateway", bpmgatewaySvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Exclusive Gateway",
+              bpmexclusivegatewaySvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Event Gateway",
+              bpmeventgatewaySvg,
+              isPanelCollapsed
+            ),
+
+            createBoundedIcon(
+              "Parallel Gateway",
+              bpmparallelgatewaySvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Message Flow",
+              bpmmessageflowSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Association",
+              bpmassociationSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "subprocessDiagram":
+          addShapesToGroup("businessProcess", [
+            createBoundedIcon(
+              "Call Activity",
+              bpmcallactivitySvg,
+              isPanelCollapsed
+            ),
+
+            createBoundedIcon(
+              "Transaction",
+              bpmtransactionSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "conceptualDataModelDiagram":
+          addShapesToGroup("conceptualDataModel", [
+            createBoundedIcon("Entity", cdmentitySvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Inheritance",
+              cdminheritanceSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "1:N Relationship",
+              cdmonetonRelationshipSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "1:1 Relationship",
+              cdmonetoonerelationshipSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "N:N Relationship",
+              cdmntonRealtionshipSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "requirementsDiagram":
+          addShapesToGroup("requirementsModel", [
+            createBoundedIcon(
+              "Requirement",
+              rmrequirementSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Use Case", rmusecaseSvg, isPanelCollapsed),
+            createBoundedIcon("Link", rmlinkSvg, isPanelCollapsed),
+            createBoundedIcon("Actor", rmactorSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Stakeholder",
+              rmstakeholderSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Goal", rmgoalSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "physicalDataModelDiagram":
+          addShapesToGroup("physicalDataModel", [
+            createBoundedIcon("Table", pdmtableSvg, isPanelCollapsed),
+            createBoundedIcon("Package", pdmpackageSvg, isPanelCollapsed),
+            createBoundedIcon("View", pdmviewSvg, isPanelCollapsed),
+            createBoundedIcon("Reference", pdmreferenceSvg, isPanelCollapsed),
+            createBoundedIcon("Procedure", pdmprocedureSvg, isPanelCollapsed),
+            createBoundedIcon("File", pdmfileSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "classDiagram":
+          addShapesToGroup("objectOrientedModel", [
+            createBoundedIcon("Class", oomclassSvg, isPanelCollapsed),
+            createBoundedIcon("Interface", oominterfaceSvg, isPanelCollapsed),
+
+            createBoundedIcon("Enumeration", oomenumSvg, isPanelCollapsed),
+            createBoundedIcon("Package", oompackageSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Aggregation",
+              oomaggregationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Composition",
+              oomcompositionSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "componentDiagram":
+          addShapesToGroup("objectOrientedModel", [
+            createBoundedIcon("Port", oomportSvg, isPanelCollapsed),
+            createBoundedIcon("Dependency", oomdependencySvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "useCaseDiagram":
+          addShapesToGroup("objectOrientedModel", [
+            createBoundedIcon(
+              "Generalization",
+              oomgeneralizationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Association",
+              oomassociationSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        // Add all other cases following the same pattern...
+        case "multidimensionalDiagram":
+          addShapesToGroup("multidimensionalModel", [
+            createBoundedIcon("Cube", mdmcubevg, isPanelCollapsed),
+            createBoundedIcon("Dimension", mdmdimensionSvg, isPanelCollapsed),
+            createBoundedIcon("Measure", mdmmeasureSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "processTreeDiagram":
+          addShapesToGroup("processHierarchyModel", [
+            createBoundedIcon(
+              "Process Node",
+              phmprocessnodeSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Sub Process Node",
+              phmsubprocessnodeSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Activity Node",
+              phmactivitynodeSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "freeformDiagram":
+          addShapesToGroup("freeModel", [
+            createBoundedIcon("Free Node", ctfreenodeSvg, isPanelCollapsed),
+            createBoundedIcon("Group", ctgroupSvg, isPanelCollapsed),
+            createBoundedIcon("Link", ctlinkSvg, isPanelCollapsed),
+            createBoundedIcon("Note", ctnoteSvg, isPanelCollapsed),
+            createBoundedIcon("Title Box", cttitleboxSvg, isPanelCollapsed),
+            createBoundedIcon("Anchor Link", ctanchorlinkSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "organizationalChart":
+          addShapesToGroup("organizationalChartModel", [
+            createBoundedIcon(
+              "Organization",
+              ocmorganizationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Department", ocmdepartmentSvg, isPanelCollapsed),
+            createBoundedIcon("Role", ocmroleSvg, isPanelCollapsed),
+            createBoundedIcon("Position", ocmpositionSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Reporting Line",
+              ocmreportinglineSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Group", ocmgroupSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "layeredArchitecture":
+          addShapesToGroup("enterpriseArchitectureModel", [
+            createBoundedIcon("Business", eambusinessSvg, isPanelCollapsed),
+            createBoundedIcon("Process", eamprocessSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Connector Line",
+              eamconnectorlineSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Database", eamdatabaseSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "applicationMap":
+          addShapesToGroup("enterpriseArchitectureModel", [
+            createBoundedIcon(
+              "Application",
+              eamapplicationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Technology", eamtechnologySvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "dataMovementDiagram":
+          addShapesToGroup("dataMovementModel", [
+            createBoundedIcon("Source", dmmsourceSvg, isPanelCollapsed),
+            createBoundedIcon("Target", dmmtargetSvg, isPanelCollapsed),
+            createBoundedIcon("Data Flow", dmmdataflowSvg, isPanelCollapsed),
+            createBoundedIcon("Server", dmmserverSvg, isPanelCollapsed),
+            createBoundedIcon("Database", dmmdatabaseSvg, isPanelCollapsed),
+            createBoundedIcon("XML", dmmxmlSvg, isPanelCollapsed),
+            createBoundedIcon("Business", dmmbusinessSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Replication",
+              dmmreplicationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "Replication Server",
+              dmmreplicationserverSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Connection", dmmconnectionSvg, isPanelCollapsed),
+            createBoundedIcon("Package", dmmpackageSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Transformation",
+              dmmtransformationSvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+
+        case "informationLifecycleDiagram":
+          addShapesToGroup("informationLifecycleManagement", [
+            createBoundedIcon(
+              "Information",
+              ilminformationSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Input", ilminputSvg, isPanelCollapsed),
+            createBoundedIcon("Print", ilmprintSvg, isPanelCollapsed),
+            createBoundedIcon("Store", ilmstoreSvg, isPanelCollapsed),
+            createBoundedIcon("Manage", ilmmanageSvg, isPanelCollapsed),
+            createBoundedIcon("Secure", ilmsecureSvg, isPanelCollapsed),
+            createBoundedIcon("Shred", ilmshredSvg, isPanelCollapsed),
+            createBoundedIcon("Flow", ilmflowSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Access Point",
+              ilmaccesspointSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Repository", ilmrepositorySvg, isPanelCollapsed),
+            createBoundedIcon("Annotation", ilmannotationSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "impactAnalysisDiagram":
+          addShapesToGroup("impactAnalysisModel", [
+            createBoundedIcon("Impact", iamimapactSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Change Event",
+              iamchangeeventSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Risk", iamriskSvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Cause Effect",
+              iamcauseeffectSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon("Mitigation", iammitigationSvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "dependencyMatrixDiagram":
+          addShapesToGroup("dependencyPropagationModel", [
+            createBoundedIcon("Matrix", iammatrixSvg, isPanelCollapsed),
+            createBoundedIcon("Entity", iamentitySvg, isPanelCollapsed),
+            createBoundedIcon("Dependency", iamdependencySvg, isPanelCollapsed),
+          ]);
+          break;
+
+        case "logicalDataModelDiagram":
+          addShapesToGroup("logicalDataModel", [
+            createBoundedIcon("Entity", ldmentitySvg, isPanelCollapsed),
+            createBoundedIcon(
+              "Inheritance",
+              ldminteritanceSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "1:1 Relationship",
+              ldmonetooneSvg,
+              isPanelCollapsed
+            ),
+            createBoundedIcon(
+              "1:N Relationship",
+              ldmonetomanySvg,
+              isPanelCollapsed
+            ),
+          ]);
+          break;
+      }
+
+      // Load only the shapes for the selected diagram type
+      stencilInstanceRef.current.load(shapesToLoad);
     }
-
-    if (selectedModelTypes.has("businessProcess")) {
-      shapesToLoad.businessProcess = [
-        startEventShape,
-        taskActivityShape,
-        gatewayShape,
-        endEventShape,
-        sequenceFlowShape,
-        // Add other business process shapes as they're defined
-        SubProcessShape,
-        TransactionShape,
-        CallActivityShape,
-        ExclusiveGatewayShape,
-        EventGatewayShape,
-        ParallelGatewayShape,
-        MessageFlowShape,
-        AssociationShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("conceptualDataModel")) {
-      shapesToLoad.conceptualDataModel = [
-        EntityShape,
-        InheritanceShape,
-        onetoNShape,
-        NtoNShape,
-        onetooneShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("requirementsModel")) {
-      shapesToLoad.requirementsModel = [
-        requirementShape,
-        usecaseShape,
-        linkShape,
-        ActorShape,
-        stakeholderShape,
-        goalShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("physicalDataModel")) {
-      shapesToLoad.physicalDataModel = [
-        TableShape,
-        packagelinkShape,
-        ViewShape,
-        ReferenceShape,
-        ProcedureShape,
-        FileIconShape,
-      ];
-    }
-    if (selectedModelTypes.has("objectOrientedModel")) {
-      shapesToLoad.objectOrientedModel = [
-        classShape,
-        interfaceShape,
-        enumShape,
-        PackagestencilShape,
-        portShape,
-        generalizationShape,
-        aggregationShape,
-        compositionShape,
-        dependencyShape,
-        associationShape,
-      ];
-    }
-    if (selectedModelTypes.has("multidimensionalModel")) {
-      shapesToLoad.multidimensionalModel = [
-        cubeShape,
-        dimensionShape,
-        measureShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("processHierarchyModel")) {
-      shapesToLoad.processHierarchyModel = [
-        processNodeShape,
-        subprocessNodeShape,
-        activityNodeShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("freeModel")) {
-      shapesToLoad.freeModel = [
-        freeNodeShape,
-        groupShape,
-        linkShape,
-        noteShape,
-        titleboxShape,
-      ];
-    }
-    if (selectedModelTypes.has("organizationalChartModel")) {
-      shapesToLoad.organizationalChartModel = [
-        organizationShape,
-        departmentShape,
-        roleShape,
-        positionShape,
-        reportingLineShape,
-      ];
-    }
-    if (selectedModelTypes.has("enterpriseArchitectureModel")) {
-      shapesToLoad.enterpriseArchitectureModel = [
-        businessCapabilityShape,
-        applicationShape,
-        processShape,
-        positionShape,
-        connectorLineShape,
-        DatabaseShape,
-      ];
-    }
-    if (selectedModelTypes.has("dataMovementModel")) {
-      shapesToLoad.dataMovementModel = [
-        sourceShape,
-        targetShape,
-        DataFlowShape,
-        ServerShape,
-        xmlShape,
-        businessProcessShape,
-        replicationShape,
-        ReplicationServerShape,
-        ConnectionShape,
-        packagelinkShape,
-        DatabaseShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("informationLifecycleManagement")) {
-      shapesToLoad.informationLifecycleManagement = [
-        informationNodeShape,
-        inputShape,
-        printShape,
-        StoreShape,
-        ManageShape,
-        secureShape,
-        shredShape,
-        flowShape,
-        AccessPoint,
-        Repository,
-        annotationShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("impactAnalysisModel")) {
-      shapesToLoad.impactAnalysisModel = [
-        impactNodeShape,
-        changeEventShape,
-        riskEffectShape,
-        causeEffectLinkShape,
-        mitigationStrategyShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("dependencyPropagationModel")) {
-      shapesToLoad.dependencyPropagationModel = [
-        matrixShape,
-        entityShape,
-        dependencyShape,
-      ];
-    }
-
-    if (selectedModelTypes.has("logicalDataModel")) {
-      shapesToLoad.logicalDataModel = [
-        EntityShape,
-        InheritanceShape,
-        OneToNShape,
-        onetooneShape,
-      ];
-    }
-
-    // Load all shapes into stencil
-    stencil.load(shapesToLoad);
-
-    stencilInstanceRef.current = stencil;
-
-    return () => {
-      stencilInstanceRef.current?.remove();
-      stencilInstanceRef.current = null;
-    };
-  }, [paper, graph, selectedModelTypes, expandedGroups, isPanelCollapsed]);
-
-  const selectAllState = getSelectAllState();
+  }, [
+    selectedModelType,
+    selectedDiagramType,
+    expandedGroups,
+    isPanelCollapsed,
+  ]);
 
   return (
     <div
@@ -2931,7 +2410,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
               Explorer
             </h3>
             <button
-              onClick={toggleCollapse}
+              // onClick={toggleCollapse}
               style={{
                 background: "none",
                 border: "1px solid var(--toolbar-border)",
@@ -3109,7 +2588,7 @@ const Stencil = ({ paper, graph }: StencilProps) => {
       </div>
 
       <div
-        onClick={toggleSlide}
+        // onClick={toggleSlide}
         style={{
           marginLeft: isPanelHidden ? "-250px" : "-16px",
           width: "32px",
@@ -3137,3 +2616,6 @@ const Stencil = ({ paper, graph }: StencilProps) => {
 };
 
 export default Stencil;
+// React's useCallback is imported from 'react', so this function is not needed.
+// Remove this stub. If you need to use useCallback, import it from 'react':
+// import { useCallback } from "react";

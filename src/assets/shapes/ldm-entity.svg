@@ -1,0 +1,6 @@
+<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer rounded rectangle (table frame) -->
+  <rect x="7" y="10" width="36" height="30" rx="3" />
+  <!-- Horizontal divider for header -->
+  <line x1="7" y1="18" x2="43" y2="18" />
+</svg>
