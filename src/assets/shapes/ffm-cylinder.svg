@@ -1,0 +1,9 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cylinder -->
+  <ellipse cx="25" cy="15" rx="15" ry="5"
+           stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <path d="M10 15 V35 C10 38 25 40 40 35 V15"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+  <ellipse cx="25" cy="35" rx="15" ry="5"
+           stroke="currentColor" fill="none" stroke-width="0.5"/>
+</svg>

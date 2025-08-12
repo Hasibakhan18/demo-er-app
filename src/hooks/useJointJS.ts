@@ -78,46 +78,52 @@ export const useJointJS = () => {
     debug(
       `Container dimensions for paper: ${containerWidth}x${containerHeight}`
     );
-
     const paper = new dia.Paper({
       model: graph,
-      // Initial dimensions for the paper. These will be adjusted by PaperScroller with autoResizePaper.
-      width: containerWidth * 2, // Double the initial width
-      height: containerHeight * 2, // Double the initial height
-
+      width: containerWidth * 2,
+      height: containerHeight * 2,
       gridSize: 10,
       drawGrid: true,
       background: { color: "#F5F5F5" },
       cellViewNamespace: shapes,
-      interactive: true,
-      clickThreshold: 10, // Add this
-      moveThreshold: 10, // Add this
+      interactive: true, // keep as true to allow interaction
+      clickThreshold: 10,
+      moveThreshold: 10,
       defaultRouter: { name: "orthogonal" },
       defaultConnector: { name: "straight", args: { cornerType: "line" } },
-      linkPinning: false,
-      // Enable infinite paper
+      linkPinning: true, // <-- enable drag linking from anywhere on node
       infinity: true,
       defaultLink: () =>
         new shapes.standard.Link({
           attrs: {
-            wrapper: {
-              cursor: "default",
+            wrapper: { cursor: "default" },
+            line: {
+              stroke: "#000",
+              strokeWidth: 2,
+              targetMarker: {
+                type: "path",
+                d: "M 10 -5 0 0 10 5 Z",
+                fill: "#000",
+              },
             },
           },
         }),
       defaultConnectionPoint: { name: "boundary" },
-      validateConnection: function (
+
+      validateConnection: (
         cellViewS: dia.CellView,
-        _magnetS: SVGElement,
+        magnetS: SVGElement,
         cellViewT: dia.CellView,
         magnetT: SVGElement
-      ) {
+      ) => {
         if (cellViewS === cellViewT) return false;
-        return magnetT && magnetT.getAttribute("port-group") === "in";
+        return magnetT && magnetT.getAttribute("magnet") !== "passive";
       },
-      validateMagnet: function (cellView: dia.CellView, magnet: SVGElement) {
+
+      validateMagnet: (cellView: dia.CellView, magnet: SVGElement) => {
         return magnet.getAttribute("magnet") !== "passive";
       },
+
       markAvailable: true,
     });
     setPaper(paper);

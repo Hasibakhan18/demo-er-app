@@ -1,0 +1,5 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon -->
+  <path d="M25 5 L40 15 V35 L25 45 L10 35 V15 Z"
+        stroke="currentColor" fill="none" stroke-width="0.5"/>
+</svg>
